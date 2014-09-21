@@ -2,19 +2,19 @@
 total pre-tax cost for that quantity of items at the given price. For
 example
 
-var preTaxTotal = totalCost(5, 5.99); // 5 items at 5.99
-//=> 29.950000000000003
+    var preTaxTotal = totalCost(5, 5.99); // 5 items at 5.99
+    //=> 29.950000000000003
 
 2. [ a function that calls a function ]
 
 3. Write a function that takes a rank and a suit as input, and returns a
 string representation of a card. For example if we call
 
-console.log(cardString("ace", "spades"));
-//=> ace of spades
+    console.log(cardString("ace", "spades"));
+    //=> ace of spades
 
-console.log(cardString("queen", "hearts"));
-//=> queen of hearts
+    console.log(cardString("queen", "hearts"));
+    //=> queen of hearts
 
 4. Use the previous function to print out a few cards with various suits
 and ranks.
