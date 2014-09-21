@@ -1,9 +1,13 @@
 ### Overview
 
-Sometimes we'll want to perform some operations over and over again,
-but we'll want to use different values for the operation. For example,
-suppose we wanted to write a program that calculated the price of many
-different items.
+In the previous section, I mentioned that programming is largely about
+storing and manipulating data. While variables are primarily related
+to _storing_ data, _functions_ are primarily about manipulating data.
+
+In the most basic scenario, we'll want to perform some operations over
+and over again, but we'll want to use different values for the
+operation. For example, suppose we wanted to write a program that
+calculated the price of many different items.
 
     var itemOnePrice = 4.99;
     var itemTwoPrice = 3.10;
