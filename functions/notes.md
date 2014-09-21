@@ -107,10 +107,10 @@ Or we can define some variables and call it with the variables.
 
 In the previous section, we built a greeting string.
 
-var name = "Semmy";
-var greeting = "Hello, " + name + "!";
-console.log(greeting);
-//=> Hello, Semmy!
+    var name = "Semmy";
+    var greeting = "Hello, " + name + "!";
+    console.log(greeting);
+    //=> Hello, Semmy!
 
 Let's build a function so that this works for _any_ name!
 
