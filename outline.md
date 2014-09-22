@@ -22,7 +22,7 @@
   + variable scope in functions
   + example with numbers
   + example with strings
-  - practice (mostly complete)
+  - practice
 
 * types
   - overview
