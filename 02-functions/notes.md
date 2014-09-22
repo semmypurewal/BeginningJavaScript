@@ -85,7 +85,7 @@ For example, even though we declare and define the `tax` variable
 inside the function, we can't access it later in our program, unless
 we create a new variable called `tax`.
 
-### Another Example
+### Example with Numbers
 
 Here's another example of a function that adds three numbers.
 
@@ -107,7 +107,7 @@ Or we can define some variables and call it with the variables.
     console.log(result);
     //=> 15010
 
-### A String Example
+### Example with Strings
 
 In the previous section, we built a greeting string.
 
