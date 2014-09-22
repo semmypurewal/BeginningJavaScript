@@ -134,14 +134,13 @@ have two number variables it represents _addition_. What happens when we mix and
 match number and string variables? Give it a try and do your best to explain
 what you see.
 
-7. In the last example, we ended up with a long decimal number. It might be
-worthwhile to round it off, but we don't know how to do that. The _Mozilla
-Developer Network_ has excellent JavaScript documentation, and there is a
-special _function_ called `Math.round` that will help us do that. It would be
-worthwhile for you to read the documentation on this function here:
-
+7. In the last example, we ended up with a long decimal number. We'd
+like to round it off, but we don't know how to do that. The _Mozilla
+Developer Network_ has excellent JavaScript documentation, and there
+is a special _function_ called `Math.round` that will help us do
+that. It would be worthwhile for you to read the documentation on this
+function here:
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math/round
-
 If you're feeling very brave, give it a try! You can round dollar amounts to two
 decimal places by first multiplying by 100, then rounding the nearest integer,
-then dividing by 100.
+then dividing by 100. You can divide by using the `/` operator.
