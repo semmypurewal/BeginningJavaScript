@@ -20,12 +20,12 @@ use to represent it. We'll use letters and occasionally numbers in our
 identifiers, although we can't use a number as the first character in an
 identifier.
 
-      // this is okay
-      var card1;
+    // this is okay
+    var card1;
 
-      // this is not okay
-      var 1card;
-      //=> SyntaxError: Unexpected token ILLEGAL
+    // this is not okay
+    var 1card;
+    //=> SyntaxError: Unexpected token ILLEGAL
 
 ### Defining Variables
 
