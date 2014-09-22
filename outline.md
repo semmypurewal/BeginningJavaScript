@@ -4,25 +4,25 @@
   - what we won't learn
   - getting examples
   - working with the browser
-  - working with node.js
   - where to get help
 
 * variables
-  - overview
-  - declaring variables
-  - defining variables
-  - manipulating values via variables
-  - non-string variables
-  - practice
+  + overview
+  + declaring variables
+  + defining variables
+  + manipulating values via variables
+  + non-string variables
+  - re-assigning variables
+  + practice
 
 * functions
-  - overview
-  - defining a function
-  - calling a function
-  - variable scope in functions
-  - examples with numbers
-  - examples with strings
-  - practice
+  + overview
+  + defining a function
+  + calling a function
+  + variable scope in functions
+  + example with numbers
+  + example with strings
+  - practice (mostly complete)
 
 * types
   - overview
@@ -40,10 +40,11 @@
   - practice
 
 * loops
-  - while-loops as generalizations of if-statements
-  - for-loops
-  - examples
-  - practice
+  + overview
+  + while-loops as generalizations of if-statements
+  + for-loops
+  + examples
+  + practice
 
 * arrays
   - arrays as generalizations of variables
