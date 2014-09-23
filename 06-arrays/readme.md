@@ -222,8 +222,8 @@ original string to it in reverse)
 
 12. Using a standard `for` loop, along with the `push` function, write a
 function called `range` that accepts two numbers, `min` and `max`, and returns
-an array that contains all of the integers starting at `min` and ending at `max
-- 1`. For example:
+an array that contains all of the integers starting at `min` and ending at
+`max - 1`. For example:
 
     range(5,10);
     //=> [5,6,7,8,9,10]
