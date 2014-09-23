@@ -47,13 +47,13 @@
   + practice
 
 * arrays
-  - arrays as generalizations of variables
-  - defining an array
-  - adding elements to an array (push)
-  - getting individual elements out of an array
-  - strings as special arrays
-  - examples
-  - practice
+  + overview
+  + defining an array
+  + accessing elements of an array
+  + mutating an array
+  + strings as special arrays
+  + examples
+  + practice
 
 * array methods
   - forEach
