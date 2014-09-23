@@ -219,3 +219,14 @@ times in the second array.
 11. Write a function that accepts a string and returns the same string, only in
 reverse! (HINT: create a new empty string, and concatenate each letter of the
 original string to it in reverse)
+
+12. Using a standard `for` loop, along with the `push` function, write a
+function called `range` that accepts two numbers, `min` and `max`, and returns
+an array that contains all of the integers starting at `min` and ending at `max
+- 1`. For example:
+
+    range(5,10);
+    //=> [5,6,7,8,9,10]
+
+    range(0,3);
+    //=> [0,1,2]

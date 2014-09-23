@@ -56,15 +56,14 @@
   + practice
 
 * array methods
-  - forEach
-  - map
-  - filter
-  - some
-  - every
-  - reduce
-  - converting between strings and arrays (maybe this should go above?)
-  - data-wrangling examples
-  - practice
+  + overview
+  + forEach
+  + map
+  + filter
+  + some and every
+  + reduce
+  + converting between strings and arrays (maybe this should go above?)
+  + practice
 
 * objects
   - objects as generalizations of arrays
