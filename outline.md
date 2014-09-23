@@ -35,6 +35,7 @@
   - practice
 
 * conditionals (if-statements)
+  - overview
   - if-statements and boolean expressions
   - else-statements
   - practice
@@ -62,7 +63,7 @@
   + filter
   + some and every
   + reduce
-  + converting between strings and arrays (maybe this should go above?)
+  + converting between strings and arrays
   + practice
 
 * objects
