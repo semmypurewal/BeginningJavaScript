@@ -25,19 +25,19 @@
   - practice
 
 * types
-  - overview
-  - number types and arithmetic expressions
-  - string types and built-in methods
+  + overview
+  + the typeof function
+  + number types and arithmetic expressions
+  + string types and built-in methods
   - boolean types and boolean expressions
-  - checking the type of value stored in a variable (typeof)
-  - writing functions to test types
-  - writing robust functions (throwing errors on types)
   - practice
 
 * conditionals (if-statements)
   - overview
   - if-statements and boolean expressions
   - else-statements
+  - writing functions to test types
+  - writing robust functions (throwing errors on types)
   - practice
 
 * loops
