@@ -154,6 +154,78 @@ using the `charAt` method.
 
 ### Boolean Types and Boolean Expressions
 
+The last important basic type in JavaScript is the _Boolean_ type. There are
+exactly two boolean values -- `true` and `false`.
+
+    var isACard = true;
+    console.log(isACard);
+    //=> true
+
+    var isANumber = false;
+    console.log(isANumber);
+    //=> false
+
+    typeof isANumber;
+    //=> boolean
+
+Usually, however, a boolean value is the result of a boolean expression. The
+expressions can be built up using some of the simple comparison operations that
+you learned in elementary
+
+    5 < 7;   // is less than
+    //=> true
+
+    5 > 7;  // is greater than
+    //=> false
+
+    5 <= 5  // is less than or equal to
+    //=> true
+
+There are 5 basic ordering operations which evaluate to booleans. We can use
+these evaluate properties of ordered types (like numbers and strings).
+
+| Operator | Meaning  |
+| :------: | :------- |
+|    <     | less than |
+|    <=    | less than or equal to |
+|    >     | greater than |
+|    >=    | greater than or equal to |
+|    ===   | strict equal to |
+|    !==   ! strict not-equal to |
+
+
+Likewise, once we have boolean values, or expressions that evaluate to boolean
+values, we can use several boolean operators to build up more complex
+expressions. For example, maybe we want to know if a number is bigger than 0 and
+smaller than 18.
+
+    var age = 25;
+    age > 0 && age < 18;
+    //=> false
+
+    var age = 12;
+    age > 0 && age < 18;
+    //=> true
+
+The `&&` operator represents the logical "and". This returns true if both the
+left expression and the right expression return true. Similarly, we could use
+`||` to test the logical or. In this example, we're checking to see if the type
+is a number or a string.
+
+    var value = 5;
+    typeof value === "number" || typeof value === "string";
+    //=> true
+
+    var value = "hello";
+    typeof value === "number" || typeof value === "string";
+    //=> true
+
+    var value = false;
+    var value = "hello";
+    typeof value === "number" || typeof value === "string";
+    //=> false
+
+
 ### Creating Functions to Test Types
 
 ### Practice

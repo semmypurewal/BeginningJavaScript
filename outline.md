@@ -29,7 +29,8 @@
   + the typeof function
   + number types and arithmetic expressions
   + string types and built-in methods
-  - boolean types and boolean expressions
+  + boolean types and boolean expressions
+  - creating functions to test types
   - practice
 
 * conditionals (if-statements)
