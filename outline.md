@@ -68,8 +68,9 @@
   + practice
 
 * objects
-  - objects as generalizations of arrays
-  - using array functions on maps
+  + overview
+  + what are these good for?
+  - using array functions on objects
   - examples
   - practice
 
