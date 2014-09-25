@@ -30,7 +30,7 @@
   + number types and arithmetic expressions
   + string types and built-in methods
   + boolean types and boolean expressions
-  - creating functions to test types
+  + creating functions to test types
   - practice
 
 * conditionals (if-statements)

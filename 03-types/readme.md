@@ -178,7 +178,22 @@ you learned in elementary
     5 > 7;  // is greater than
     //=> false
 
-    5 <= 5  // is less than or equal to
+    5 <= 5;  // is less than or equal to
+    //=> true
+
+We can even use these comparison operators on strings. But in this case, the
+comparison is done alphanumerically.
+
+    "aardvark" < "zebra";
+    //=> true
+
+    "aardvark" < "Zebra";
+    //=> false, because upper-case letters come first
+
+    "A" < "a";
+    //=> false, see?
+
+    "a" < "aa";
     //=> true
 
 There are 5 basic ordering operations which evaluate to booleans. We can use
@@ -193,6 +208,12 @@ these evaluate properties of ordered types (like numbers and strings).
 |    ===   | strict equal to |
 |    !==   ! strict not-equal to |
 
+
+    "aardvark" === "aardvark";
+    //=> true
+
+    "aardvark" !== "AArdvark".toLowerCase();
+    //=> false
 
 Likewise, once we have boolean values, or expressions that evaluate to boolean
 values, we can use several boolean operators to build up more complex
@@ -228,4 +249,48 @@ is a number or a string.
 
 ### Creating Functions to Test Types
 
+One thing that we've already seen is that function arguments can take on any
+type, which can lead to unexpected results. One of the things we'd like to do is
+make sure our function arguments are of the correct type. To do this, we can
+create simple _predicate_ functions that test the type of a given value, or a
+value stored in a variable.
+
+A predicate function is a function that simply returns true or false. For
+example, consider the following function.
+
+    var isNumber = function (n) {
+        return typeof n === "number;
+    }
+
+    isNumber(5);
+    //=> true
+
+    isNumber("5");
+    //=> false
+
+    isNumber(true);
+    //=> false
+
+Our type-testing functions can actually be more complex than a simple call to
+`typeof`. For example, suppose we wanted to know if a value was a positve
+number. We can combine the function we wrote before with another test via a
+boolean expression.
+
+    var isPositiveNumber = function (n) {
+        return isNumber(n) && n > 0;
+    }
+
+    isPositiveNumber(0);
+    //=> false
+
+    isPositiveNumber(10);
+    //=> true
+
+    isPositiveNumber("hello");
+    //=> false
+
+In the practice section, we'll write several functions like this that utilize
+all the techniques learned in this section.
+
 ### Practice
+
