@@ -34,10 +34,9 @@
   - practice
 
 * conditionals (if-statements)
-  - overview
-  - if-statements and boolean expressions
-  - else-statements
-  - writing functions to test types
+  + overview
+  + if-statements
+  + else clauses in if-statements
   - writing robust functions (throwing errors on types)
   - practice
 
