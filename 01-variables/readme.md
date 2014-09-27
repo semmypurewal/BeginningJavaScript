@@ -106,6 +106,22 @@ We can now calculate the total cost.
 The reason that the decimal is so long is a quirk of the way JavaScript stores
 numbers. We'll defer a discussion on that for now.
 
+### Reassigning Variables
+
+The value stored inside a variable can change throughout your program.
+
+    var greeting = "hello!";
+    console.log(greeting);
+    //=> hello!
+
+    greeting = "hola!";
+    console.log(greeting);
+    //=> hola!
+
+It's worth keeping this in mind -- it's easy to reuse variables! The downside of
+this is that frequently re-assigning variables in your program can lead to bugs
+in your program.
+
 ### Practice
 
 1. What happens when you print out the value of a variable that you have

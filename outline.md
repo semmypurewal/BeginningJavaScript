@@ -12,7 +12,7 @@
   + defining variables
   + manipulating values via variables
   + non-string variables
-  - re-assigning variables
+  + re-assigning variables
   + practice
 
 * functions
@@ -37,7 +37,7 @@
   + overview
   + if-statements
   + else clauses in if-statements
-  - writing robust functions (throwing errors on types)
+  + writing robust functions (throwing errors on types)
   - practice
 
 * loops

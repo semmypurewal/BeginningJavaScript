@@ -64,4 +64,53 @@ the `else` clause.
 
 ### Writing robust functions
 
+One thing that if statements allow us to do is to issue errors in cases where
+inputs to a function don't meet our expectations. For example, recall our
+`addThree` function from earlier.
+
+    var addThree = function (a, b, c) {
+        return a + b + c;
+    }
+
+This function works as expected if the parameters are numbers, but is completely
+unexpected if the parameters are other values.
+
+    addThree(1, 2, 3);
+    //=> 6
+
+    addThree(1, 2, "hello");
+    //=> 3hello
+
+    addThree("hello", 1, 2);
+    //=> hello12
+
+While this may not seem like such an issue on the surface, the results of
+function calls are often passed to other functions, whose results are passed to
+other functions, and so on. When this happens and one of the functions is
+operating on arguments that lead to undefined behavior, our entire program can
+become unstable.
+
+Therefore it's a good idea to not allow that to happen. JavaScript has an
+operator called `throw` which allows us to terminate the program to let the
+programmer (or a user) know that it has entered an unexpected state.
+
+    var addThree = function (a, b, c) {
+        if (!isNumber(a) || !isNumber(b) || !isNumber(c)) {
+            throw "the arguments to addThree must be numbers!"
+        }
+        return a + b + c;
+    }
+
+Now our function is a bit more robust and won't propogate invalid results
+throughout our program.
+
+    addThree(1, 2, 3);
+    //=> 6
+
+    addThree(1, 2, "hello");
+    //=> the arguments to addThree must be numbers!
+
+    addThree("hello", 1, 2);
+    //=> the arguments to addThree must be numbers!
+
 ### Practice

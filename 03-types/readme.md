@@ -242,10 +242,19 @@ is a number or a string.
     //=> true
 
     var value = false;
-    var value = "hello";
     typeof value === "number" || typeof value === "string";
     //=> false
 
+
+We can also flip the results by using the `!` (not) operator.
+
+    var value = "hello";
+    !(typeof value === "number" || typeof value === "string");
+    //=> false
+
+    var value = true;
+    !(typeof value === "number" || typeof value === "string");
+    //=> true
 
 ### Creating Functions to Test Types
 
