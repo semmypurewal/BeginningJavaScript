@@ -4,13 +4,14 @@ Computer programming is largely about storing and manipulating data, where data
 is just individual pieces of information. The most basic way to store individual
 pieces of information in any programming language is in variables.
 
-Before we use a variable we have to _declare_ and _define_ it. Declaring a
-variable involves telling the interpreter how we're going to refer to it.
+Before we use a variable we have to _declare_ and _define_ it.
 
 ### Declaring Variables
 
-For example, if we want to declare a variable that will represent the suit of a
-playing card, we may want to call it `suit` and we would declare it like this.
+Declaring a variable involves telling the interpreter how we're going
+to refer to it. For example, if we want to declare a variable that
+will represent the suit of a playing card, we may want to call it
+`suit` and we would declare it like this.
 
     // declare a variable called suit
     var suit;
