@@ -40,6 +40,8 @@ Since the value stored in `num` is not bigger than 100 (it's 99), it skips over
 the `if` statements associated code block and just executes the final log
 statement.
 
+### `if`-`else if` and nested `if` statements
+
 ### `else` clauses in `if` statements
 
 Conditional expressions with `if` statements also allow you to include an `else`
@@ -64,7 +66,7 @@ the `else` clause.
 
 ### Writing robust functions
 
-One thing that if statements allow us to do is to issue errors in cases where
+One thing that `if` statements allow us to do is to issue errors in cases where
 inputs to a function don't meet our expectations. For example, recall our
 `addThree` function from earlier.
 
@@ -114,3 +116,8 @@ throughout our program.
     //=> the arguments to addThree must be numbers!
 
 ### Practice
+
+1. A year is a leap year if it is divisible by 4, unless it is also divisible by
+100 in which case it is not a leap year unless it is also divisible by
+400. Phew. Got that? Good. Write a function that accepts a number and outputs
+true if the number is a leap year, false if not.

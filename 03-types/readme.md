@@ -41,23 +41,15 @@ What happens when we mix and match?
     addThree("5", 10, "Hello");
     //=> 510Hello
 
-As you can see, the results can seem unexpected, and this can lead to bugs in
-JavaScript programs.
+People often write functions in JavaScript without considering what happens when
+the arguments contain values of unexpected types. This makes the functions
+exhibit undefined behavior, which can lead to bugs in more complex JavaScript
+programs.
 
-### The typeof function
+### The typeof operator
 
 The most basic way to test to see the type of a value in JavaScript is to use
-the `typeof` function.
-
-    typeof(5);
-    //=> number
-
-    typeof("5");
-    //=> string
-
-The `typeof` function is one of several unique functions in JavaScript that
-don't require parentheses to call them. In other words, you'll more frequently
-see `typeof` used like this.
+the `typeof` operator.
 
     typeof 5;
     //=> number
@@ -83,7 +75,8 @@ It's pretty essential that we understand basic operations that we can apply to
 the specific built-in JavaScript types. It's easiest to start with the `number`
 type.
 
-The most-commonly used built-in operators are the usual arithmetic operators.
+The most-commonly used built-in operators for numbers are the (mostly) familiar
+arithmetic operators.
 
 | Operator | Meaning  |
 | :------: | :------- |
@@ -100,6 +93,12 @@ The most-commonly used built-in operators are the usual arithmetic operators.
 The operations follow the standard precedence rules you learn in elementary
 school: multiplication and division take place prior to addition or
 subtraction. You can also apply parentheses to force precedence.
+
+    24 / 6 + 2
+    //=> 6, because 24 / 6 is 4, and adding 2 is 6
+
+    24 / (6 + 2);
+    //=> 3, because the addition happens first, so 24 / 8 is 3
 
 The remainder operator may seem less useful, but it turns out that it's pretty
 frequently used. Here's some examples of it:
@@ -128,6 +127,10 @@ operator.
 
     "hello world!".toUpperCase();
     //=> HELLO WORLD!
+
+We can also apply methods to string values stored in variables.
+
+    var greeting = "hello there!";
 
 You can also check to see if a string contains a certain substring by using the
 `indexOf` method. This method returns the index of the substring, or -1 if the
@@ -261,11 +264,9 @@ We can also flip the results by using the `!` (not) operator.
 One thing that we've already seen is that function arguments can take on any
 type, which can lead to unexpected results. One of the things we'd like to do is
 make sure our function arguments are of the correct type. To do this, we can
-create simple _predicate_ functions that test the type of a given value, or a
-value stored in a variable.
-
-A predicate function is a function that simply returns true or false. For
-example, consider the following function.
+create simple functions that test the type of a given value, or a value stored
+in a variable. These functions return either `true` if the input has the
+property, and false otherwise.
 
     var isNumber = function (n) {
         return typeof n === "number;
@@ -302,4 +303,69 @@ In the practice section, we'll write several functions like this that utilize
 all the techniques learned in this section.
 
 ### Practice
+
+1. Using the Chrome JavaScript console, practice with the `typeof`
+operator. What are the types of the following values?
+
+    typeof true;
+
+    typeof "true";
+
+    typeof 1;
+
+    typeof "1";
+
+    typeof "one";
+
+
+2. Using the Chrome JavaScript console, practice with string methods. If you
+type a string and then the dot operator, and then wait a moment, you'll see that
+Chrome's auto-complete box will appear. You can use the up and down arrows to
+cycle through all the methods available on the string object. Apply a few of
+those methods and see if you can understand what they do.
+
+3. [ a complicated computation involving addition, subtraction, multiplication, division ]
+
+4. Write a function called isDivisibleBy3 which returns `true` if a number is
+divisible by 3, and `false` otherwise.
+
+5. Write a function that converts a Celsius temperature to Fahrenheit,
+and vice-versa. To convert from Celsius to Fahrenheit, you multiply
+the celsius value by 9 and then divide by 5. Then you add 32. To
+convert the other way, you subtract 32, and then multiply by
+9. Finally, you divide by 5. The division operator in JavaScript is
+`/`.
+
+6. The standard card suits are clubs, diamonds, hearts and spades. Write a
+function called isSuit that accepts a string and returns true if the input
+string is a suit, and false otherwise. Consider making a more robust function
+that will allow the case to be arbitrary, meaning "HEARTS", "hearts", and
+"hEaRtS" all return `true`. You can use the `toLowerCase` or `toUpperCase`
+string methods to achieve this.
+
+    isSuit("hearts");
+    //=> true
+
+    isSuit("HEARTS");
+    //=> true
+
+    isSuit("coins");
+    //=> false
+
+7. The valid ranks for a card are two, three, four, five, six, seven, eight,
+nine, ten, jack, queen, king and ace. Write a function called `isRank` that
+accepts a string and returns true if it is a card rank.
+
+    isRank("jack");
+    //=> true
+
+    isRank("Queen");
+    //=> true
+
+    isRank("one");
+    //=> false
+
+8. Using the previous two functions, write a function called isCard that accepts
+two arguments, a suit and a rank, and returns true if they are valid for a card,
+and false otherwise.
 

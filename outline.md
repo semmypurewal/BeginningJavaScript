@@ -22,7 +22,7 @@
   + variable scope in functions
   + example with numbers
   + example with strings
-  - practice
+  + practice
 
 * types
   + overview
@@ -31,12 +31,13 @@
   + string types and built-in methods
   + boolean types and boolean expressions
   + creating functions to test types
-  - practice
+  + practice
 
 * conditionals (if-statements)
   + overview
   + if-statements
   + else clauses in if-statements
+  - `if`-`else if` and nested `if` statements
   + writing robust functions (throwing errors on types)
   - practice
 
