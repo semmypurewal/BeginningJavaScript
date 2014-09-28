@@ -112,11 +112,15 @@ Likewise, we can call the `toParagraphString` function in a similar fashion.
 
 Notice that we declare and define a variable called `taggedString` inside the
 `function. That variable is hidden from the outside world, and only available to
-the function.
+the function. We refer to these as _local variables_.
 
 For example, even though we declare and define the `taggedString` variable
 inside the function, we can't access it later in our program outside of the
 function, unless we create a new variable called `taggedString`.
+
+Furthermore, we need to make sure that our local variables don't have the same
+name as any of our function arguments. Actually, JavaScript allows this without
+so much as a warning, so you'll need to be vigilant and not allow this to happen!
 
 ### Example with Numbers
 
