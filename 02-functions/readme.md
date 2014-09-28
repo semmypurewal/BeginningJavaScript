@@ -1,20 +1,20 @@
 ### Overview
 
-In the previous section, I mentioned that programming is largely about
-storing and manipulating data. While variables are primarily related
-to _storing_ data, _functions_ are primarily about manipulating data.
+In the previous section, I mentioned that programming is largely about storing
+and manipulating data. While variables are primarily related to _storing_ data,
+_functions_ are primarily about manipulating data.
 
-In the most basic scenario, we'll want to perform some operations over
-and over again, but we'll want to use different values for the
-operation. For example, suppose we wanted to write a program that
-calculated the price of many different items.
+In the most basic scenario, we'll want to perform some operations over and over
+again, but we'll want to use different values for the operation. For example,
+suppose we wanted to write a program that calculated the price of many different
+items.
 
     var itemOnePrice = 4.99;
     var itemTwoPrice = 3.10;
     var itemThreePrice = 2100.00;
 
-Now in order to compute the taxes on all three of these items, we
-might end up with something like this.
+Now in order to compute the taxes on all three of these items, we might end up
+with something like this.
 
     var itemOneTax =  itemOnePrice * taxRate;
     var itemOneTotal = itemOnePrice + itemOneTax;
@@ -25,31 +25,52 @@ might end up with something like this.
     var itemThreeTax =  itemThreePrice * taxRate;
     var itemThreeTotal = itemThreePrice + itemThreeTax;
 
-This is a problem. Since we essentially have to copy the formula three
-times, it's more likely that we'll make a mistake. Wouldn't it be
-better if we could just do something like this?
+This is a problem. Since we essentially have to copy the formula three times,
+it's more likely that we'll make a mistake. Wouldn't it be better if we could
+just do something like this?
 
     var itemOneTotal = totalWithTax(taxRate, itemOnePrice);
     var itemTwoTotal = totalWithTax(taxRate, itemTwoPrice);
     var itemThree = totalWithTax(taxRate, itemThreePrice);
 
-This is an example of a _function_. The function call `totalWithTax`
-takes the place of the formula.
+This is an example of a _function_. The function call `totalWithTax` takes the
+place of the formula.
+
+We often want to do this when dealing with client-side web development. For
+instance, in the last section, we saw that we may want to build an HTML element
+given its text content.
+
+    var textContent = "this is the text content in a paragraph element";
+    var paragraph = "<p>" + content + "</p>";
+
+But wouldn't it be great if we could simply do something like this?
+
+    var paragraph = generateParagraphString(textContent);
+    console.log(paragraph);
+    //=> </p>this is the text content in a paragraph element</p>
+
+Even better, what if we could generalize this for an arbitrary HTML tag?
+
+    var listItem = generateTagString("li", "list item 1");
+    console.log(listItem);
+    //=> <li>list item 1</li>
+
+Packaging operations that are frequently used as functions makes this possible.
 
 ### Defining a Function
 
-A _function_ is simply a collection of code that has a well-defined
-input and a well-defined output. We can store a function in a
-variable, just like we can store other values in a variable.
+A _function_ is simply a collection of code that has a well-defined input and a
+well-defined output. We can store a function in a variable, just like we can
+store other values in a variable.
 
     var totalWithTax = function (rate, price) {
         var tax = price * rate;
         return price + tax;
     };
 
-In this example, `rate` and `price` are variable placeholders for the
-_inputs_ to the function, while the `return` statement represents the
-_output_ of the function.
+In this example, `rate` and `price` are variable placeholders for the _inputs_
+to the function, while the `return` statement represents the _output_ of the
+function.
 
 ### Calling a Function
 
