@@ -28,6 +28,7 @@
   + overview
   + the typeof function
   + number types and arithmetic expressions
+  - extending the number operations with Math
   + string types and built-in methods
   + boolean types and boolean expressions
   + creating functions to test types

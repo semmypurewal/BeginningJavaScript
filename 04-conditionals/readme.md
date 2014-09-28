@@ -121,3 +121,7 @@ throughout our program.
 100 in which case it is not a leap year unless it is also divisible by
 400. Phew. Got that? Good. Write a function that accepts a number and outputs
 true if the number is a leap year, false if not.
+
+2. Magic 8 Ball Function
+
+3. three argument pair function

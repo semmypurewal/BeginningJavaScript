@@ -115,6 +115,12 @@ frequently used. Here's some examples of it:
 In future sections, we'll use the remainder operator to test divisibility of
 numbers (and check for primality).
 
+### Extending the number operations with Math
+
+[other interesting operations]
+
+[random number generation]
+
 ### String Types and Built-In Methods
 
 Strings are a little more interesting than numbers, because they have built in
