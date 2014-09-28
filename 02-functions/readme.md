@@ -45,13 +45,13 @@ given its text content.
 
 But wouldn't it be great if we could simply do something like this?
 
-    var paragraph = generateParagraphString(textContent);
+    var paragraph = toParagraphString(textContent);
     console.log(paragraph);
     //=> </p>this is the text content in a paragraph element</p>
 
 Even better, what if we could generalize this for an arbitrary HTML tag?
 
-    var listItem = generateTagString("li", "list item 1");
+    var listItem = toTagString("li", "list item 1");
     console.log(listItem);
     //=> <li>list item 1</li>
 
@@ -72,39 +72,51 @@ In this example, `rate` and `price` are variable placeholders for the _inputs_
 to the function, while the `return` statement represents the _output_ of the
 function.
 
+Likewise, we can define the function that creates a paragraph tag string. The
+input to the function is the content string, and the output is the content
+delimited by the paragraph tags.
+
+    var toParagraphString(content) {
+        var taggedString = "<p>" + content + "</p>";
+        return taggedString;
+    };
+
 ### Calling a Function
 
-We _call_ a function by using the variable name associated with it,
-followed by the actual inputs in parentheses, separated by
-commas.
+We _call_ a function by using the variable name associated with it, followed by
+the actual inputs in parentheses, separated by commas.
 
     totalWithTax(0.09, 5.99);
     //=> 6.52910000000000001
 
-The inputs can be values, or they can be variables that store
-values. For example, if we have the variables `itemOnePrice` and
-`taxRate` that we stored above, we can call `totalWithTax` like
-this.
+The inputs can be values, or they can be variables that store values. For
+example, if we have the variables `itemOnePrice` and `taxRate` that we stored
+above, we can call `totalWithTax` like this.
 
     totalWithTax(taxRate, itemOnePrice);
     //=> 5.4391
 
-We can also store the value in a variable, which we can then use
-later.
+We can also store the value in a variable, which we can then use later.
 
     var total = totalWithTax(0.09, 99.99);
     console.log(total);
     //=> 108.9891
 
+Likewise, we can call the `toParagraphString` function in a similar fashion.
+
+    var paragraph = toParagraphString("hello world!");
+    console.log(paragraph);
+    //=> <p>hello world!</p>
+
 ### Variable Scope
 
-Notice that we declare and define a variable called _tax_ inside the
-function. That variable is hidden from the outside world, and only
-available to the function.
+Notice that we declare and define a variable called `taggedString` inside the
+`function. That variable is hidden from the outside world, and only available to
+the function.
 
-For example, even though we declare and define the `tax` variable
-inside the function, we can't access it later in our program, unless
-we create a new variable called `tax`.
+For example, even though we declare and define the `taggedString` variable
+inside the function, we can't access it later in our program outside of the
+function, unless we create a new variable called `taggedString`.
 
 ### Example with Numbers
 
@@ -154,15 +166,14 @@ Let's build a function so that this works for _any_ name!
 0. (example) Write a function that accepts two number arguments and adds them
 together.
 
-1. Create a function that takes in a cost and a quantity and outputs the
-total pre-tax cost for that quantity of items at the given price. For
-example
+1. Create a function that takes in a cost and a quantity and outputs the total
+pre-tax cost for that quantity of items at the given price. For example
 
     var preTaxTotal = totalCost(5, 5.99); // 5 items at 5.99
     //=> 29.950000000000003
 
-2. Write a function that takes a rank and a suit as input, and returns a
-string representation of a card. For example if we call
+2. Write a function that takes a rank and a suit as input, and returns a string
+representation of a card. For example if we call
 
     cardString("ace", "spades");
     //=> ace of spades
@@ -173,14 +184,39 @@ string representation of a card. For example if we call
 3. Rewrite the function in Chrome's JavaScript console. Use it to print out a
 few cards with various suits and ranks.
 
-5. We described a function called `addThree` that accepts three
-numbers and returns their sum. What happens when you call that
-function with strings instead of numbers? What happens if some of the
-values are numbers and some are strings? Try various approaches and
-explain what is happening.
+4. We described a function called `addThree` that accepts three numbers and
+returns their sum. What happens when you call that function with strings instead
+of numbers? What happens if some of the values are numbers and some are strings?
+Try various approaches and explain what is happening.
 
-6. Write a function called totalWithTax that accepts three arguments: a quantity
-of items, a price per item, and a tax rate. The function should return a total
-with tax, and it should reuse the function that you created in the first
-practice problem.
+5. Write a function called `openTag` that accepts a tag name and returns an
+opening HTML tag with that tag name. For example,
 
+    openTag("p");
+    //=> <p>
+
+    openTag("div");
+    //=> <div>
+
+Similarly, write a function called `closingTag` that returns the closing HTML tag
+with that name.
+
+    closeTag("p");
+    //=> </p>
+
+    closeTag("div");
+    //=> </div>
+
+6. Write a function called `toTagString` that accepts two inputs: a tag name,
+and the string content, and returns the content tagged with the specified
+string.  For example:
+
+    toTagString("li", "list item 1");
+    //=> <li>list item 1</li>
+
+    // the 'em' tag is for 'emphasis'
+    toTagString("em", "this is important stuff");
+    //=> <em>this is important stuff</em>
+
+Although I won't be testing for this, your code should re-use the functions that
+you created in the previous section.
