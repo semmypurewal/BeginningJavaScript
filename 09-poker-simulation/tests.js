@@ -81,12 +81,19 @@ describe("#createDeck", function () {
 });
 
 describe("#shuffle", function () {
-    //console.log(JSON.stringify(isDeck(shuffle(createDeck()))));
+    console.log(JSON.stringify(isDeck(shuffle(createDeck()))));
 });
 
 describe("#isHand", function () {
-    //var hand = [];
-    //var notAHand = [];
+    var hand = [ deck[0], deck[10], deck[15], deck[4], deck[30] ];
+    var notAHand1 = [];
+    var notAHand2 = 5;
+
+    it ("should return true if the input is an array of 5 cards", function () {
+        expect(isAHand(hand)).toBe(true);
+        expect(isHand(notAHand1)).toBe(false);
+        expect(isHand(notAHand2)).toBe(false);
+    });
 });
 
 describe("#dealHand", function () {
