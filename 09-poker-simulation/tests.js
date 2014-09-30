@@ -90,7 +90,7 @@ describe("#isHand", function () {
     var notAHand2 = 5;
 
     it ("should return true if the input is an array of 5 cards", function () {
-        expect(isAHand(hand)).toBe(true);
+        expect(isHand(hand)).toBe(true);
         expect(isHand(notAHand1)).toBe(false);
         expect(isHand(notAHand2)).toBe(false);
     });
