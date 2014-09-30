@@ -90,7 +90,7 @@ describe("#isHand", function () {
     var notAHand2 = 5;
 
     it ("should return true if the input is an array of 5 cards", function () {
-        expect(isAHand(hand)).toBe(true);
+        expect(isHand(hand)).toBe(true);
         expect(isHand(notAHand1)).toBe(false);
         expect(isHand(notAHand2)).toBe(false);
     });
@@ -110,6 +110,7 @@ describe("#isHigherThan", function () {
     it ("should return true if first argument is a higher card than the second", function () {
         expect(isHigherThan({"rank":"five", "suit":"spades"}, {"suit":"hearts", "rank":"six"})).toBe(false);
         expect(isHigherThan({"rank":"five", "suit":"spades"}, {"suit":"hearts", "rank":"five"})).toBe(true);
+        expect(isHigherThan({"suit":"hearts","rank":"three"}, {"suit":"spades","rank":"three"})).toBe(false);
     });
 });
 
