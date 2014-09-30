@@ -73,7 +73,7 @@ describe("#createDeck", function () {
     it ("should create and return a deck", function () {
         var d = createDeck();
         expect(Array.isArray(d)).toBe(true);
-        expect(d.length === 52);
+        expect(d.length === 52).toBe(true);
         expect(d.every(function (card, index, deck) {
             return deck.lastIndexOf(card) === index;
         })).toBe(true);
@@ -123,10 +123,12 @@ describe("#highCard", function () {
 });
 
 describe("#lowCard", function () {
+    it ("should return the card with the lowest rank", function () {
         var hand = [ {"suit":"clubs","rank":"ten"},{"suit":"spades","rank":"three"},
                      {"suit":"clubs","rank":"six"},{"suit":"hearts","rank":"three"},
                      {"suit":"spades","rank":"five"} ] ;
-    expect(lowCard(hand)).toEqual({"suit":"hearts","rank":"three"});
+        expect(lowCard(hand)).toEqual({"suit":"hearts","rank":"three"});
+    });
 });
 
 describe("#containsPair", function () {
