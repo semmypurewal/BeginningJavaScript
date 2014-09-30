@@ -140,6 +140,13 @@ describe("#lowCard", function () {
 });
 
 describe("#containsPair", function () {
+    console.log(JSON.stringify(dealHand()));
+    it ("should return true if the hand contains a pair, false otherwise", function () {
+        var pair = [ {"suit":"clubs","rank":"four"},{"suit":"spades","rank":"nine"},{"suit":"diamonds","rank":"four"},{"suit":"spades","rank":"ace"},{"suit":"clubs","rank":"queen"} ];
+        var notAPair = [ {"suit":"clubs","rank":"four"},{"suit":"spades","rank":"nine"},{"suit":"diamonds","rank":"three"},{"suit":"spades","rank":"ace"},{"suit":"clubs","rank":"queen"} ];
+        expect(containsPair(pair)).toBe(true);
+        expect(containsPair(notAPair)).toBe(false);
+    });
 });
 
 describe("#containsTwoPair", function () {
