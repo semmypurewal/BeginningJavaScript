@@ -76,7 +76,7 @@ var isHigherThan = function (first, second) {
     var rank1 = ranks.indexOf(first.rank);
     var rank2 = ranks.indexOf(second.rank);
     var suit1 = suits.indexOf(first.suit);
-    var suit2 = suits.indexOf(second.rank);
+    var suit2 = suits.indexOf(second.suit);
 
     return rank1 > rank2 ||
         (rank1 === rank2 && suit1 > suit2);
