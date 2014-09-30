@@ -78,11 +78,13 @@ var isHigherThan = function (first, second) {
     var suit1 = suits.indexOf(first.suit);
     var suit2 = suits.indexOf(second.rank);
 
-    return rank1 > rank2 || rank1 === rank2 && suit1 > suit2;
+    return rank1 > rank2 ||
+        (rank1 === rank2 && suit1 > suit2);
 };
 
 var isLowerThan = function (first, second) {
-    return !isHigherThan(first, second);
+    return !isHigherThan(first, second) &&
+        (first.rank !== second.rank || first.suit !== second.suit);
 };
 
 var highCard = function (hand) {
