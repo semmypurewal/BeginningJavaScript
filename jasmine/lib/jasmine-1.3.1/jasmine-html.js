@@ -454,7 +454,7 @@ jasmine.HtmlReporter.SpecView.prototype.appendFailureDetail = function() {
       messagesDiv.appendChild(this.createDom('div', {className: 'resultMessage fail'}, result.message));
 
       if (result.trace.stack) {
-          //messagesDiv.appendChild(this.createDom('div', {className: 'stackTrace'}, result.trace.stack));
+          messagesDiv.appendChild(this.createDom('div', {className: 'stackTrace'}, result.trace.stack));
       }
     }
   }
