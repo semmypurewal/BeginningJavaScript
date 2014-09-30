@@ -110,6 +110,7 @@ describe("#isHigherThan", function () {
     it ("should return true if first argument is a higher card than the second", function () {
         expect(isHigherThan({"rank":"five", "suit":"spades"}, {"suit":"hearts", "rank":"six"})).toBe(false);
         expect(isHigherThan({"rank":"five", "suit":"spades"}, {"suit":"hearts", "rank":"five"})).toBe(true);
+        expect(isHigherThan({"suit":"hearts","rank":"three"}, {"suit":"spades","rank":"three"})).toBe(false);
     });
 });
 
