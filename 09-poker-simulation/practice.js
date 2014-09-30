@@ -107,7 +107,15 @@ var lowCard = function (hand) {
     });
 };
 
-var containsPair = function () {
+var containsPair = function (hand) {
+    var counts = countRanks(hand);
+
+    return Object.keys(counts).map(function (rank) {
+        return counts[rank];
+    }).some(function (count) {
+        return count >= 2;
+    });
+
 };
 
 var containsTwoPair = function () {
@@ -131,3 +139,12 @@ var containsStraightFlush = function () {
 var containsRoyalFlush = function () {
 };
 
+//helper function
+function countRanks (hand) {
+    return hand.map(function (card) {
+        return card.rank;
+    }).reduce(function (counts, rank) {
+        counts[rank] = typeof counts[rank] === "undefined" ? 1 : counts[rank] + 1;
+        return counts;
+    }, {});
+}
