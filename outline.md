@@ -71,6 +71,7 @@
 * objects
   + overview
   + what are these good for?
+  - references vs. values
   - using array functions on objects
   - examples
   - practice
