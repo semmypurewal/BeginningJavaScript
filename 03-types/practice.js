@@ -51,4 +51,3 @@ var getHTMLText = function () {
 
 var isHTMLElement = function () {
 };
->>>>>>> Stashed changes
