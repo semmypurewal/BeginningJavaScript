@@ -41,8 +41,26 @@ What happens when we mix and match?
     addThree("5", 10, "Hello");
     //=> 510Hello
 
-People often write functions in JavaScript without considering what happens when
-the arguments contain values of unexpected types. This makes the functions
+We can also see this problem exhibited in one of our functions from the last
+practice section. Our `toTagString` function expects a string.
+
+    toTagString("div", "this is a div");
+    //=> <div>this is a div</div>
+
+What if, instead of a tag name, we send in an invalid tag?
+
+    // 'dv' is not a valid HTML tag, the user probably misspelled div
+    toTagString("dv", "this is an invalid tag");
+    //=> <dv>this is an invalid tag</dv>
+
+Or worse, what if the user sends in a number?
+
+    toTagString(5, "this is an invalid tag");
+    //=> <5>this is a div</5>
+
+
+Programmers often write functions in JavaScript without considering what happens
+when the arguments contain values of unexpected types. This makes the functions
 exhibit undefined behavior, which can lead to bugs in more complex JavaScript
 programs.
 
@@ -73,7 +91,7 @@ It turns out that whenever we add a string to a number, the result is a string
 
 It's pretty essential that we understand basic operations that we can apply to
 the specific built-in JavaScript types. It's easiest to start with the `number`
-type.
+type, because you'll recognize most of the operations from a standard calculator.
 
 The most-commonly used built-in operators for numbers are the (mostly) familiar
 arithmetic operators.
@@ -117,9 +135,66 @@ numbers (and check for primality).
 
 ### Extending the number operations with Math
 
-[other interesting operations]
+Beyond the basic arithmetic operations, we can do most other operations that a
+scientific calculator can do. We'll find the extended operators inside the
+`Math` object, and we access them using the dot operator. For example, we can
+easily compute 2 to the third power by using the `pow` method.
 
-[random number generation]
+    Math.pow(2, 3);
+    //=> 8
+
+We can also round our numbers that have long trailing decimals.
+
+    2/3
+    //=> 0.6666666666666666
+
+    Math.round(2/3);
+    //=> 1
+
+Similarly, you can use `Math.floor` and `Math.ceil` (for ceiling) to find the
+nearest whole number above or below a given number.
+
+    var longDecimal = 3.1415926535897;
+
+    Math.round(longDecimal);
+    //=> 3, since it's less than 3.5
+
+    Math.floor(longDecimal);
+    //=> 3, since it's the biggest whole number below
+
+    Math.ceil(longDecimal);
+    //=> 4, since it's the smallest whole number above
+
+You can find the largest and the smallest value in a set of numbers.
+
+    Math.max(7, 2, 10, 5);
+    //=> 10
+
+    Math.max(7, 2, 10, 5);
+    //=> 2
+
+Or you can easily generate a random number between 0 and 1. This is useful when
+performing simulations.
+
+    Math.random();
+    //=> 0.23129316372796893
+
+Why doesn't `Math.random` return a whole number? It turns out by using the other
+operations, you can easily do this. For example, suppose we want to generate a
+random number between 0 and 9. We can start by multiplying the result by 10.
+
+     var rand = Math.random();
+     //=> sets rand to 0.475040664896369
+
+     rand * 10;
+     //=> 4.75040664896369
+
+     Math.floor(rand * 10);
+     //=> 4
+
+Notice that the smallest number `Math.random` generates is 0 and the largest is
+1. That means that by multiplying by 10, you'll end up with a number between 0
+and 10. Taking the `Math.floor` of that number will give you a whole number.
 
 ### String Types and Built-In Methods
 
@@ -142,24 +217,46 @@ You can also check to see if a string contains a certain substring by using the
 `indexOf` method. This method returns the index of the substring, or -1 if the
 substring does not appear.
 
-    var sentence = "this is a long sentence";
-    sentence.indexOf("sentence");
-    //=> 15
+    var tweet = "LOL, this is my tweet on twitter but not really";
+    tweet.indexOf("tweet");
+    //=> 16
 
-    sentence.indexOf("this");
-    //=> 0
+    tweet.indexOf("this");
+    //=> 5
 
-    sentence.indexOf("short");
+    tweet.indexOf("facebook");
     //=> -1
 
 You can also extract a string representing a single character at a given index
 using the `charAt` method.
 
-    sentence.charAt(6);
-    //=> i
+    tweet.charAt(6);
+    //=> h
 
-    sentence.charAt(0);
-    //=> s
+    tweet.charAt(0);
+    //=> L
+
+You can also grab a substring out of a string. For example:
+
+    tweet.substring(0, 3);
+    //=> LOL
+
+    tweet.substring(16,21);
+    //=> tweet
+
+You can also get the length of the string, but the `length` property is not a
+method, so you don't have to use the parenthesis.
+
+    tweet.length
+    //=> 47
+
+    tweet.substring(tweet.indexOf("tweet", tweet.length);
+    //=> "tweet on twitter but not really"
+
+And, on top of that, you can always chain method calls.
+
+    tweet.substring(25,32).toUpperCase();
+    //=> TWITTER
 
 ### Boolean Types and Boolean Expressions
 
@@ -342,7 +439,25 @@ convert the other way, you subtract 32, and then multiply by
 9. Finally, you divide by 5. The division operator in JavaScript is
 `/`.
 
-6. The standard card suits are clubs, diamonds, hearts and spades. Write a
+6. Write a function that accepts a number and returns a random whole number
+between 0 and that number. For example:
+
+    rand(10);
+    //=> 5
+
+    rand(10);
+    //=> 9
+
+    rand(1000);
+    //=> 561
+
+    rand(1000);
+    //=> 236
+
+7. Write a function that accepts two numbers representing a range and returns a
+random whole number between those two numbers.
+
+8. The standard card suits are clubs, diamonds, hearts and spades. Write a
 function called isSuit that accepts a string and returns true if the input
 string is a suit, and false otherwise. Consider making a more robust function
 that will allow the case to be arbitrary, meaning "HEARTS", "hearts", and
@@ -358,7 +473,7 @@ string methods to achieve this.
     isSuit("coins");
     //=> false
 
-7. The valid ranks for a card are two, three, four, five, six, seven, eight,
+9. The valid ranks for a card are two, three, four, five, six, seven, eight,
 nine, ten, jack, queen, king and ace. Write a function called `isRank` that
 accepts a string and returns true if it is a card rank.
 
@@ -371,7 +486,34 @@ accepts a string and returns true if it is a card rank.
     isRank("one");
     //=> false
 
-8. Using the previous two functions, write a function called isCard that accepts
+10. Using the previous two functions, write a function called isCard that accepts
 two arguments, a suit and a rank, and returns true if they are valid for a card,
 and false otherwise.
 
+11. Write a function that accepts a string representation of an HTML element (it
+can't have nested HTML elements) and returns the string contained inside. For
+example:
+
+    getHTMLText("<p>this is some text in a paragraph</p>");
+    //=> this is some text
+
+    getHTMLText("<li>this is a list item</li>");
+    //=> this is a list item
+
+12. Write a function that determines if a string represents an HTML element. This
+means it has to start with an opening HTML tag and end with a closing HTML tag.
+
+    isHTMLElement("<p>this is a paragraph</p>");
+    //=> true
+
+    isHTMLElement("this is a tweet!");
+    //=> false
+
+    isHTMLElement("<p>this is NOT an paragraph</div>");
+    //=> false
+
+    isHTMLElement("<li>this is an HTML list element</li>");
+    //=> true
+
+It may help in this case to look up the `lastIndexOf` method on the string
+objects.
