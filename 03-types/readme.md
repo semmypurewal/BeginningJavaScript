@@ -439,23 +439,23 @@ convert the other way, you subtract 32, and then multiply by
 9. Finally, you divide by 5. The division operator in JavaScript is
 `/`.
 
-6. Write a function that accepts a number and returns a random whole number
-between 0 and that number. For example:
+6. Write a function called `randUpTo` that accepts a number and returns a random
+whole number between 0 and that number. For example:
 
-    rand(10);
+    randUpTo(10);
     //=> 5
 
-    rand(10);
+    randUpTo(10);
     //=> 9
 
-    rand(1000);
+    randUpTo(1000);
     //=> 561
 
-    rand(1000);
+    randUpTo(1000);
     //=> 236
 
-7. Write a function that accepts two numbers representing a range and returns a
-random whole number between those two numbers.
+7. Write a function called `randBetween` that accepts two numbers representing a
+range and returns a random whole number between those two numbers.
 
 8. The standard card suits are clubs, diamonds, hearts and spades. Write a
 function called isSuit that accepts a string and returns true if the input

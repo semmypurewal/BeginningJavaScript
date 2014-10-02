@@ -63,9 +63,23 @@ describe("#randBetween", function () {
 });
 
 describe("#isSuit", function () {
+    it ("should return true if the input is a suit (case-insensitive), false otherwise", function () {
+        expect(isSuit("hearts")).toBe(true);
+
+        expect(isSuit("SPADES")).toBe(true);
+
+        expect(isSuit("coins")).toBe(false);
+    });
 });
 
 describe("#isRank", function () {
+    it ("should return true if the input is a suit (case-insensitive), false otherwise", function () {
+        expect(isRank("jack")).toBe(true);
+
+        expect(isRank("Queen")).toBe(true);
+
+        expect(isRank("one")).toBe(false);
+    });
 });
 
 describe("#isCard", function () {
