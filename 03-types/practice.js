@@ -43,11 +43,16 @@ var isRank = function (r) {
         lowerCaseRank === "ace";
 };
 
-var isCard = function () {
+var isCard = function (r, s) {
+    return isRank(r) && isSuit(s);
 };
 
-var getHTMLText = function () {
+var getHTMLText = function (elt) {
+    return elt.substring(elt.indexOf(">")+1, elt.lastIndexOf("</"));
 };
 
-var isHTMLElement = function () {
+var isHTMLElement = function (str) {
+    var openTag = str.substring(str.indexOf("<") + 1, str.indexOf(">"));
+    var closeTag = str.substring(str.lastIndexOf("</") + 2, str.lastIndexOf(">"));
+    return str.charAt(0) === "<" && str.charAt(str.length - 1) === ">" && openTag === closeTag;
 };
