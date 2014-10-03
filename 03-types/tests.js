@@ -83,10 +83,29 @@ describe("#isRank", function () {
 });
 
 describe("#isCard", function () {
+    it ("should return true if the first argument is a rank and the second argument is a suit", function () {
+        expect(isCard("ten", "spades")).toBe(true);
+        expect(isCard("ACE", "DIAMONDS")).toBe(true);
+        expect(isCard("one", "hearts")).toBe(false);
+        expect(isCard("ace", "coins")).toBe(false);
+    });
 });
 
 describe("#getHTMLText", function () {
+    it ("should return the text in a properly formatted HTML element string with no nested tags", function () {
+        expect(getHTMLText("<p>this is some text in a paragraph</p>")).toEqual("this is some text in a paragraph");
+        expect(getHTMLText("<li>this is a list item</li>")).toEqual("this is a list item");;
+    });
 });
 
 describe("#isHTMLElement", function () {
+    it("should return true if the string represents a valid html element", function () {
+        expect(isHTMLElement("<p>this is valid</p>")).toBe(true);
+        expect(isHTMLElement("<div>this is valid</div>")).toBe(true);
+        expect(isHTMLElement("<p>this is not valid</div>")).toBe(false);
+        expect(isHTMLElement("this is not valid</div>")).toBe(false);
+        expect(isHTMLElement("this <div>is not valid</div>")).toBe(false);
+        expect(isHTMLElement("<div>is not valid<div>")).toBe(false);
+        expect(isHTMLElement("<div>is not valid</div")).toBe(false);
+    });
 });
