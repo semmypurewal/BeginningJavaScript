@@ -345,6 +345,12 @@ true if the number is a leap year, false if not.
      isLeapYear(2000);
      //=> true
 
+
+It should also throw an error if the input is not a number.
+
+     isLeapYear("hello");
+     //=> THAT'S NOT A NUMBER!
+
 3. Write a function that accepts three strings and input, and returns the one
 that would come earliest in the dictionary.
 
