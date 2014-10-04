@@ -1,12 +1,21 @@
+describe("#passwordStrength", function () {
+    it ("should return the appropriate strength on the appropriate input", function () {
+        expect(passwordStrength("hello")).toBe("weak");
+        expect(passwordStrength("longerpassword")).toBe("strong");
+        expect(passwordStrength("helloone")).toBe("medium");
+        expect(passwordStrength("0123456789")).toBe("strong");
+    });
+});
+
 describe("#isLeapYear", function () {
-    it("should return true if the year is a leap year, false otherwise", function () {
+    it ("should return true if the year is a leap year, false otherwise", function () {
         expect(isLeapYear(1988)).toBe(true);
         expect(isLeapYear(2001)).toBe(false);
         expect(isLeapYear(1800)).toBe(false);
         expect(isLeapYear(2000)).toBe(true);
     });
 
-    it("should throw an input is not a number", function () {
+    it ("should throw an input is not a number", function () {
         expect(function () {
             isLeapYear("string!");
         }).toThrow();
@@ -15,9 +24,6 @@ describe("#isLeapYear", function () {
             isLeapYear(true);
         }).toThrow();
     });
-});
-
-describe("#passwordStrength", function () {
 });
 
 describe("#firstInDictionary", function () {

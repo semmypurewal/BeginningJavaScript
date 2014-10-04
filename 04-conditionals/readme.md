@@ -313,12 +313,7 @@ throughout our program.
 
 ### Practice
 
-1. A year is a leap year if it is divisible by 4, unless it is also divisible by
-100 in which case it is not a leap year unless it is also divisible by
-400. Phew. Got that? Good. Write a function that accepts a number and outputs
-true if the number is a leap year, false if not.
-
-2. We'll consider a password's strength to be "strong" if it is at least 10
+1. We'll consider a password's strength to be "strong" if it is at least 10
 characters long. If it's between 7 and 10 characters long, we'll consider it to
 have "medium" strength, and if it's less than 7 characters, we'll say it is a
 "weak" password. Write a function that accepts as input a potential password and
@@ -332,6 +327,23 @@ returns either "weak", "medium" or "strong" depending on its length.
 
     passwordStrength("helloone");
     //=> medium
+
+2. A year is a leap year if it is divisible by 4, unless it is also divisible by
+100 in which case it is not a leap year unless it is also divisible by
+400. Phew. Got that? Good. Write a function that accepts a number and outputs
+true if the number is a leap year, false if not.
+
+     isLeapYear(1988);
+     //=> true
+
+     isLeapYear(2001);
+     //=> false
+
+     isLeapYear(1800);
+     //=> false
+
+     isLeapYear(2000);
+     //=> true
 
 3. Write a function that accepts three strings and input, and returns the one
 that would come earliest in the dictionary.
