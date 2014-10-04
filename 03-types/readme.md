@@ -238,10 +238,10 @@ using the `charAt` method.
 
 You can also grab a substring out of a string. For example:
 
-    tweet.substring(0, 3);
+    tweet.slice(0, 3);
     //=> LOL
 
-    tweet.substring(16,21);
+    tweet.slice(16,21);
     //=> tweet
 
 You can also get the length of the string, but the `length` property is not a
@@ -250,12 +250,12 @@ method, so you don't have to use the parenthesis.
     tweet.length
     //=> 47
 
-    tweet.substring(tweet.indexOf("tweet", tweet.length);
+    tweet.slice(tweet.indexOf("tweet", tweet.length);
     //=> "tweet on twitter but not really"
 
 And, on top of that, you can always chain method calls.
 
-    tweet.substring(25,32).toUpperCase();
+    tweet.slice(25,32).toUpperCase();
     //=> TWITTER
 
 ### Boolean Types and Boolean Expressions

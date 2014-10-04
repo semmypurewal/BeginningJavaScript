@@ -23,24 +23,27 @@
   + example with numbers
   + example with strings
   + practice
+  + tests
 
 * types
   + overview
   + the typeof function
   + number types and arithmetic expressions
-  - extending the number operations with Math
+  + extending the number operations with Math
   + string types and built-in methods
   + boolean types and boolean expressions
   + creating functions to test types
   + practice
+  + tests
 
 * conditionals (if-statements)
   + overview
   + if-statements
   + else clauses in if-statements
-  - `if`-`else if` and nested `if` statements
+  + `if`-`else if` and nested `if` statements
   + writing robust functions (throwing errors on types)
-  - practice
+  + practice
+  - tests
 
 * loops
   + overview
@@ -48,6 +51,7 @@
   + for-loops
   + examples
   + practice
+  - tests
 
 * arrays
   + overview
@@ -57,6 +61,7 @@
   + strings as special arrays
   + examples
   + practice
+  - tests
 
 * array methods
   + overview
@@ -67,6 +72,7 @@
   + reduce
   + converting between strings and arrays
   + practice
+  - tests
 
 * objects
   + overview
@@ -75,8 +81,11 @@
   - using array functions on objects
   - examples
   - practice
+  - tests
 
 * putting it all together
   - overview
   - unit testing
   - poker
+  - practice
+  - tests
