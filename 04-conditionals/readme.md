@@ -313,12 +313,7 @@ throughout our program.
 
 ### Practice
 
-1. A year is a leap year if it is divisible by 4, unless it is also divisible by
-100 in which case it is not a leap year unless it is also divisible by
-400. Phew. Got that? Good. Write a function that accepts a number and outputs
-true if the number is a leap year, false if not.
-
-2. We'll consider a password's strength to be "strong" if it is at least 10
+1. We'll consider a password's strength to be "strong" if it is at least 10
 characters long. If it's between 7 and 10 characters long, we'll consider it to
 have "medium" strength, and if it's less than 7 characters, we'll say it is a
 "weak" password. Write a function that accepts as input a potential password and
@@ -333,6 +328,29 @@ returns either "weak", "medium" or "strong" depending on its length.
     passwordStrength("helloone");
     //=> medium
 
+2. A year is a leap year if it is divisible by 4, unless it is also divisible by
+100 in which case it is not a leap year unless it is also divisible by
+400. Phew. Got that? Good. Write a function that accepts a number and outputs
+true if the number is a leap year, false if not.
+
+     isLeapYear(1988);
+     //=> true
+
+     isLeapYear(2001);
+     //=> false
+
+     isLeapYear(1800);
+     //=> false
+
+     isLeapYear(2000);
+     //=> true
+
+
+It should also throw an error if the input is not a number.
+
+     isLeapYear("hello");
+     //=> THAT'S NOT A NUMBER!
+
 3. Write a function that accepts three strings and input, and returns the one
 that would come earliest in the dictionary.
 
@@ -345,15 +363,20 @@ that would come earliest in the dictionary.
      firstInDictionary("whale", "zebra", "aardvark");
      //=> aardvark
 
+It should throw an error string if any of the arguments are not strings.
+
+     firstInDictionary("whale", 5, 10);
+     //=> ALL THREE ARGS MUST BE STRINGS!
+
 4. Write a function that extracts a tag from a string representing an HTML
 element, but throws an error if the string is not an HTML element. You may reuse
 one of your functions from the previous section (or, better yet, see if you can
 remember how to re-write it).
 
-    getTag("<p>this is a paragraph</p>");
+    getTagName("<p>this is a paragraph</p>");
     //=> p
 
-    getTag("<p>this is wrong</div>");
+    getTagName("<p>this is wrong</div>");
     //=> Error: Not an HTML Element!
 
 
@@ -361,7 +384,10 @@ remember how to re-write it).
 string and it ends in a question mark. We'll use this function in the next
 practice problem.
 
-6. The Magic 8 Ball is a classic toy that allows you to ask a yes/no
+6. Re-implement our improveTweet function so it can generate any of lol, omg,
+lmao, and rofl.
+
+7. The Magic 8 Ball is a classic toy that allows you to ask a yes/no
 question and it responds with a random answer. Most of the time (at least half)
 it responds with a "positive" answer, about a quarter of the time it responds
 with a "neutral" answer, and about a quarter of the time it responds with a
@@ -385,8 +411,7 @@ number. Try to make it match the probabilities of the real toy.
     magic8Ball("Is this a question?");
     //=> Signs point to yes
 
-7. Re-implement our improveTweet function so it can generate any of lol, omg,
-lmao, and rofl.
+
 
 
 8. Suppose we wanted to randomly interject "-lol-" or "-omg-" into a random
@@ -406,7 +431,7 @@ interjection that accepts a number and two strings -- the interjection and the
 actual string.
 
     interjectAt("interjection", 5, "hello world!");
-    //=> hello -interjection-world!
+    //=> hello-interjection- world!
 
     interjectAt("lol", 0, "this is a tweet");
     //=> -lol-this is a tweet
