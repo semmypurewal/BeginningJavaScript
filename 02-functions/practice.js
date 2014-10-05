@@ -1,10 +1,10 @@
-// 0. (example) Write a function that accepts two number arguments and adds them
+// (example) Write a function that accepts two number arguments and adds them
 // together.
 var add = function () {
 };
 
 
-// 1. Create a function that takes in a cost and a quantity and outputs the total
+// Create a function that takes in a cost and a quantity and outputs the total
 // pre-tax cost for that quantity of items at the given price. For example
 //
 //     var preTaxTotal = totalCost(5, 5.99); // 5 items at 5.99
@@ -13,7 +13,7 @@ var totalCost = function () {
 };
 
 
-// 2. Write a function that takes a rank and a suit as input, and returns a string
+// Write a function that takes a rank and a suit as input, and returns a string
 // representation of a card. For example, it should behave as follows
 //
 //     cardString("ace", "spades");
@@ -25,7 +25,7 @@ var cardString = function () {
 };
 
 
-// 5. Write a function called `openTag` that accepts a tag name and returns an
+// Write a function called `openTag` that accepts a tag name and returns an
 // opening HTML tag with that tag name. For example,
 //
 //     openTag("p");
@@ -49,7 +49,7 @@ var closeTag = function () {
 };
 
 
-// 6. Write a function called `toTagString` that accepts two inputs: a tag name,
+// Write a function called `toTagString` that accepts two inputs: a tag name,
 // and the string content, and returns the content tagged with the specified
 // string.  For example:
 //
