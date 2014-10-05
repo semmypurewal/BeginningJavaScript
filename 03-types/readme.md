@@ -227,15 +227,6 @@ substring does not appear.
     tweet.indexOf("facebook");
     //=> -1
 
-You can also extract a string representing a single character at a given index
-using the `charAt` method.
-
-    tweet.charAt(6);
-    //=> h
-
-    tweet.charAt(0);
-    //=> L
-
 You can also grab a substring out of a string. For example:
 
     tweet.slice(0, 3);
@@ -250,13 +241,38 @@ method, so you don't have to use the parenthesis.
     tweet.length
     //=> 47
 
-    tweet.slice(tweet.indexOf("tweet", tweet.length);
+    tweet.slice(tweet.indexOf("tweet", tweet.length));
     //=> "tweet on twitter but not really"
 
 And, on top of that, you can always chain method calls.
 
     tweet.slice(25,32).toUpperCase();
     //=> TWITTER
+
+We'll also need to know how to extract individual characters from a string. We
+can do this by sending in an index to the `charAt` method.
+
+    tweet.charAt(6);
+    //=> h
+
+    // notice that the indices start at 0
+    tweet.charAt(0);
+    //=> L
+
+The `charAt` method is convenient because it also allows us to use a variable
+for the index.
+
+    var index = 10;
+    tweet.charAt(index);
+    //=> i
+
+And we can always get the very last character, regardless of the length of the
+string, by combining `charAt` with the `length` property.
+
+    var strValue = "hello world!";
+    // notice the index is the length minus 1, since the indices start at 0
+    strValue.charAt(strValue.length - 1);
+    //=> !
 
 ### Boolean Types and Boolean Expressions
 

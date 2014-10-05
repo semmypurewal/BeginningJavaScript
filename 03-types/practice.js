@@ -108,6 +108,15 @@ var isCard = function (r, s) {
 };
 
 
+// Write a function called `isCapitalized` that accepts a string and returns
+// `true` if the first letter is a capital letter. How can you determine that?
+// Remember that you can use strings in comparisons in the same way that you can
+// use numbers, and the ordering is alphabetical (with capital letters having lower
+// values than their lower-case counterparts).
+var isCapitalized = function () {
+};
+
+
 // Write a function that accepts a string representation of an HTML element (it
 // can't have nested HTML elements) and returns the string contained inside. For
 // example:

@@ -91,6 +91,15 @@ describe("#isCard", function () {
     });
 });
 
+describe("#isCapitalized", function () {
+    it ("should return true if the input string has a capital first letter, false otherwise", function () {
+        expect(isCapitalized("Hello")).toBe(true);
+        expect(isCapitalized("goodbye")).toBe(false);
+        expect(isCapitalized("Lincoln")).toBe(true);
+        expect(isCapitalized("")).toBe(false);
+    });
+});
+
 describe("#getHTMLText", function () {
     it ("should return the text in a properly formatted HTML element string with no nested tags", function () {
         expect(getHTMLText("<p>this is some text in a paragraph</p>")).toEqual("this is some text in a paragraph");
