@@ -373,10 +373,10 @@ element, but throws an error if the string is not an HTML element. You may reuse
 one of your functions from the previous section (or, better yet, see if you can
 remember how to re-write it).
 
-    getTag("<p>this is a paragraph</p>");
+    getTagName("<p>this is a paragraph</p>");
     //=> p
 
-    getTag("<p>this is wrong</div>");
+    getTagName("<p>this is wrong</div>");
     //=> Error: Not an HTML Element!
 
 

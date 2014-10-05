@@ -41,13 +41,49 @@ describe("#firstInDictionary", function () {
 });
 
 describe("#getTagName", function () {
-    
+    it ("should return the tag associated with an HTML element", function () {
+        expect(getTagName("<p>this is a paragraph</p>")).toEqual("p");
+        expect(getTagName("<div>this is a div</div>")).toEqual("div");
+    });
+
+    it ("should throw an error if the input is not an HTML element", function () {
+        expect(function () {
+            getTagName("<p>this is wrong</div>");
+        }).toThrow();
+    });
 });
 
 describe("#isQuestion", function () {
+    it ("should return true if the element ends in a question mark", function () {
+        expect(isQuestion("is this a question?")).toBe(true);
+        expect(isQuestion("not a question")).toBe(false);
+    });
 });
 
 describe("#magic8Ball", function () {
+    it ("should throw an error if the input is not a question", function () {
+        expect(function () {
+            magic8Ball("you suck");
+        }).toThrow();
+    });
+
+    it ("should return a string", function () {
+        expect(typeof magic8Ball("will I do well in this class?")).toBe("string");
+    });
+
+    it ("should return a different message at least some of the time", function () {
+        var responses = [];
+        var i;
+
+        for (i = 0; i < 10; i++) {
+            responses.push(magic8Ball("Is this fun?"));
+        }
+
+        expect(responses.every(function (elt) {
+            // at least one should not be equal to the first
+            return elt === responses[0];
+        })).toBe(false);
+    });
 });
 
 describe("#improveTweet", function () {
