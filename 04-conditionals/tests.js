@@ -27,9 +27,21 @@ describe("#isLeapYear", function () {
 });
 
 describe("#firstInDictionary", function () {
+    it ("should return the input that will come first in the dictionary", function () {
+        expect(firstInDictionary("rhino", "aardvark", "zebra")).toEqual("aardvark");
+        expect(firstInDictionary("whale", "zebra", "yak")).toEqual("whale");
+        expect(firstInDictionary("whale", "zebra", "aardvark")).toEqual("aardvark");
+    });
+
+    it ("should throw an error if any of the inputs are not strings", function () {
+        expect(function () {
+            firstInDictionary("whale", 5, 10);
+        }).toThrow();
+    });
 });
 
 describe("#getTagName", function () {
+    
 });
 
 describe("#isQuestion", function () {

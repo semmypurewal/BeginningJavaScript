@@ -363,6 +363,11 @@ that would come earliest in the dictionary.
      firstInDictionary("whale", "zebra", "aardvark");
      //=> aardvark
 
+It should throw an error string if any of the arguments are not strings.
+
+     firstInDictionary("whale", 5, 10);
+     //=> ALL THREE ARGS MUST BE STRINGS!
+
 4. Write a function that extracts a tag from a string representing an HTML
 element, but throws an error if the string is not an HTML element. You may reuse
 one of your functions from the previous section (or, better yet, see if you can
