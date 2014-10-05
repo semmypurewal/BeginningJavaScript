@@ -384,7 +384,10 @@ remember how to re-write it).
 string and it ends in a question mark. We'll use this function in the next
 practice problem.
 
-6. The Magic 8 Ball is a classic toy that allows you to ask a yes/no
+6. Re-implement our improveTweet function so it can generate any of lol, omg,
+lmao, and rofl.
+
+7. The Magic 8 Ball is a classic toy that allows you to ask a yes/no
 question and it responds with a random answer. Most of the time (at least half)
 it responds with a "positive" answer, about a quarter of the time it responds
 with a "neutral" answer, and about a quarter of the time it responds with a
@@ -408,8 +411,7 @@ number. Try to make it match the probabilities of the real toy.
     magic8Ball("Is this a question?");
     //=> Signs point to yes
 
-7. Re-implement our improveTweet function so it can generate any of lol, omg,
-lmao, and rofl.
+
 
 
 8. Suppose we wanted to randomly interject "-lol-" or "-omg-" into a random
@@ -429,7 +431,7 @@ interjection that accepts a number and two strings -- the interjection and the
 actual string.
 
     interjectAt("interjection", 5, "hello world!");
-    //=> hello -interjection-world!
+    //=> hello-interjection- world!
 
     interjectAt("lol", 0, "this is a tweet");
     //=> -lol-this is a tweet

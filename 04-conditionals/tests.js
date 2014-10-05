@@ -53,6 +53,23 @@ describe("#getTagName", function () {
     });
 });
 
+describe("#improveTweet", function () {
+    it ("should add lol, omg, lmao, and rofl to tweets at random", function () {
+        var responses = [];
+        var i;
+
+        for (i = 0; i < 1000; i++) {
+            responses.push(improveTweet("this is a tweet that should be improved."));
+        }
+
+        ["lol", "omg", "lmao", "rofl"].forEach(function (msg) {
+            expect(responses.some(function (tweet) {
+                return tweet.indexOf(msg) > -1;
+            })).toBe(true);
+        });
+    });
+});
+
 describe("#isQuestion", function () {
     it ("should return true if the element ends in a question mark", function () {
         expect(isQuestion("is this a question?")).toBe(true);
@@ -86,11 +103,44 @@ describe("#magic8Ball", function () {
     });
 });
 
-describe("#improveTweet", function () {
-});
-
 describe("#interjectAt", function () {
+    it ("should interject the expression at the correct location in the string", function () {
+        expect(interjectAt("interjection", 5, "hello world!")).toEqual("hello-interjection- world!");
+        expect(interjectAt("lol", 0, "this is a tweet")).toEqual("-lol-this is a tweet");
+    });
+
+    it ("should throw an error if the index goes beyond the length of the string", function () {
+        expect(function () {
+            interjectAt("omg", 15, "hello");
+        }).toThrow();
+    });
+
+    it ("should throw an error if the args are not the correct types", function () {
+        expect(function () {
+            interjectAt(5, "omg", "hello");
+        }).toThrow();
+    });
 });
 
 describe("#randomInterject", function () {
+    it ("should randomly interject -lol- or -omg-", function () {
+        var results = [];
+        var i;
+
+        for (i = 0; i < 10; i++) {
+            results.push(randomInterject("hello world!"));
+        };
+
+        ["-lol-", "-omg-"].forEach(function (interjection) {
+            expect(results.some(function (result) {
+                return result.indexOf(interjection) > -1;
+            })).toBe(true);
+        });
+    });
+
+    it ("should throw an error if the input is not a string", function () {
+        expect(function () {
+            randomInterject(5);
+        }).toThrow();
+    });
 });
