@@ -209,10 +209,10 @@ in HTML looks like this:
 
         <p>This is a paragraph!</p>
 
-The first tag, <p> is an opening tag, and the last tag, </p> is a closing
+The first tag, `<p>` is an opening tag, and the last tag, `</p>` is a closing
 tag. Create a variable that stores the value "This is a paragraph!" and then use
 it to construct a new value that represents this snippet of HTML by
-concatenating an opening <p> tag to the front, and a closing </p> tag to the
+concatenating an opening `<p>` tag to the front, and a closing `</p>` tag to the
 back.
 
 9. Consider the following sequence of variable assignments.
