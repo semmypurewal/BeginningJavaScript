@@ -113,7 +113,8 @@ var isCard = function (r, s) {
 // Remember that you can use strings in comparisons in the same way that you can
 // use numbers, and the ordering is alphabetical (with capital letters having lower
 // values than their lower-case counterparts).
-var isCapitalized = function () {
+var isCapitalized = function (str) {
+    return "A" <= str.charAt(0) && str.charAt(0) <= "Z";
 };
 
 
