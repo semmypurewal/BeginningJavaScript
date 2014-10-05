@@ -69,7 +69,7 @@ var isLeapYear = function (year) {
     var result = false;
 
     if (typeof year !== "number") {
-        throw "argument to isLeapYear must bea  number";
+        throw "argument to isLeapYear must be a number";
     }
 
     if (year % 4 === 0) {
@@ -90,7 +90,7 @@ isLeapYear = function (year) {
     var result = false;
 
     if (typeof year !== "number") {
-        throw "argument to isLeapYear must bea  number";
+        throw "argument to isLeapYear must be a number";
     }
 
     if (year % 4 === 0 && year % 100 === 0 && year % 400 !== 0) {
@@ -107,7 +107,7 @@ isLeapYear = function (year) {
 // the simplest version
 isLeapYear = function (year) {
     if (typeof year !== "number") {
-        throw "argument to isLeapYear must bea  number";
+        throw "argument to isLeapYear must be a number";
     }
 
     return (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0;
