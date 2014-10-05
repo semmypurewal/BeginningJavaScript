@@ -147,6 +147,21 @@ The value stored inside a variable can change throughout your program.
     console.log(greeting);
     //=> hello, @another_tweep
 
+You can even update a variable to store a new value that depends on its old
+value. For example, we can add 1 to whatever value is stored in `count`.
+
+    var count = 10;
+    console.log(count);
+    //=> 10
+
+    count = count + 1;
+    console.log(count);
+    //=> 11
+
+    count = count + 10;
+    console.log(count);
+    //=> 21
+
 It's worth keeping this in mind -- it's easy to reuse variables! The downside of
 this is that frequently re-assigning variables in your program can lead to bugs
 in your program.
@@ -192,10 +207,30 @@ then dividing by 100. You can divide by using the `/` operator.
 8. You may have seen HTML in the past, but in case you haven't, a paragraph tag
 in HTML looks like this:
 
-    <p>This is a paragraph!</p>
+        <p>This is a paragraph!</p>
 
 The first tag, <p> is an opening tag, and the last tag, </p> is a closing
 tag. Create a variable that stores the value "This is a paragraph!" and then use
 it to construct a new value that represents this snippet of HTML by
 concatenating an opening <p> tag to the front, and a closing </p> tag to the
 back.
+
+9. Consider the following sequence of variable assignments.
+
+        var tweet = "hello world!";
+        var count = 0;
+
+        count = count + 10;
+        tweet = tweet + count;
+
+        // what is the value of tweet and count now?
+
+        count = count * 10;
+        tweet = count + tweet;
+
+        // what is the value of tweet and count now?
+
+        count = count * 100;
+        tweet = tweet + ". this is another sentence.";
+
+        // what is the value of tweet and count now?
