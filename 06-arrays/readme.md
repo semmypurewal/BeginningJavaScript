@@ -121,9 +121,11 @@ by using a for loop to iterate over all of the indices.
 
 ### Strings as special Arrays
 
-Strings are just special cases of Arrays where all the elements are
-characters. They are denoted using quotes, but can be manipulated just like
-Arrays.
+If this discussion about arrays seems familiar, it's because it is. You can
+think of arrays as a generalization of strings, where instead of being a
+sequence of characters, it's a sequence of arbitrary values. In fact, JavaScript
+is flexible enough to allow us to access the elements of a string in the same
+way we access elements of arrays.
 
     var greeting = "hello!";
 
@@ -136,6 +138,19 @@ Arrays.
     greeting[greeting.length - 2];
     //=> o
 
+The main difference is that arrays and strings don't share all the same
+methods. For example, the `toUpperCase` method wouldn't make any sense for an
+array, while several of the array methods we'll learn in the next section
+wouldn't make sense for a string.
+
+On the other hand, some methods are shared. The `slice` method, for instance,
+exists on an array.
+
+[ "first", "second", "third", "fourth", "fifth" ].slice(1, 3);
+//=> [ "second", "third" ]
+
+We'll learn more about the relationship between strings an arrays in the next
+section.
 
 ### Examples
 
@@ -193,15 +208,6 @@ otherwise.
 4. Generalize the previous solution into a function called `containsValueNTimes`
 so that it can check for a value an arbitrary number of times.
 
-5. Write a function called `isCapitalized` that accepts a string and returns
-`true` if the first letter is a capital letter. How can you determine that?
-Remember that you can use strings in comparisons in the same way that you can
-use numbers, and the ordering is alphabetical (with capital letters having lower
-values than their lower-case counterparts).
-
-6. Write a function called `containsNVowels` that accepts a number, `n`, and a
-string and returns true if a string contains at least `n` vowels.
-
 7. Write a function called `atLeastOneEven` that returns `true` if at least one
 of the numbers in the array is even, false otherwise.
 
@@ -216,17 +222,16 @@ reuse the function `containsValueNTimes` from above.
 number, and returns true if any of the numbers in the first array appear `n`
 times in the second array.
 
-11. Write a function that accepts a string and returns the same string, only in
-reverse! (HINT: create a new empty string, and concatenate each letter of the
-original string to it in reverse)
-
 12. Using a standard `for` loop, along with the `push` function, write a
-function called `range` that accepts two numbers, `min` and `max`, and returns
-an array that contains all of the integers starting at `min` and ending at
-`max - 1`. For example:
+function called `range` that accepts two numbers, `begin` and `end`, and returns
+an array that contains all of the integers starting at `begin` and ending at
+`end` (including `begin` and `end`). For example:
 
     range(5,10);
-    //=> [5,6,7,8,9,10]
+    //=> [5, 6, 7, 8, 9, 10]
 
     range(0,3);
-    //=> [0,1,2]
+    //=> [0, 1, 2, 3]
+
+    range(10,3);
+    //=> [10, 9, 8, 7, 6, 5, 4, 3]
