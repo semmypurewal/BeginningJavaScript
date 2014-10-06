@@ -181,7 +181,6 @@ var countVowels = function (str) {
 //     reverse(true);
 //     //=> input to reverseString must be an string!
 //
-
 var reverseString = function (str) {
     if (typeof str !== "string") {
         throw "input to reverseString must be an string!";
@@ -346,6 +345,8 @@ var sumOfFirstNPrimes = function (n) {
 //     removeNonLetters(true);
 //     //=> input to removeNonLetters should be a string!
 //
+
+// helper function
 var isLetter = function (str) {
     return str.length === 1 && ("a" <= str && str <= "z") || ("A" <= str && str <= "Z");
 };

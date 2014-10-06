@@ -43,13 +43,16 @@
   + `if`-`else if` and nested `if` statements
   + writing robust functions (throwing errors on types)
   + practice
-  - tests
+  + tests
 
 * loops
   + overview
   + while-loops as generalizations of if-statements
   + for-loops
-  + examples
+  + calculating properties using a loop
+  + transforming strings with for-loops
+  + breaking out of a loop
+  + iterating backwards
   + practice
   - tests
 

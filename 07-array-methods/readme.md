@@ -343,18 +343,6 @@ random numbers, a max for the random numbers, and a length of the array.
 number of 1s contained in it. Using the randomBitString from above, count the
 number of 1s in several random bit strings. What do you notice about them?
 
-8. Write a function that accepts a string and returns that string in reverse
-(hint: use `reduce`)
+8. Using `reduce`, write a function that accepts a string and returns
+that string in reverse
 
-9. A _palindrome_ is a string that reads the same forwards and backwards. Write
-a function that accepts a string of arbitrary letters, numbers, and symbols, and
-returns true if its a palindrome. For example:
-
-     isAPalindrome("kayak");
-     //=> true
-
-     isAPalindrome("A man, a plan, a canal, Panama");
-     //=> true
-
-     isAPalindrome("hello world");
-     //=> false
