@@ -48,15 +48,75 @@ describe("#sumAToB", function () {
 });
 
 describe("#countVowels", function () {
+    it ("should return the number of vowels in a string", function () {
+        expect(countVowels("hello world!")).toBe(3);
+        expect(countVowels("omg this is a hilarious tweet about nothing")).toBe(16);
+        expect(countVowels("")).toBe(0);
+    });
+
+    it ("should throw an error if the input is not a string", function () {
+        expect(function () {
+            countVowels(true);
+        }).toThrow();
+    });
+});
+
+describe("#reverseString", function () {
+    it ("should return a new string that is equal to the input string in reverse", function () {
+        expect(reverseString("hello world!")).toEqual("!dlrow olleh");
+        expect(reverseString("omg this is a hilarious tweet about nothing")).toEqual("gnihton tuoba teewt suoiralih a si siht gmo");
+        expect(reverseString("")).toEqual("");
+    });
+
+
+    it ("should throw an error if the input is not a string", function () {
+        expect(function () {
+            reverseString(true);
+        }).toThrow();
+    });
 });
 
 describe("#isPrime", function () {
+    it ("should return true if the input is a prime number, false otherwise", function () {
+        expect(isPrime(101)).toBe(true);
+        expect(isPrime(13)).toBe(true);
+        expect(isPrime(1)).toBe(false);
+        expect(isPrime(0)).toBe(false);
+        expect(isPrime(2)).toBe(true);
+        expect(isPrime("hello")).toBe(false);
+        expect(isPrime(-101)).toBe(false);
+    });
 });
 
 describe("#sumPrimesUpTo", function () {
+    it ("should return the sum of all the primes up to and including the input number", function () {
+        expect(sumPrimesUpTo(100)).toBe(1060);
+        expect(sumPrimesUpTo(0)).toBe(0);
+        expect(sumPrimesUpTo(1000)).toBe(76127);
+        expect(sumPrimesUpTo(2)).toBe(2);
+    });
+
+    it ("should throw an error if the input is not a number", function () {
+        expect(function () {
+            sumPrimesUpTo("whatever");
+        }).toThrow();
+    });
 });
 
 describe("#sumOfFirstNPrimes", function () {
+    it ("should return the sum of the first n primes", function () {
+        expect(sumOfFirstNPrimes(10)).toBe(129);
+        expect(sumOfFirstNPrimes(100)).toBe(24133);
+        expect(sumOfFirstNPrimes(1000)).toBe(3682913);
+        expect(sumOfFirstNPrimes(0)).toBe(0);
+        expect(sumOfFirstNPrimes(1)).toBe(2);
+    });
+
+    it ("should throw an error if the input is not a positive number or zero", function () {
+        expect(function () {
+            sumOfFirstNPrimes(-10);
+        }).toThrow();
+    });
 });
 
 describe("#removeNonLetters", function () {
