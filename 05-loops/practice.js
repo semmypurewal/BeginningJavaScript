@@ -67,7 +67,7 @@ var isLowerCaseLetter = function (str) {
 //     //=> 0
 //
 //     sumUpTo(-10);
-//     //=> input must be zero or a positive number!
+//     //=> input must be a zero or a positive number!
 //
 var sumUpTo = function (n) {
     if (typeof n !== "number" || n < 0) {
@@ -101,6 +101,8 @@ var sumUpTo = function (n) {
 //
 //     sumAToB(10, 10);
 //     //=> 10
+//     sumAToB("hello", "world");
+//     //=> inputs should be numbers!
 //
 //     sumAToB("hello", "world");
 //     //=> inputs should be numbers!
@@ -283,16 +285,19 @@ var sumPrimesUpTo = function (n) {
 // positive integer, n, and returns the first n numbers.
 //
 //     sumOfFirstNPrimes(10);
-//     //=> 160
+//     //=> 129
 //
 //     sumOfFirstNPrimes(100);
-//     //=> 24680
+//     //=> 24133
 //
 //     sumOfFirstNPrimes(1000);
-//     //=> 3690840
+//     //=> 3672913
 //
 //     sumOfFirstNPrimes(0);
 //     //=> 0
+//
+//     sumOfFirstNPrimes(1);
+//     //=> 2
 //
 //     sumOfFirstNPrimes(-10);
 //     //=> input number should be zero or a positive number!
