@@ -120,7 +120,23 @@ describe("#sumOfFirstNPrimes", function () {
 });
 
 describe("#removeNonLetters", function () {
+    it ("should remove non-letters from the input string", function () {
+        expect(removeNonLetters("A man, a plan, a canal, Panama")).toEqual("AmanaplanacanalPanama");
+        expect(removeNonLetters("this is a string; it has some punctuation!")).toEqual("thisisastringithassomepunctuation");
+    });
+
+    it ("should throw an error if the input is not a string", function () {
+        expect(function () {
+            removeNonLetters(true);
+        }).toThrow();
+    });
 });
 
 describe("#isPalindrome", function () {
+    it ("should return true if the non-punctuated input string is a palindrome, false otherwise", function () {
+        expect(isPalindrome("kayak")).toBe(true);
+        expect(isPalindrome("A man, a plan, a canal, Panama")).toBe(true);
+        expect(isPalindrome("hello world")).toBe(false);
+        expect(isPalindrome(5)).toBe(false);
+    });
 });
