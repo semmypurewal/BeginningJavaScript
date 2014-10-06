@@ -20,6 +20,7 @@
 var isVowel = function () {
 };
 
+
 // Write a function called `isLowerCaseLetter` that returns `true` if
 // the input is a single letter and lower-case. It should return false otherwise.
 //
@@ -41,6 +42,7 @@ var isVowel = function () {
 var isLowerCaseLetter = function () {
 };
 
+
 // Write a function called `sumUpTo` so that it accepts a positive number `n`
 // and sums the first `n` positive integers. For example, if you call `sumUpTo(5)`
 // it should sum the numbers 1 through 5 inclusive. It should throw an error if the
@@ -59,6 +61,7 @@ var isLowerCaseLetter = function () {
 //
 var sumUpTo = function () {
 };
+
 
 // Write a function called `sumAToB` so that it accepts two parameters
 // `a` and `b` and sums the numbers between `a` and `b` inclusive. Note
@@ -79,6 +82,47 @@ var sumUpTo = function () {
 //
 var sumAToB = function () {
 };
+
+
+// Write a function called `countVowels` that accepts a string and
+// returns the number of vowels contained in that string. You'll want
+// to use the `isVowel` helper function from above. It should throw an
+// error if the input is not a string
+//
+//     countVowels("hello world!");
+//     //=> 3
+//
+//     countVowels("omg this is a hilarious tweet about nothing");
+//     //=> 16
+//
+//     countVowels("");
+//     //=> 0
+//
+//     countVowels(true);
+//     //=> input to countVowels must be a string!
+//
+var countVowels = function () {
+};
+
+
+// Write a function that accepts a string and returns the same string, only in
+// reverse!
+//
+//     reverse("hello world!");
+//     //=> !dlrow olleh
+//
+//     reverse("omg this is a hilarious tweet about nothing");
+//     //=> gnihton tuoba teewt suoiralih a si siht gmo
+//
+//     reverse("");
+//     //=>
+//
+//     reverse(true);
+//     //=> input to reverseString must be an string!
+//
+var reverseString = function () {
+};
+
 
 // A number is a prime number if it is only evenly divisible by 1 and itself
 // (although we don't consider 1 a prime number, so 2 is the first prime
@@ -106,6 +150,7 @@ var sumAToB = function () {
 var isPrime = function () {
 };
 
+
 // Using the `isPrime` function, write a function that accepts a number as
 // input sums all the primes smaller than that number.
 //
@@ -120,6 +165,7 @@ var isPrime = function () {
 //
 var sumPrimesUpTo = function () {
 };
+
 
 // Using the `isPrime` function, write a function that takes in a
 // positive integer, n, and returns the first n numbers.
@@ -142,43 +188,6 @@ var sumPrimesUpTo = function () {
 var sumOfFirstNPrimes = function () {
 };
 
-// Write a function called `countVowels` that accepts a string and
-// returns the number of vowels contained in that string. You'll want
-// to use the `isVowel` helper function from above. It should throw an
-// error if the input is not a string
-//
-//     countVowels("hello world!");
-//     //=> 3
-//
-//     countVowels("omg this is a hilarious tweet about nothing");
-//     //=> 16
-//
-//     countVowels("");
-//     //=> 0
-//
-//     countVowels(true);
-//     //=> input to countVowels must be a string!
-//
-var countVowels = function () {
-};
-
-// Write a function that accepts a string and returns the same string, only in
-// reverse!
-//
-//     reverse("hello world!");
-//     //=> !dlrow olleh
-//
-//     reverse("omg this is a hilarious tweet about nothing");
-//     //=> gnihton tuoba teewt suoiralih a si siht gmo
-//
-//     reverse("");
-//     //=>
-//
-//     reverse(true);
-//     //=> input to reverseString must be an string!
-//
-var reverseString = function () {
-};
 
 // A _palindrome_ is a string that reads the same forwards and backwards. Write
 // a function that accepts a string of arbitrary letters, numbers, and symbols, and
