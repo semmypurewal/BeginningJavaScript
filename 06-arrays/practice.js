@@ -64,7 +64,7 @@ var atLeastOneEven = function () {
 //
 //     allStrings("hello");
 //     //=> input should be an array!
-var allString = function () {
+var allStrings = function () {
 };
 
 
