@@ -1,3 +1,23 @@
+// helper functions that are used throughout
+var isString = function (val) {
+    return typeof val === "string";
+};
+
+var isHTMLElement = function (str) {
+    var openTag = str.substring(str.indexOf("<") + 1, str.indexOf(">"));
+    var closeTag = str.substring(str.lastIndexOf("</") + 2, str.lastIndexOf(">"));
+    return str.charAt(0) === "<" && str.charAt(str.length - 1) === ">" && openTag === closeTag;
+};
+
+var getTagName = function (elt) {
+    if (!isHTMLElement(elt)) {
+        throw "Error: Not an HTML Element!";
+    }
+
+    return elt.slice(1, elt.indexOf(">"));
+};
+
+
 // Write a function called `containsTwice` that accepts a number and an array,
 // and returns `true` if that number appears in the array twice, and `false`
 // otherwise.
@@ -113,7 +133,7 @@ var allStrings = function (list) {
     var i;
 
     for (i = 0; i < list.length && result === true; i = i + 1) {
-        if (typeof list[i] !== "string") {
+        if (!isString(list[i])) {
             result = false;
         }
     }
@@ -250,7 +270,7 @@ var range = function (numA, numB) {
 };
 
 
-// Using the `isHTMLElement` and `getTag` function from one of the previous
+// Using the `isHTMLElement` and `getTagName` function from one of the previous
 // sections, write a function called `mapToTags` that accepts an array of HTML
 // elements and returns a new array that consists of only the tags associated with
 // those HTML elements. It should throw an error if any of the elements are not
@@ -268,7 +288,25 @@ var range = function (numA, numB) {
 //     mapToTags(5);
 //     //=> wat?
 //
-var mapToTags = function () {
+//     mapToTags([ "not an html element" ]);
+//     //=> all entries must be html elements!
+//
+var mapToTags = function (htmlElements) {
+    if (!Array.isArray(htmlElements)) {
+        throw "wat?";
+    }
+
+    var tags = [];
+    var i;
+
+    for (i = 0; i < htmlElements.length; i = i + 1) {
+        if (!isHTMLElement(htmlElements[i])) {
+            throw "'" + htmlElements[i] + "' is not an HTML Element";
+        }
+        tags.push(getTagName(htmlElements[i]));
+    }
+
+    return tags;
 };
 
 
