@@ -82,6 +82,20 @@ describe("#range", function () {
 });
 
 describe("#mapToTags", function () {
+    it ("should do stuff", function () {
+        expect(mapToTags(["<p>this is a paragraph</p>", "<span>this is a span</span>", "<li>this is a list item</li>"])).toEqual(["p", "span", "li"]);
+        expect(mapToTags([])).toEqual([]);
+    });
+
+    it ("should throw stuff", function () {
+        expect(function () {
+            mapToTags(["<p>this is a paragraph</p>", "this is a tweet"]);
+        }).toThrow();
+
+        expect(function () {
+            mapToTags(5);
+        }).toThrow();
+    });
 });
 
 describe("#filterToLol", function () {
