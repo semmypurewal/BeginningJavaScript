@@ -1,5 +1,6 @@
 * meta
-  - javascript overview
+  - overview
+  - audience
   - what we'll learn
   - what we won't learn
   - getting examples
