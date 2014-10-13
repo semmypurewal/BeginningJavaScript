@@ -40,7 +40,6 @@ The distance of the second element from the first element is 1:
     primes[1]
     //=> 3
 
-
 And so on...
 
 We can also store the individual elements in separate variables if we want to.
@@ -65,7 +64,7 @@ array by simply using the square brackets.
 
     var suits = [];
     console.log(suits);
-    //[]
+    //=> []
 
 We can add elements to the end of the array by calling the array's `push`
 method.
@@ -92,33 +91,6 @@ in an existing array by simply using the assignment operator.
 
 In general, we should avoid _mutating_ arrays unless absolutely necessary.
 
-### Iterating Over Arrays with for-loops
-
-Arrays can be passed as arguments to functions just like anything else:
-
-    var secondElementOf = function (arr) {
-       return arr[1];
-    }
-
-And you'll often want to iterate over the values to determine some property of
-the array. But how can you do that if you don't know how many elements there
-are? Well, you can keep trying elements until you hit `undefined`, or you can
-use the `length` property of an array.
-
-    primes.length
-    //=> 10
-
-We can use this to write a function that prints all of the elements of the array
-by using a for loop to iterate over all of the indices.
-
-    var printEachElement = function (list) {
-        var index;
-
-        for (index = 0; index < list.length; index++) {
-            console.log(list[index]);
-        }
-    }
-
 ### Strings as special Arrays
 
 If this discussion about arrays seems familiar, it's because it is. You can
@@ -138,19 +110,64 @@ way we access elements of arrays.
     greeting[greeting.length - 2];
     //=> o
 
-The main difference is that arrays and strings don't share all the same
-methods. For example, the `toUpperCase` method wouldn't make any sense for an
-array, while several of the array methods we'll learn in the next section
+You can think of an array's `push` method as being similar to using the +
+operator on a string and adding a single character. But is there a more general
+way to concatentate two arrays? It turns out there is! It's the `concat` method!
+
+    var firstArray = ["hello", "world"];
+    var secondArray = ["goodbye", "world"];
+    firstArray.concat(secondArray);
+    //=> ["hello", "world", "goodbye", "world"];
+
+In general, the array methods are different from the string methods whenever it
+makes sense. For example, the `toUpperCase` method wouldn't make any sense for
+an array, while several of the array methods we'll learn in the next section
 wouldn't make sense for a string.
 
-On the other hand, some methods are shared. The `slice` method, for instance,
-exists on an array.
+On the other hand, some methods and properties are shared. For example, the
+`length` property is the same.
 
-[ "first", "second", "third", "fourth", "fifth" ].slice(1, 3);
-//=> [ "second", "third" ]
+    "hello".length;
+    //=> 5
+
+    ["this", "is", "an", "array"].length
+    //=> 4
+
+And both the `indexOf` and `slice` methods exists on an array. They work exactly
+like you'd expect.
+
+    var places = [ "first", "second", "third", "fourth", "fifth" ]
+
+    places.indexOf("third");
+    //=> 2
+
+    places.indexOf("sixth");
+    //=> -1
+
+    places.slice(1, 3);
+    //=> [ "second", "third" ]
 
 We'll learn more about the relationship between strings an arrays in the next
 section.
+
+### Iterating Over Arrays with for-loops
+
+Like strings, arrays can be passed as arguments to functions:
+
+    var secondElementOf = function (arr) {
+       return arr[1];
+    }
+
+We can use this to write a function that prints all of the elements of the array
+by using a for loop to iterate over all of the indices.
+
+    var printEachElement = function (list) {
+        var index;
+
+        for (index = 0; index < list.length; index = index + 1) {
+            console.log(list[index]);
+        }
+    }
 
 ### Examples
 
@@ -185,53 +202,37 @@ Another thing we can do is find the smallest number in a list of numbers.
         return smallestSoFar;
     }
 
-### Practice
 
-1. Write a function called `firstNumDivisibleByN` that accepts two arguments:
-`n` and an array, and returns `true` if the first number in the array is evenly
-divisible by `n`, false otherwise. For example, the function would work as
-follows.
+### Arrays and `typeof`
 
-    firstNumDivisibleBy(2, [5, 3, 2, 1]);
-    //=> false
+This behavior is probably a little unexpected:
 
-    firstNumDivisibleBy(5, [5, 3, 2, 1]);
+    typeof [1, 2, 3, 4];
+    //=> object
+
+    typeof [];
+    //=> object
+
+Unfortunately, JavaScript doesn't have a primitive type for an array -- instead
+it's considered an `object`, which we'll talk more about in an upcoming section.
+
+Fortunately, every JavaScript interpreter has a built-in `Array` object that has
+a special method called `isArray`.
+
+    Array.isArray([1, 2, 3, 4])
     //=> true
 
-2. Write a function called `secondLetterIs` that accepts two arguments: `letter`
-and an array, and returns `true` if the second letter in the string is `letter`.
+    Array.isArray([]);
+    //=> true
 
-3. Write a function called `containsValueTwice` that accepts a number and an
-array, and returns `true` if that number appears in the array twice, and `false`
-otherwise.
+### Practice
 
-4. Generalize the previous solution into a function called `containsValueNTimes`
-so that it can check for a value an arbitrary number of times.
+0. At first glance, extracting a character from a string using the square
+brackets array notation, and using the `charAt` method probably seems the
+same. But they aren't. What happens when you access an element outside the
+length of the string with `charAt`? What happens when you do the same thing with
+the square brackets?
 
-7. Write a function called `atLeastOneEven` that returns `true` if at least one
-of the numbers in the array is even, false otherwise.
+1. You can _mutate_ an the value at an index in an array by using the square
+brackets. Does the same thing work with a string? Why might that be?
 
-8. Write a function called `allEven` that returns `true` if all of the values in
-the array are even, and false otherwise.
-
-9. Write a function that accepts two arrays, and returns true if any of the
-numbers in the first array appear twice in the second array. You might want to
-reuse the function `containsValueNTimes` from above.
-
-10. Generalize the above problem above so that it accepts two arrays and a
-number, and returns true if any of the numbers in the first array appear `n`
-times in the second array.
-
-12. Using a standard `for` loop, along with the `push` function, write a
-function called `range` that accepts two numbers, `begin` and `end`, and returns
-an array that contains all of the integers starting at `begin` and ending at
-`end` (including `begin` and `end`). For example:
-
-    range(5,10);
-    //=> [5, 6, 7, 8, 9, 10]
-
-    range(0,3);
-    //=> [0, 1, 2, 3]
-
-    range(10,3);
-    //=> [10, 9, 8, 7, 6, 5, 4, 3]

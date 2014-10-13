@@ -1,5 +1,3 @@
-
-
 // Write a function called `containsTwice` that accepts a number and an array,
 // and returns `true` if that number appears in the array twice, and `false`
 // otherwise.
