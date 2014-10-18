@@ -325,66 +325,219 @@ test, and it breaks out of the loop early if any of the elements evaluate to
 ### reduce
 
 But what if we have to compute something more complex than just a `true` or
-`false`? For example, what if we want to compute the sum of the elements in an
-array -- can we do that without any variables? It turns out we can -- the
-`reduce` method allows us to build up a very general computation by carrying an
-additional function variable between calls. Let's consider our solution to the
-`sum` problem that uses the `forEach` method.
+`false`? For example, consider our favorite problem of summing a list of numbers
+contained in an array. Is there some way we can leverage built-in array methods
+so we can remove extra variables? It turns out we can -- the `reduce` method
+allows us to build up a very general computation by carrying an additional
+function variable between calls.
+
+Let's start by considering our solution to the `sum` problem that uses the
+`forEach` method.
 
     var sum = function (listOfNumbers) {
         var sumSoFar = 0;
 
         listOfNumbers.forEach(function (number) {
-            sumSoFar = sumSoFar + listOfNumbers;
+            sumSoFar = sumSoFar + number;
         });
 
         return sumSoFar;
     }
 
+This allowed us to remove the `index` variable we would need to maintain with a
+traditional `for`-loop, but we still have the `sumSoFar` variable. How does
+`reduce` allow us to remove it?
 
-The `reduce` method let's us move the `sumSoFar` variable into the function call
-as a parameter, and it gets set to the _last result of the function call_. But
-since it doesn't have an initial value, we have to provide one. That's the
-second argument (after the function) to `reduce`. For example, let's suppose we
-wanted to sum the following array:
+Consider the following example.
 
     var nums = [5,6,7,8,9,10];
 
     nums.reduce(function (sumSoFar, number) {
-        return sumSoFar, number;
-    }, 0);
+        return sumSoFar + number;
+    });
     //=> 45
 
+In this example, the anonymous function takes _two_ values -- `sumSoFar` and the
+current `number`. The job of the function is to combine these two values into
+the next value for `sumSoFar`.
 
-Given that, our `sum` function ends up looking like this:
+But what's the value of `sumSoFar` when the function is first called? By
+default, will call the function the first time with `sumSoFar` set to the first
+value in the array, and `number` set to the second. So this is the sequence of
+calls to our function:
+
+1. `sumSoFar` is 5, and `number` is 6. The result of the function is 11.
+2. `sumSoFar` is 11, and `number` is 7. The result of the function is 18.
+3. `sumSoFar` is 18, and `number` is 8. The result of the function is 26.
+4. `sumSoFar` is 26, and `number` is 9. The result of the function is 35.
+5. `sumSoFar` is 35, and `number` is 10. The result of the function is 45.
+
+Since 10 was the last value in the array, `reduce` returns 45. Generalizing
+this, we can rewrite our `sum` function with _no_ local variables!
 
     var sum = function (listOfNumbers) {
         return listOfNumbers.reduce(function (sumSoFar, number) {
             return sumSoFar + number;
-        }, 0);
-    }
+        });
+    };
 
+Believe it or not, there are times when it doesn't actually make sense to make
+the first argument to `reduce`'s function be the first element in the array. For
+example, suppose we wanted to write a function that accepts an array of strings
+and returns them combined into a paragraph as sentences.
+
+    paragraphify( [ "hello world", "this is a tweet, "goodbye" ] );
+    //=> Hello world.This is a tweet.Goodbye.
+
+Assuming we have a function called `capitalize` that capitalizes the first word
+in a sentence, we can easily achieve this using a `forEach` loop and a temporary
+local variable.
+
+    var paragraphify = function (list) {
+        var result = "";  // initialize to empty list
+
+        list.forEach(function (sentence) {
+            result = result + capitalize(sentence) + ".";  // add a space and a period
+        });
+
+        return result;
+    };
+
+We might try to use reduce to remove the local result variable using reduce as
+follows.
+
+    var paragraphify = function (list) {
+        return list.reduce(function (paragraph, sentence) {
+            return result + capitalize(sentence) + ".";
+        });
+    };
+
+Unfortunately, this won't capitalize or add a period after the first sentence.
+
+    paragraphify( [ "hello world", "this is a tweet, "goodbye" ] );
+    //=> hello worldThis is a tweet.Goodbye.
+
+To make this approach work, we would need to give an explicit initial value to
+paragraph, and then process all of the elements. We can do that by sending in a
+second argument to `reduce`, _after_ the function. In this case, the second
+argument will be the empty string.
+
+    var paragraphify = function (list) {
+        return list.reduce(function (paragraph, sentence) {
+            return result + capitalize(sentence) + ".";
+        }, "");  // <= the second argument is ""
+    };
+
+This may look strange, but it's a common pattern in JavaScript.
+
+It's actually worth noting that this isn't completely necessary in this case. We
+could use the `map` method and chaining a call to `reduce`.
+
+    var paragraphify = function (list) {
+        return list.map(function (sentence) {
+            return capitalize(sentence) + ".";
+        }).reduce(function (paragraph, capitalizedSentence) {
+            return result + capitalizedSentence;
+        });
+    };
+
+This has the same effect, and doesn't require the extra argument to `reduce`.
 
 ## Converting between Strings and Arrays
 
-Last, but not least, it's sometimes convenient to use these built-in function on strings. Last time we saw that strings could be treated as arrays, but it turns out not to be the case with these built-in functions. To do that, we'll need to use the string's `split` method to turn it into an _actual_ array of characters.
+We mentioned previously that arrays and strings are very similar, but that
+strings don't enjoy some of the fun array methods. It turns out this isn't too
+much of a problem, because it's very easy to convert between strings and
+arrays. To change a string into an array that, we'll simply use the string's
+`split` method to turn it into an _actual_ array of characters.
 
     var greeting = "hello";
 
     greeting.split("");
     //=> ["h","e","l","l","o"]
 
-This creates an array that we can use just like any other array, including the built-in methods. The `split` method is pretty generic (meaning we can split on arbitrary sequences), but we'll just use it to split every character into its own array element.
+The `split` method actually gives us a little more flexibility. For example,
+suppose we were dealing with comma-separated-values (CSVs).
 
-The inverse of `split` is the array's `join` function which will put a string back together.
+    var values = "gracie,loki,dahlia,ally";  //=> these are my dogs!
+    var names = values.split(",");
+    //=> [ "gracie", "loki", "dahlia", "ally" ]
+
+We can even just split on spaces.
+
+    var tweet = "this is a tweet!";
+    var words = tweet.split(" ");
+    //=> [ "this", "is", "a", "tweet!" ];
+
+Once we have the array, we can use all of our favorite methods!
+
+    names.map(capitalize);
+    //=> [ "Gracie", "Loki", "Dahlia", "Ally" ];
+
+    words.filter(function (word) {
+        return word.indexOf("!") > -1;
+    });
+    //=> [ "tweet!" ]
+
+The inverse of `split` is the array's `join` function which will put a string
+back together.
 
     var array = ["h","e","l","l","o"];
     array.join("");
     //=> "hello"
 
-These two methods will be useful in several of the problems below.
+Like the `split` method, you can stitch an array of strings back together using
+an arbitrary string.
+
+    names.map(capitalize).join(" -- ");
+    //=> "Gracie -- Loki -- Dahlia -- Ally"
+
+    words.join(";");
+    //=> "this;is;a;tweet!"
+
+These methods make it very easy to do complex transformations on a string
+without having to write a lot of complex `for`-loops and maintain the value of a
+lot of local variables.
 
 ### Practice
+
+1. In one of the previous sections, we had an practice problem where you had to
+reverse a string. Do the same thing with an array, but use the `reduce` and
+`concat` methods to avoid local variables.
+
+     reverse([ 1, 2, 3, 4, 5 ]);
+     //=> [ 5, 4, 3, 2, 1 ]
+
+     reverse([ "hello", "world" ]);
+     //=> [ "world", "hello" ]
+
+2. Did you know that you could have arrays within arrays? This is perfectly
+legal JavaScript:
+
+    var nestedArray = [ 1, 2, [ 10, 20 ], 3, 4, 5 ];
+
+    nestedArray[0];
+    //=> 1
+
+    nestedArray[1];
+    //=> 2
+
+    nestedArray[2];
+    //=> [ 10, 20 ]
+
+    nestedArray[2][0];
+    //=> 10
+
+For this problem, write a function using `reduce` that "flattens" a possibly
+nested array into a single array.
+
+    flatten(nestedArray);
+    //=> [ 1, 2, 10, 20,  3, 4, 5 ]
+
+    flatten([ 1, [2, 3], 4, [5, 6, 7], 8 ]);
+    //=> [ 1, 2, 3, 4, 5, 6, 7, 8 ]
+
+You'll also want to use the `concat` method to make this work.
 
 1. Write a function that returns the sum of all of the multiples of 3 and 5
 smaller than 1000. (c/o projecteuler.net)
