@@ -71,6 +71,7 @@
   + overview
   + forEach
   + map
+  + chaining methods that return arrays
   + filter
   + some and every
   + reduce
