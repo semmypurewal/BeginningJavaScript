@@ -47,10 +47,10 @@ var flatten = function () {
 // are smaller than or equal to `n`.
 //
 //     sumOfMultiplesOf3And5(100);
-//     //=> 2318
+//     //=> 2418
 //
 //     sumOfMultiplesOf3And5(50);
-//     //=> 543
+//     //=> 593
 //
 //     sumOfMultiplesOf3And5(0);
 //     //=> 0
