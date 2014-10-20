@@ -443,6 +443,69 @@ could use the `map` method and chaining a call to `reduce`.
 
 This has the same effect, and doesn't require the extra argument to `reduce`.
 
+The `reduce` method is tricky enough that it warrants one more example. Let's
+demonstrate how we can use it to find the smallest element in an array of
+numbers.
+
+    var smallest = function (list) {
+        return list.reduce(function (smallest, current) {
+            var result = smallest;
+
+            if (current < smallest) {
+                result = current;
+            }
+
+            return result;
+        });
+    };
+
+If we call this function on [ 5, 10, 3, 1, 9 ] the calls to the function look as
+follows.
+
+1. `smallest` is 5, and `current` is 10. The result of the function is 5.
+2. `smallest` is 5, and `current` is 3. The result of the function is 3.
+3. `smallest` is 3, and `current` is 1. The result of the function is 1.
+4. `smallest` is 1, and `current` is 9. The result of the function is 1.
+
+You'll see here that we've created a temporary local variable called `result` to
+store the smaller of the current element and the smallest element we've seen up
+until that point. This maintains our pattern of always having a single `return`
+statement in our functions (which is a good habit to get into).
+
+This case is simple enough to where we could also do something like this to get
+rid of the `result` variable, but we do it at the expense of creating two
+`return` statements.
+
+    var smallest = function (list) {
+        return list.reduce(function (smallest, current) {
+            if (current < smallest) {
+                return current;
+            } else {
+                return smallest;
+            }
+        });
+    };
+
+There is a trade-off here. Sometimes function with multiple `return` statements
+can be harder for people to understand, particularly if they are really
+long. This one is small enough that it doesn't matter too much.
+
+Another approach is to use the JavaScript ternary conditional operator, which is
+an operator that can be useful in these situations.
+
+    var smallest = function (list) {
+        return list.reduce(function (smallest, current) {
+            return (current < smallest) ? current : smallest;
+        });
+    };
+
+The ternary operator takes in three arguments -- a boolean expression, a
+resulting value if the expression is `true`, and a resulting value if the
+expression is `false`.
+
+I try to use these operators sparingly due to the fact that they are sometimes
+hard to read. But in this case I probably would use it.
+
 ## Converting between Strings and Arrays
 
 We mentioned previously that arrays and strings are very similar, but that
@@ -501,6 +564,43 @@ lot of local variables.
 
 ### Practice
 
+For the first set of problems, open up the `names.html` file in Chrome and then
+open the developer console. There should be a variable defined called `names`
+which you can confirm by typing it at the console.
+
+    names;
+    //=> Array[1559]
+
+This is a list of all of the names of babies born in New York State since
+2007. The list contains only unique names, but they aren't sorted in any
+specific order.
+
+Using the `map`, `filter`, `reduce`, `some`, and `every` methods, answer the
+following questions.
+
+1. How many baby names start with the letter 'z'?
+
+2. How many baby names have the letter 'z' in them anywhere?
+
+3. Create a new array that contains all of the names containing a 'w' with the
+first letter upper-case.
+
+4. Do all of the names contain vowels?
+
+5. Are there any names that have only two letters?
+
+6. Is your name in the list?
+
+7. Find the name that would come first alphabetically.
+
+8. How many times does the letter 'z' appear in the list?
+
+9. What is the maximum number of vowels in any name?
+
+10. How many names have the maximum number of vowels that you found in the
+previous problem?
+
+
 1. In one of the previous sections, we had an practice problem where you had to
 reverse a string. Do the same thing with an array, but use the `reduce` and
 `concat` methods to avoid local variables.
@@ -539,15 +639,15 @@ nested array into a single array.
 
 You'll also want to use the `concat` method to make this work.
 
-1. Write a function that returns the sum of all of the multiples of 3 and 5
-smaller than 1000. (c/o projecteuler.net)
+1. Using `range` and a chain of array methods, write a function that accepts a
+number `n` and returns the sum of all of the positive multiples of 3 and 5 that
+are smaller than or equal to `n`.
 
 2. Write a function that accepts a string and returns true if that word contains
 at least one vowel. Do not use a `for` loop or a `forEach` loop.
 
 3. Write a function that accepts a list of words, and returns the sum of the
-lengths of all the words that contain at least one vowel. Do not use a `for`
-loop or a `forEach` loop.
+lengths of all the words that contain at least one vowel.
 
 4. Write a function that accepts an array of strings and returns a list of same
 strings with all of the vowels removed.
