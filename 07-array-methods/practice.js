@@ -1,3 +1,56 @@
+// helper functions
+var range = function (numA, numB) {
+    if (typeof numA !== "number" || typeof numB !== "number") {
+        throw "arguments to range must be numbers";
+    }
+
+    var increment;
+    var i;
+    var result = [];
+
+    if (numA <= numB) {
+        // we're going up!
+        increment = 1;
+    } else {
+        // we're going down!
+        increment = -1;
+    }
+
+    // here we keep going, either up or down, until we hit
+    // numB
+    for (i = numA; i !== numB; i = i + increment) {
+        result.push(i);
+    }
+
+    // we'll skip numB in the above loop, so we'll push it here.
+    result.push(numB);
+
+    return result;
+};
+
+var isVowel = function (letter) {
+    var letterLC = letter.toLowerCase();
+    return letterLC === "a" || letterLC === "e" || letterLC === "i" || letterLC === "o" || letterLC === "u";
+};
+
+var isHTMLElement = function (str) {
+    var openTag = str.substring(str.indexOf("<") + 1, str.indexOf(">"));
+    var closeTag = str.substring(str.lastIndexOf("</") + 2, str.lastIndexOf(">"));
+    return str.charAt(0) === "<" && str.charAt(str.length - 1) === ">" && openTag === closeTag;
+};
+
+var getContent = function (htmlElement) {
+    if (!isHTMLElement(htmlElement)) {
+        throw "not an HTML element!";
+    };
+
+    return htmlElement.slice(htmlElement.indexOf(">") + 1, htmlElement.lastIndexOf("</"));
+};
+
+var randUpTo = function (n) {
+    return Math.floor(Math.random() * n);
+};
+
 // In one of the previous sections, we had an practice problem where you had to
 // reverse a string. Do the same thing with an array, but use the `reduce` and
 // `concat` methods to avoid local variables.
@@ -8,7 +61,10 @@
 //      reverse([ "hello", "world" ]);
 //      //=> [ "world", "hello" ]
 //
-var reverse = function () {
+var reverse = function (list) {
+    return list.reduce(function (reversedList, current) {
+        return [ current ].concat(reversedList);
+    }, []);
 };
 
 // Did you know that you could have arrays within arrays? This is perfectly
@@ -39,7 +95,10 @@ var reverse = function () {
 //
 // You'll also want to use the `concat` method to make this work.
 //
-var flatten = function () {
+var flatten = function (list) {
+    return list.reduce(function (flatList, current) {
+        return Array.isArray(current) ? flatList.concat(current) : flatList.concat([ current ]);
+    }, []);
 };
 
 // Using `range` and a chain of array methods, write a function that accepts a
@@ -47,15 +106,20 @@ var flatten = function () {
 // are smaller than or equal to `n`.
 //
 //     sumOfMultiplesOf3And5(100);
-//     //=> 2318
+//     //=> 2418
 //
 //     sumOfMultiplesOf3And5(50);
-//     //=> 543
+//     //=> 593
 //
 //     sumOfMultiplesOf3And5(0);
 //     //=> 0
 //
-var sumOfMultiplesOf3And5 = function () {
+var sumOfMultiplesOf3And5 = function (n) {
+    return range(0, n).filter(function (number) {
+        return number % 3 === 0 || number % 5 === 0;
+    }).reduce(function (sumSoFar, current) {
+        return sumSoFar + current;
+    });
 };
 
 // Write a function called atLeastOneVowel that accepts a string and
@@ -71,7 +135,8 @@ var sumOfMultiplesOf3And5 = function () {
 //     atLeastOneVowel("sdfjkl");
 //     //=> false
 //
-var atLeastOneVowel = function () {
+var atLeastOneVowel = function (word) {
+    return word.toLowerCase().split("").some(isVowel);
 };
 
 // Write a function that accepts a list of tweets, and returns the
@@ -84,7 +149,12 @@ var atLeastOneVowel = function () {
 //     longestAwesomeTweet([ "hello", "world" ]);
 //     //=> ""
 //
-var longestAwesomeTweet = function () {
+var longestAwesomeTweet = function (tweets) {
+    return tweets.filter(function (tweet) {
+        return tweet.toLowerCase().indexOf("awesome") > -1;
+    }).reduce(function (longestSoFar, current) {
+        return current.length > longestSoFar.length ? current : longestSoFar;
+    }, "");
 };
 
 // Write a function that accepts an array of HTMLElements and returns an
@@ -96,7 +166,8 @@ var longestAwesomeTweet = function () {
 //     elementsToContent([ "<h1>This is an important heading!</h1>", "<h5>this is not as important</h5>" ]);
 //     //=> [ "This is an important heading!", "this is not as important" ]
 //
-var elementsToContent = function () {
+var elementsToContent = function (list) {
+    return list.map(getContent);
 };
 
 // In a previous section, we created a function called `randUpTo` that
@@ -112,7 +183,10 @@ var elementsToContent = function () {
 //     randomArray(5, 10);
 //     //=> [ 2, 0, 3, 9, 10 ]
 //
-var randomArray = function () {
+var randomArray = function (length, max) {
+    return range(1, length).map(function (value) {
+        return randUpTo(max);
+    });
 };
 
 // Using the `randomNums` function from above, write a function called
@@ -126,5 +200,8 @@ var randomArray = function () {
 // randomElements([ "clubs", "diamonds", "hearts", "spades" ], 3);
 // //=> [ "hearts", "diamonds", "hearts" ]
 //
-var randomElements = function () {
+var randomElements = function (items, length) {
+    return randomArray(length, items.length).map(function (index) {
+        return items[index];
+    });
 };
