@@ -8,12 +8,10 @@ are indexed by things that aren't numbers. These are often referred to as
 _dictionaries_ or _maps_. In JavaScript, these data structures are (almost)
 equivalent to JavaScript _objects_.
 
-An object is just a collection of _keys_ that map to _values_. You can access
-and mutate the elements of an object in the same way that you can access and
-mutate elements of an array, but instead of using the numbered index, you use
-the name of the key.
-
-### Defining an Object
+We can think of JavaScript object as collection of _keys_ that map to
+_values_. You can access and mutate the elements of an object in the same way
+that you can access and mutate elements of an array, but instead of using the
+numbered index, you use the name of the key.
 
 Objects are good for associating a set of related data with a single variable
 and building up custom data types. For instance, suppose we wanted to write a
@@ -25,20 +23,31 @@ like this:
 
 The difficulty is that the two pieces of data aren't related except in the
 programmer's mind. This is a recipe for bugs and brittle code. A better approach
-is to use objects. We can define one like this.
+is to use objects.
+
+### Defining an Object
+
+We can define a single card object like this.
 
     var card = { "rank":"ace", "suit":"spades" };
 
 Notice that defining one is similar to defining an array, but we use
-curly-braces instead of square-brackets. In addition have to explicitly specify
-the key _and_ the value for each entry. We do that by separating them with
-colons.
+curly-braces instead of square-brackets. In addition we have to
+explicitly specify the key _and_ the value for each entry. We do that
+by separating them with colons.
 
     var person = { "name":"Semmy", "age":37 };
 
+As is usually the case, there's nothing special about the identifier we use for
+the variable name. We can create multiple cards with different variables.
+
+    var anotherCard = { "rank":"two", "suit":"clubs" };
+
+    var anotherPerson = { "name":"Jennifer", "age": 25 };
+
 Here's another example that's similar to one of the examples we saw in the
 section on arrays. We'll store a list of greetings, but instead of having the
-indices be numbers, we'll actually have them be the associated language.
+indices be numbers, we'll have them be the associated language.
 
     var greetings = {
         "spanish" : "hola",
@@ -82,8 +91,11 @@ we're referring to (instead of connecting the language with an arbitrary index).
 
 The trade-off is that there is no concrete ordering of the values in an object,
 unlike an array where there is a clear sense of the order that the data is
-stored. But like an array, if we try to access an element that doesn't exist we
-get the special JavaScript value `undefined` as a result.
+stored. Ordering matters for some sets of data but not others, so whether this
+is good or bad depends on the types you are storing.
+
+But like an array, if we try to access an element that doesn't exist we get the
+special JavaScript value `undefined` as a result.
 
     greetings["swahili"];
     //=> undefined
@@ -92,7 +104,7 @@ get the special JavaScript value `undefined` as a result.
     //=> undefined
 
 If we use valid JavaScript identifiers (think variable names) for our keys, we
-can also use JavaScript's dot operator to access elements of the array.
+can also use the dot operator to access elements of the array.
 
     person.name;
     //=> Semmy
@@ -103,8 +115,8 @@ can also use JavaScript's dot operator to access elements of the array.
     greetings.french;
     //=> bonjour
 
-But if we use numbers or invalid JavaScript identifiers for our keys,
-we'll run into problems when we try to do this.
+If we use numbers or invalid JavaScript identifiers for our keys, we'll run into
+problems when we try to do this.
 
     var list = { "1":"first", "2":"second" }
 
@@ -116,7 +128,10 @@ we'll run into problems when we try to do this.
 
 ### Mutating an Object
 
-Like arrays, we can _mutate_ objects by setting updating the values.
+Like arrays, we can _mutate_ objects by setting the values with an assignment.
+
+    person.name;
+    //=> "Semmy"
 
     person.name = "Heather";
 
@@ -130,7 +145,7 @@ We can also add new keys and values by using assignments.
 
     person["hometown"] = "Boston";
 
-    console.log(person["hometown"]);
+    person["hometown"];
     //=> "Boston"
 
 ### Using Variables for Keys
@@ -138,7 +153,9 @@ We can also add new keys and values by using assignments.
 With arrays, you can use expressions or variables to index into an array:
 
     var array = [ "hello", "world", "this", "is", "a", "list" ];
+
     var lastIndex = array.length - 1;
+
     array[lastIndex];
     //=> "list"
 
@@ -159,17 +176,34 @@ in a variable.
     //=> undefined
 
 That's because when you use the dot-operator, the identifier to the right of the
-dot is the actualy key. So, here, in this case, it's looking for a key called
-"key" instead of the value stored in the variable.
+dot is the interpreted as a string representing the key. So, here, in this case,
+it's looking for a key called "key" instead of the value stored in the
+variable. In other words, it's equivalent to this.
+
+    card["key"];
+    //=> undefined
 
 ### Using Array functions on Objects
 
 Can we use all those wonderful array methods on objects? Not directly. Since
-objects contain both keys and values, it's not clear how those functions would
-work. But you can easily extract the set of keys and the collection of values
-as arrays and then operate on them if you wish.
+objects contain both keys and values, it's not immediately obvious how something
+like `map` would work. Should it map the keys, or the values, or both to the
+result? Should it return an object or an array?
 
-To get the keys, you have to use the `Object.keys` function.
+We might think something like this would work:
+
+    // this doesn't work in JavaScript
+    card.map(function (key, value) {
+        return capitalize(value);
+    });
+    //=> [ "Ace", "Spades" ]
+
+Many languages allow you to call these types of functions on maps, but
+JavaScript doesn't have the ability built-in.
+
+On the other hand you can easily extract the set of keys and the collection of
+values as arrays and then operate on them if you wish. To get the keys, you have
+to use the `Object.keys` function.
 
     var card = { "rank":"ace", "suit":"spades" };
     var keys = Object.keys(card);
@@ -190,8 +224,14 @@ How can you get the values? You can combine the `map` function with the
     values;
     //=> [ "ace", "spades" ];
 
-    values[1];
-    //=> "spades"
+    values.map(function (value) {
+        return capitalize(value);
+    });
+    //=> [ "Ace", "Spades" ]
+
+We can actually build a more robust solution to doing this by converting a
+single object into an array of objects that contain a `key` and a `value`, but
+before we do that, we'll need to see an example of an array of object.
 
 ### Arrays of Objects
 
@@ -212,9 +252,59 @@ hand using an array of card objects:
         { "rank":"five",  "suit":"hearts" }
     ];
 
+
+Using the fact that we can build an array of objects, we can access our array
+functions with objects in a much clearer way. For example, suppose instead of
+having a single object like this:
+
+    var card2 = { "suit": "spades", "rank": "two" };
+
+we represented the same data as an array of objects like this:
+
+    var cardArray = [
+        { "key" : "suit", "value": "spades" },
+        { "key" : "rank", "value": "two" }
+    ];
+
+Then we can easily use our array functions!
+
+    cardArray.map(function (element) {
+        var key = element.key;
+        var value = element.value;
+
+        return capitalize(value);
+    });
+    //=> [ "Spades", "Two" ]
+
+It's cumbersome to represent all our objects in this way, but we can easily
+write a function that takes care of this for us! For example:
+
+    Object.keys(card2).reduce(function (arrayRepresentation, key) {
+        arrayRepresentation.push({ "key":key, "value": card2["value"] });
+    }, []);
+    //=> [ { "key" : "suit", "value": "spades" }, { "key" : "rank", "value": "two" } ];
+
+We can actually generalize this idea into a single function.
+
+    var toObjectArray = function (obj) {
+        return Object.keys(obj).reduce(function (arrayRepresentation, key) {
+            arrayRepresentation.push({ "key":key, "value": obj["value"] });
+        }, []);
+    };
+
+And this gives us access to our array functions on objects now!
+
+    var person = { "name": "semmy", "age": 37 };
+
+    toObjectArray(person).filter(function (entry) {
+        var value = entry.value;
+        return isString(entry.value) && entry.value[0] === "s";
+    });
+    //=> [ "semmy" ]
+
 ### More Examples
 
-In previous sections, we've been looking at tweets as strings that are less than
+In previous sections, we've been modeling tweets as strings that are less than
 140 characters. It turns out that a tweet is a lot more than just a string -- it
 also includes a lot of _meta-data_ including a timestamp, geographic
 information, and the number of times the tweet has been retweeted, among many
