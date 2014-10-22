@@ -55,17 +55,18 @@
   + breaking out of a loop
   + iterating backwards
   + practice
-  - tests
+  + tests
 
 * arrays
   + overview
   + defining an array
   + accessing elements of an array
   + mutating an array
+  + using variables for indices
   + strings as special arrays
   + examples
   + practice
-  - tests
+  + tests
 
 * array methods
   + overview
@@ -81,8 +82,11 @@
 
 * objects
   + overview
-  + what are these good for?
-  - references vs. values
+  + defining an object
+  + accessing elements of an object
+  + mutating an object
+  + using variables for keys
+  - arrays of objects
   - using array functions on objects
   - examples
   - practice

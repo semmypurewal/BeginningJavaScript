@@ -91,6 +91,24 @@ in an existing array by simply using the assignment operator.
 
 In general, we should avoid _mutating_ arrays unless absolutely necessary.
 
+### Using Variables for Indices
+
+One thing that's really nice about arrays is that we can use variables to index
+into them. For example:
+
+    var secondIndex = 1;
+
+    suits[secondIndex];
+    //=> "diamonds"
+
+We can even use the results of expressions to index into arrays.
+
+    suits[secondIndex + 1];
+    //=> "coins"
+
+This feature comes in handy when you want to loop over arrays, which we'll learn
+about very soon.
+
 ### Strings as special Arrays
 
 If this discussion about arrays seems familiar, it's because it is. You can
