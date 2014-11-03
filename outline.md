@@ -90,7 +90,7 @@
   + arrays of objects
   + nested objects
   + practice
-  - tests
+  + tests
 
 * poker simulation
   - overview
