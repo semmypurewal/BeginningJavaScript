@@ -170,7 +170,12 @@ var containsFullHouse = function (hand) {
     return values.indexOf(3) > -1 && values.indexOf(2) > -1;
 };
 
-var containsFourOfAKind = function () {
+var containsFourOfAKind = function (hand) {
+    var counts = countRanks(hand);
+
+    return Object.keys(counts).filter(function (rank) {
+        return counts[rank] >= 4;
+    }).length >= 1;
 };
 
 var containsStraightFlush = function (hand) {

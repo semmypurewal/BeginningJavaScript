@@ -57,14 +57,6 @@ var threeOfAKind = [
     {"suit":"clubs","rank":"four"}
 ];
 
-var fullHouse = [
-    {"suit":"hearts","rank":"four"},
-    {"suit":"spades","rank":"nine"},
-    {"suit":"diamonds","rank":"four"},
-    {"suit":"diamonds","rank":"nine"},
-    {"suit":"clubs","rank":"four"}
-];
-
 var straightA = [
     {"suit":"clubs","rank":"four"},
     {"suit":"spades","rank":"two"},
@@ -87,6 +79,22 @@ var flush = [
     {"suit":"diamonds","rank":"two"},
     {"suit":"diamonds","rank":"queen"},
     {"suit":"diamonds","rank":"six"}
+];
+
+var fullHouse = [
+    {"suit":"hearts","rank":"four"},
+    {"suit":"spades","rank":"nine"},
+    {"suit":"diamonds","rank":"four"},
+    {"suit":"diamonds","rank":"nine"},
+    {"suit":"clubs","rank":"four"}
+];
+
+var fourOfAKind = [
+    {"suit":"hearts","rank":"four"},
+    {"suit":"spades","rank":"four"},
+    {"suit":"diamonds","rank":"four"},
+    {"suit":"diamonds","rank":"nine"},
+    {"suit":"clubs","rank":"four"}
 ];
 
 var straightFlush = [
@@ -242,15 +250,6 @@ describe("#containsThreeOfAKind", function () {
     });
 });
 
-describe("#containsFullHouse", function () {
-    it ("should return true if the hand contains a full house, false otherwise", function () {
-        expect(containsFullHouse(fullHouse)).toBe(true);
-        expect(containsFullHouse(threeOfAKind)).toBe(false);
-        expect(containsFullHouse(twoPair)).toBe(false);
-        expect(containsFullHouse(bust)).toBe(false);
-    });
-});
-
 describe("#containsStraight", function () {
     it ("should return true if the hand contains a straight, false otherwise", function () {
         expect(containsStraight(straightA)).toBe(true);
@@ -270,6 +269,27 @@ describe("#containsFlush", function () {
         expect(containsFlush(threeOfAKind)).toBe(false);
         expect(containsFlush(twoPair)).toBe(false);
         expect(containsFlush(bust)).toBe(false);
+    });
+});
+
+describe("#containsFullHouse", function () {
+    it ("should return true if the hand contains a full house, false otherwise", function () {
+        expect(containsFullHouse(fullHouse)).toBe(true);
+        expect(containsFullHouse(threeOfAKind)).toBe(false);
+        expect(containsFullHouse(twoPair)).toBe(false);
+        expect(containsFullHouse(bust)).toBe(false);
+    });
+});
+
+describe("#containsFourOfAKind", function () {
+    it ("should return true if the hand contains a flush, false otherwise", function () {
+        expect(containsFourOfAKind(fourOfAKind)).toBe(true);
+        expect(containsFourOfAKind(flush)).toBe(false);
+        expect(containsFourOfAKind(straightA)).toBe(false);
+        expect(containsFourOfAKind(fullHouse)).toBe(false);
+        expect(containsFourOfAKind(threeOfAKind)).toBe(false);
+        expect(containsFourOfAKind(twoPair)).toBe(false);
+        expect(containsFourOfAKind(bust)).toBe(false);
     });
 });
 
