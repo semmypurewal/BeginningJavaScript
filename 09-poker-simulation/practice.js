@@ -62,3 +62,5 @@ var containsStraightFlush = function () {
 var containsRoyalFlush = function () {
 };
 
+var highestRank = function () {
+};

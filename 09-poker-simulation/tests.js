@@ -297,3 +297,17 @@ describe("#containsRoyalFlush", function () {
         expect(containsRoyalFlush(bust)).toBe(false);
     });
 });
+
+describe("#highestRank", function () {
+    it ("should return a string representation of the highest rank the hand has", function () {
+        expect(highestRank(royalFlush)).toEqual("royal flush");
+        expect(highestRank(straightFlush)).toEqual("straight flush");
+        expect(highestRank(flush)).toEqual("flush");
+        expect(highestRank(straightA)).toEqual("straight");
+        expect(highestRank(straightB)).toEqual("straight");
+        expect(highestRank(fullHouse)).toEqual("full house");
+        expect(highestRank(threeOfAKind)).toEqual("three of a kind");
+        expect(highestRank(twoPair)).toEqual("two pair");
+        expect(highestRank(bust)).toEqual("bust");
+    });
+});
