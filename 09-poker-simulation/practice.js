@@ -160,11 +160,6 @@ var containsFlush = function (hand) {
     });
 };
 
-
-var containsStraightFlush = function (hand) {
-    return containsFlush(hand) && containsStraight(hand);
-};
-
 var containsFullHouse = function (hand) {
     var counts = countRanks(hand);
 
@@ -176,6 +171,10 @@ var containsFullHouse = function (hand) {
 };
 
 var containsFourOfAKind = function () {
+};
+
+var containsStraightFlush = function (hand) {
+    return containsFlush(hand) && containsStraight(hand);
 };
 
 var containsRoyalFlush = function (hand) {
