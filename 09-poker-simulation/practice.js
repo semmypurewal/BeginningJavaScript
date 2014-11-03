@@ -178,6 +178,26 @@ var containsRoyalFlush = function (hand) {
     return containsStraightFlush(hand) && lowCard(hand).rank === "ten";
 };
 
-var highestRank = function () {
+var highestRank = function (hand) {
+    var result = "bust"; // default is bust
 
+    if (containsRoyalFlush(hand)) {
+        result = "royal flush";
+    } else if (containsStraightFlush(hand)) {
+        result = "straight flush";
+    } else if (containsFullHouse(hand)) {
+        result = "full house";
+    } else if (containsFlush(hand)) {
+        result = "flush";
+    } else if (containsStraight(hand)) {
+        result = "straight";
+    } else if (containsThreeOfAKind(hand)) {
+        result = "three of a kind";
+    } else if (containsTwoPair(hand)) {
+        result = "two pair";
+    } else if (containsPair(hand)) {
+        result = "pair";
+    }
+
+    return result;
 };
