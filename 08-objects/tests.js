@@ -1,7 +1,7 @@
 describe("#isUser", function () {
     it ("should return true if the argument is a user object, false otherwise", function () {
         expect(isUser({ "name":"Semmy Purewal", "screen_name":"semmypurewal" })).toBe(true);
-        expect(isUser({ "name":"Firstname Lastname", "screen_name":"user" })).toBe(false);
+        expect(isUser({ "name":"Firstname Lastname", "screen_name":"user" })).toBe(true);
         expect(isUser("semmypurewal")).toBe(false);
         expect(isUser({ "age": 37, "name":"Semmy Purewal", "screen_name":"semmypurewal" })).toBe(false);
     });
@@ -39,7 +39,7 @@ describe("#userWithTweetsToDiv", function () {
         };
 
         expect(userWithTweetsToDiv(example)).
-            toEqual("<div><h1>Semmy Purewal</h1><h2>semmypurewal</h2><ul><li>this is a tweet.</li><li>this is another tweet</li></ul></div>");
+            toEqual("<div><h1>Semmy Purewal</h1><h2>semmypurewal</h2><ul><li>this is a tweet.</li><li>this is another tweet!</li></ul></div>");
     });
 });
 
