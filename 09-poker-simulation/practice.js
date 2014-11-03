@@ -47,13 +47,16 @@ var containsTwoPair = function () {
 var containsThreeOfAKind = function () {
 };
 
-var containsFullHouse = function () {
-};
-
 var containsStraight = function () {
 };
 
 var containsFlush = function () {
+};
+
+var containsFullHouse = function () {
+};
+
+var containsFourOfAKind = function () {
 };
 
 var containsStraightFlush = function () {
