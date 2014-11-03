@@ -1,3 +1,13 @@
+// helper function used throughout
+var countRanks = function (hand) {
+    return hand.map(function (card) {
+        return card.rank;
+    }).reduce(function (counts, rank) {
+        counts[rank] = typeof counts[rank] === "undefined" ? 1 : counts[rank] + 1;
+        return counts;
+    }, {});
+};
+
 var suits = ["clubs", "diamonds", "hearts", "spades"];
 var ranks = ["two", "three", "four", "five", "six", "seven", "eight",
              "nine", "ten", "jack", "queen", "king", "ace"];
@@ -88,20 +98,12 @@ var isLowerThan = function (first, second) {
 };
 
 var highCard = function (hand) {
-    if (!isHand(hand)) {
-        throw "input should be a hand!";
-    }
-
     return hand.reduce(function (highest, card) {
         return isHigherThan(card, highest) ? card : highest;
     });
 };
 
 var lowCard = function (hand) {
-    if (!isHand(hand)) {
-        throw "input should be a hand!";
-    }
-
     return hand.reduce(function (lowest, card) {
         return isLowerThan(card, lowest) ? card : lowest;
     });
@@ -115,36 +117,63 @@ var containsPair = function (hand) {
     }).some(function (count) {
         return count >= 2;
     });
-
 };
 
-var containsTwoPair = function () {
+var containsTwoPair = function (hand) {
+    var counts = countRanks(hand);
+
+    return Object.keys(counts).filter(function (rank) {
+        return counts[rank] >= 2;
+    }).length >= 2;
 };
 
-var containsThreeOfAKind = function () {
+var containsThreeOfAKind = function (hand) {
+    var counts = countRanks(hand);
+
+    return Object.keys(counts).filter(function (rank) {
+        return counts[rank] >= 3;
+    }).length >= 1;
 };
 
-var containsFullHouse = function () {
+var containsFullHouse = function (hand) {
+    var counts = countRanks(hand);
+
+    var values = Object.keys(counts).map(function (key) {
+        return counts[key];
+    });
+
+    return values.indexOf(3) > -1 && values.indexOf(2) > -1;
 };
 
-var containsStraight = function () {
+var containsStraight = function (hand) {
+    var nonAces = hand.filter(function (card) {
+        return card.rank !== "ace";
+    });
+
+    var result = false;
+
+    // first case
+    if (!containsPair(hand) && ranks.indexOf(highCard(hand).rank) - ranks.indexOf(lowCard(hand).rank) === 4) {
+        result = true;
+    } else if (nonAces.length === 4 && !containsPair(nonAces) && highCard(nonAces).rank === "five" && lowCard(nonAces).rank === "two") {
+        result = true;
+    }
+
+    return result;
 };
 
-var containsFlush = function () {
-};
-
-var containsStraightFlush = function () {
-};
-
-var containsRoyalFlush = function () {
-};
-
-//helper function
-function countRanks (hand) {
+var containsFlush = function (hand) {
     return hand.map(function (card) {
-        return card.rank;
-    }).reduce(function (counts, rank) {
-        counts[rank] = typeof counts[rank] === "undefined" ? 1 : counts[rank] + 1;
-        return counts;
-    }, {});
-}
+        return card.suit;
+    }).every(function (suit) {
+        return suit === hand[0].suit;
+    });
+};
+
+var containsStraightFlush = function (hand) {
+    return containsFlush(hand) && containsStraight(hand);
+};
+
+var containsRoyalFlush = function (hand) {
+    return containsStraightFlush(hand) && lowCard(hand).rank === "ten";
+};

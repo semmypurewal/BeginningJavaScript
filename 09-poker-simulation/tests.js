@@ -25,6 +25,86 @@ var deck = [ {"suit":"clubs","rank":"two"},      {"suit":"clubs","rank":"three"}
              {"suit":"spades","rank":"jack"},    {"suit":"spades","rank":"queen"},
              {"suit":"spades","rank":"king"},    {"suit":"spades","rank":"ace"}];
 
+var bust = [
+    {"suit":"clubs","rank":"four"},
+    {"suit":"spades","rank":"nine"},
+    {"suit":"diamonds","rank":"three"},
+    {"suit":"spades","rank":"ace"},
+    {"suit":"clubs","rank":"queen"}
+];
+
+var pair = [
+    {"suit":"clubs","rank":"four"},
+    {"suit":"spades","rank":"nine"},
+    {"suit":"diamonds","rank":"four"},
+    {"suit":"spades","rank":"ace"},
+    {"suit":"clubs","rank":"queen"}
+];
+
+var twoPair = [
+    {"suit":"clubs","rank":"four"},
+    {"suit":"spades","rank":"nine"},
+    {"suit":"diamonds","rank":"four"},
+    {"suit":"spades","rank":"ace"},
+    {"suit":"clubs","rank":"nine"}
+];
+
+var threeOfAKind = [
+    {"suit":"hearts","rank":"four"},
+    {"suit":"spades","rank":"nine"},
+    {"suit":"diamonds","rank":"four"},
+    {"suit":"spades","rank":"ace"},
+    {"suit":"clubs","rank":"four"}
+];
+
+var fullHouse = [
+    {"suit":"hearts","rank":"four"},
+    {"suit":"spades","rank":"nine"},
+    {"suit":"diamonds","rank":"four"},
+    {"suit":"diamonds","rank":"nine"},
+    {"suit":"clubs","rank":"four"}
+];
+
+var straightA = [
+    {"suit":"clubs","rank":"four"},
+    {"suit":"spades","rank":"two"},
+    {"suit":"diamonds","rank":"five"},
+    {"suit":"spades","rank":"three"},
+    {"suit":"clubs","rank":"six"}
+];
+
+var straightB = [
+    {"suit":"clubs","rank":"four"},
+    {"suit":"spades","rank":"two"},
+    {"suit":"diamonds","rank":"five"},
+    {"suit":"spades","rank":"three"},
+    {"suit":"clubs","rank":"ace"}
+];
+
+var flush = [
+    {"suit":"diamonds","rank":"four"},
+    {"suit":"diamonds","rank":"ace"},
+    {"suit":"diamonds","rank":"two"},
+    {"suit":"diamonds","rank":"queen"},
+    {"suit":"diamonds","rank":"six"}
+];
+
+var straightFlush = [
+    {"suit":"hearts","rank":"four"},
+    {"suit":"hearts","rank":"three"},
+    {"suit":"hearts","rank":"two"},
+    {"suit":"hearts","rank":"five"},
+    {"suit":"hearts","rank":"six"}
+];
+
+var royalFlush = [
+    {"suit":"hearts","rank":"ten"},
+    {"suit":"hearts","rank":"jack"},
+    {"suit":"hearts","rank":"queen"},
+    {"suit":"hearts","rank":"king"},
+    {"suit":"hearts","rank":"ace"}
+];
+
 describe("#isSuit", function () {
     it ("should return true if the input is a valid suit, false otherwise", function () {
         expect(isSuit("hearts")).toBe(true);
@@ -81,7 +161,7 @@ describe("#createDeck", function () {
 });
 
 describe("#shuffle", function () {
-    console.log(JSON.stringify(isDeck(shuffle(createDeck()))));
+    //JSON.stringify(isDeck(shuffle(createDeck())));
 });
 
 describe("#isHand", function () {
@@ -140,32 +220,80 @@ describe("#lowCard", function () {
 });
 
 describe("#containsPair", function () {
-    console.log(JSON.stringify(dealHand()));
     it ("should return true if the hand contains a pair, false otherwise", function () {
-        var pair = [ {"suit":"clubs","rank":"four"},{"suit":"spades","rank":"nine"},{"suit":"diamonds","rank":"four"},{"suit":"spades","rank":"ace"},{"suit":"clubs","rank":"queen"} ];
-        var notAPair = [ {"suit":"clubs","rank":"four"},{"suit":"spades","rank":"nine"},{"suit":"diamonds","rank":"three"},{"suit":"spades","rank":"ace"},{"suit":"clubs","rank":"queen"} ];
         expect(containsPair(pair)).toBe(true);
-        expect(containsPair(notAPair)).toBe(false);
+        expect(containsPair(bust)).toBe(false);
     });
 });
 
 describe("#containsTwoPair", function () {
+    it ("should return true if the hand contains two pair, false otherwise", function () {
+        expect(containsTwoPair(twoPair)).toBe(true);
+        expect(containsTwoPair(pair)).toBe(false);
+        expect(containsTwoPair(bust)).toBe(false);
+    });
 });
 
 describe("#containsThreeOfAKind", function () {
+    it ("should return true if the hand contains three of a kind, false otherwise", function () {
+        expect(containsThreeOfAKind(threeOfAKind)).toBe(true);
+        expect(containsThreeOfAKind(twoPair)).toBe(false);
+        expect(containsThreeOfAKind(bust)).toBe(false);
+    });
 });
 
 describe("#containsFullHouse", function () {
+    it ("should return true if the hand contains a full house, false otherwise", function () {
+        expect(containsFullHouse(fullHouse)).toBe(true);
+        expect(containsFullHouse(threeOfAKind)).toBe(false);
+        expect(containsFullHouse(twoPair)).toBe(false);
+        expect(containsFullHouse(bust)).toBe(false);
+    });
 });
 
 describe("#containsStraight", function () {
+    it ("should return true if the hand contains a straight, false otherwise", function () {
+        expect(containsStraight(straightA)).toBe(true);
+        expect(containsStraight(straightB)).toBe(true);
+        expect(containsStraight(fullHouse)).toBe(false);
+        expect(containsStraight(threeOfAKind)).toBe(false);
+        expect(containsStraight(twoPair)).toBe(false);
+        expect(containsStraight(bust)).toBe(false);
+    });
 });
 
 describe("#containsFlush", function () {
+    it ("should return true if the hand contains a flush, false otherwise", function () {
+        expect(containsFlush(flush)).toBe(true);
+        expect(containsFlush(straightA)).toBe(false);
+        expect(containsFlush(fullHouse)).toBe(false);
+        expect(containsFlush(threeOfAKind)).toBe(false);
+        expect(containsFlush(twoPair)).toBe(false);
+        expect(containsFlush(bust)).toBe(false);
+    });
 });
 
 describe("#containsStraightFlush", function () {
+    it ("should return true if the hand contains a straight flush, false otherwise", function () {
+        expect(containsStraightFlush(straightFlush)).toBe(true);
+        expect(containsStraightFlush(flush)).toBe(false);
+        expect(containsStraightFlush(straightA)).toBe(false);
+        expect(containsStraightFlush(fullHouse)).toBe(false);
+        expect(containsStraightFlush(threeOfAKind)).toBe(false);
+        expect(containsStraightFlush(twoPair)).toBe(false);
+        expect(containsStraightFlush(bust)).toBe(false);
+    });
 });
 
 describe("#containsRoyalFlush", function () {
+    it ("should return true if the hand contains a royal flush, false otherwise", function () {
+        expect(containsRoyalFlush(royalFlush)).toBe(true);
+        expect(containsRoyalFlush(straightFlush)).toBe(false);
+        expect(containsRoyalFlush(flush)).toBe(false);
+        expect(containsRoyalFlush(straightA)).toBe(false);
+        expect(containsRoyalFlush(fullHouse)).toBe(false);
+        expect(containsRoyalFlush(threeOfAKind)).toBe(false);
+        expect(containsRoyalFlush(twoPair)).toBe(false);
+        expect(containsRoyalFlush(bust)).toBe(false);
+    });
 });
