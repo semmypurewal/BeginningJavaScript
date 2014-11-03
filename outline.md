@@ -94,7 +94,6 @@
 
 * poker simulation
   - overview
-  - unit testing
   - poker
-  - practice
-  - tests
+  + practice
+  + tests
