@@ -135,16 +135,6 @@ var containsThreeOfAKind = function (hand) {
     }).length >= 1;
 };
 
-var containsFullHouse = function (hand) {
-    var counts = countRanks(hand);
-
-    var values = Object.keys(counts).map(function (key) {
-        return counts[key];
-    });
-
-    return values.indexOf(3) > -1 && values.indexOf(2) > -1;
-};
-
 var containsStraight = function (hand) {
     var nonAces = hand.filter(function (card) {
         return card.rank !== "ace";
@@ -170,8 +160,22 @@ var containsFlush = function (hand) {
     });
 };
 
+
 var containsStraightFlush = function (hand) {
     return containsFlush(hand) && containsStraight(hand);
+};
+
+var containsFullHouse = function (hand) {
+    var counts = countRanks(hand);
+
+    var values = Object.keys(counts).map(function (key) {
+        return counts[key];
+    });
+
+    return values.indexOf(3) > -1 && values.indexOf(2) > -1;
+};
+
+var containsFourOfAKind = function () {
 };
 
 var containsRoyalFlush = function (hand) {
