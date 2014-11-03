@@ -55,17 +55,18 @@
   + breaking out of a loop
   + iterating backwards
   + practice
-  - tests
+  + tests
 
 * arrays
   + overview
   + defining an array
   + accessing elements of an array
   + mutating an array
+  + using variables for indices
   + strings as special arrays
   + examples
   + practice
-  - tests
+  + tests
 
 * array methods
   + overview
@@ -77,18 +78,21 @@
   + reduce
   + converting between strings and arrays
   + practice
-  - tests
+  + tests
 
 * objects
   + overview
-  + what are these good for?
-  - references vs. values
-  - using array functions on objects
-  - examples
-  - practice
+  + defining an object
+  + accessing elements of an object
+  + mutating an object
+  + using variables for keys
+  + using array functions on objects
+  + arrays of objects
+  + nested objects
+  + practice
   - tests
 
-* putting it all together
+* poker simulation
   - overview
   - unit testing
   - poker
