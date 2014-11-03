@@ -1,3 +1,19 @@
+// helper functions used throughout
+var closeTag = function (tag) {
+    var close = "</" + tag + ">";
+    return close;
+};
+
+var openTag = function (tag) {
+    var open = "<" + tag + ">";
+    return open;
+};
+
+var toTagString = function (tag, content) {
+    var result = openTag(tag) + content + closeTag(tag);
+    return result;
+};
+
 // Write a function called isUser that accepts an object, and returns true if it is
 // a valid user object, false otherwise. A valid user object will contain a
 // property called `name` which is a string, and a property called `screen_name`
@@ -15,7 +31,9 @@
 //     isUser({ "age": 37, "name":"Semmy Purewal", "screen_name":"semmypurewal" });
 //     //=> false
 //
-var isUser = function () {
+var isUser = function (obj) {
+    return typeof obj === "object" && Object.keys(obj).length === 2 &&
+        typeof obj["name"] === "string" && typeof obj["screen_name"] === "string";
 };
 
 
@@ -33,7 +51,12 @@ var isUser = function () {
 // Write this function. It should throw an error if the user is not a valid
 // user. It might be helpful to use some functions from previous sections.
 //
-var userToDiv = function () {
+var userToDiv = function (user) {
+    if (!isUser(user)) {
+        throw "input to userToDiv must be a user!";
+    }
+
+    return toTagString("div", toTagString("h1", user.name) + toTagString("h2", user.screen_name));
 };
 
 
@@ -59,7 +82,14 @@ var userToDiv = function () {
 //     });
 //     //=> "<div><h1>Semmy Purewal</h1><h2>semmypurewal</h2><ul><li>this is a tweet.</li><li>this is another tweet</li></ul></div>"
 //
-var userWithTweetsToDiv = function () {
+var userWithTweetsToDiv = function (user) {
+    var listElt = toTagString("ul", user.tweets.map(function (tweet) {
+        return toTagString("li", tweet);
+    }).join(""));
+
+    var userElt = toTagString("h1", user.name) + toTagString("h2", user.screen_name) + listElt;
+
+    return toTagString("div", userElt);
 };
 
 
@@ -79,5 +109,12 @@ var userWithTweetsToDiv = function () {
 // There are several ways you can do it, but it might be interesting to try it with
 // the `reduce` method that starts with an empty object.
 //
-var frequencies = function () {
+var frequencies = function (words) {
+    return words.reduce(function (frequencies, word) {
+        if (typeof frequencies[word] === "undefined") {
+            frequencies[word] = 0;
+        }
+        frequencies[word] = frequencies[word] + 1;
+        return frequencies;
+    }, {});
 };
