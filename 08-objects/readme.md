@@ -375,6 +375,37 @@ methods on it.
     //=> this is a tweet.
     //=> this is another tweet!
 
+
+### Checking Object Types
+
+It turns out we can use the `typeof` operator to do a type check against an
+object:
+
+    typeof {};
+    //=> object
+
+But we'll often want to confirm that the object has the expected structure. In
+those cases, we might check a little deeper to confirm that it contains all the
+expected properties.
+
+    // let's assume tweet has a text string and screen_name for now
+    var isTweet = function (tweet) {
+        return typeof tweet === "object" &&
+               typeof tweet.text === "string" &&
+               tweet.text.length <= 140 &&
+               typeof tweet.screen_name === "string" &&
+               Object.keys(tweet).length === 2;
+    }
+
+In this example, we confirm that the `tweet` variable is pointing to a value
+with the following properties.
+
+1. The argument (tweet) is an object
+2. The tweet object has a text property which is a string
+3. The text property's length is no more than 140 characters
+4. The tweet object has a screen_name property that is a string
+5. The tweet object only has 2 properties
+
 ### Practice
 
 For this set of questions, open up the file called `cards.html` in Chrome, then

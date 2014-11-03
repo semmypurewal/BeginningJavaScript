@@ -1,83 +1,55 @@
-describe("#reverse", function () {
-    it ("should return a new array that is the reverse of the input array", function () {
-        expect(reverse([ 1, 2, 3, 4, 5 ])).toEqual([ 5, 4, 3, 2, 1]);
-        expect(reverse([ "hello", "world" ])).toEqual([ "world", "hello" ]);
-        expect(reverse([])).toEqual([]);
+describe("#isUser", function () {
+    it ("should return true if the argument is a user object, false otherwise", function () {
+        expect(isUser({ "name":"Semmy Purewal", "screen_name":"semmypurewal" })).toBe(true);
+        expect(isUser({ "name":"Firstname Lastname", "screen_name":"user" })).toBe(false);
+        expect(isUser("semmypurewal")).toBe(false);
+        expect(isUser({ "age": 37, "name":"Semmy Purewal", "screen_name":"semmypurewal" })).toBe(false);
     });
 });
 
-describe("#flatten", function () {
-    it ("should flatten a potentially two-dimensional array", function () {
-        expect(flatten([ 1, 2, [ 10, 20 ], 3, 4, 5 ])).toEqual([ 1, 2, 10, 20,  3, 4, 5 ]);
-        expect(flatten([ "this", "is", "already", "flat" ])).toEqual([ "this", "is", "already", "flat" ]);
-        expect(flatten([])).toEqual([]);
-        expect(flatten([ 1, [2, 3], 4, [5, 6, 7], 8 ])).toEqual([ 1, 2, 3, 4, 5, 6, 7, 8 ]);
+describe("#userToDiv", function () {
+    it ("should convert a user object into an HTML div", function () {
+        var user = { "name":"Semmy Purewal", "screen_name":"semmypurewal" };
+        expect(userToDiv(user)).toEqual("<div><h1>Semmy Purewal</h1><h2>semmypurewal</h2></div>");
+
+        var obama = { "name":"Barack Obama", "screen_name":"BarackObama"};
+        expect(userToDiv(obama)).toEqual("<div><h1>Barack Obama</h1><h2>BarackObama</h2></div>");
+    });
+
+    it ("should throw an error if the argument is not a user object", function () {
+        expect(function () {
+            userToDiv({});
+        }).toThrow();
+
+        expect(function () {
+            userToDiv({ "name":"failing test", "screen_name":"failingtest", "age": 50 });
+        }).toThrow();
     });
 });
 
-describe("#sumOfMultiplesOf3And5", function () {
-    it ("should sum the multiples of 3 and 5 less than or equal to n", function () {
-        expect(sumOfMultiplesOf3And5(100)).toBe(2418);
-        expect(sumOfMultiplesOf3And5(50)).toBe(593);
-        expect(sumOfMultiplesOf3And5(0)).toBe(0);
+describe("#userWithTweetsToDiv", function () {
+    it ("should convert a user object with tweets into an HTML string", function () {
+        var example = {
+            "name": "Semmy Purewal",
+            "screen_name":"semmypurewal",
+            "tweets": [
+                "this is a tweet.",
+                "this is another tweet!"
+            ]
+        };
+
+        expect(userWithTweetsToDiv(example)).
+            toEqual("<div><h1>Semmy Purewal</h1><h2>semmypurewal</h2><ul><li>this is a tweet.</li><li>this is another tweet</li></ul></div>");
     });
 });
 
-describe("#atLeastOneVowel", function () {
-    it ("should return true if the word contains at least one vowel", function () {
-        expect(atLeastOneVowel("hello")).toBe(true);
-        expect(atLeastOneVowel("dry")).toBe(false);
-        expect(atLeastOneVowel("sdfjkl")).toBe(false);
-    });
-});
+describe("#frequencies", function () {
+    it ("should return an object that contains the frequencies of each word in the array", function () {
+        expect(frequencies([ "hello", "world", "hello", "goodbye", "hello", "world", "thing" ]))
+            .toEqual({ "hello" : 3, "world" : 2, "goodbye": 1, "thing" : 1 });
 
-describe("#longestAwesomeTweet", function () {
-    it ("should return the longest tweet containing 'awesome' or the empty string if no tweets contain 'awesome'", function () {
-        expect(longestAwesomeTweet([ "awesome", "longer tweet with awesome", "not awesome", "empty" ])).toEqual("longer tweet with awesome");
-        expect(longestAwesomeTweet([ "hello", "world" ])).toEqual("");
-    });
-});
+        expect(frequencies([])).toEqual({});
 
-describe("#elementsToContent", function () {
-    it ("should return the text content inside an html tag", function () {
-        expect(elementsToContent(["<p>this is a paragraph</p>", "<li>list item</li>", "<a>link!</a>" ]))
-            .toEqual([ "this is a paragraph", "list item", "link!" ]);
-        expect(elementsToContent([ "<h1>This is an important heading!</h1>", "<h5>this is not as important</h5>" ]))
-            .toEqual([ "This is an important heading!", "this is not as important" ]);
-    });
-});
-
-describe("#randomArray", function () {
-    it ("should return an array of random nums with length `length` with rand nums up to `max`", function () {
-        var listA = randomArray(10, 100);
-        expect(listA.length).toBe(10);
-        expect(listA.every(function (number) {
-            return number < 100;
-        })).toBe(true);
-
-        var listB = randomArray(5, 10);
-        expect(listB.length).toBe(5);
-        expect(listB.every(function (number) {
-            return number < 10;
-        })).toBe(true);
-    });
-});
-
-describe("#randomElements", function () {
-    it ("should return n random elements from the given array", function () {
-        var colors = [ "red", "orange", "yellow", "green", "blue", "purple", "gray", "black", "white" ];
-        var listA = randomElements(colors, 5);
-        expect(listA.length).toBe(5);
-        expect(listA.every(function (element) {
-            return colors.indexOf(element) > -1;
-        })).toBe(true);
-
-        var suits = [ "clubs", "diamonds", "hearts", "spades" ];
-        var listB = randomElements(suits, 3);
-
-        expect(listB.length).toBe(3);
-        expect(listB.every(function (element) {
-            return suits.indexOf(element) > -1;
-        })).toBe(true);
+        expect(frequencies([ "hello", "world" ])).toEqual({ "hello" : 1, "world" : 1 });
     });
 });

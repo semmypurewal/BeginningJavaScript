@@ -78,7 +78,7 @@
   + reduce
   + converting between strings and arrays
   + practice
-  - tests
+  + tests
 
 * objects
   + overview
@@ -86,13 +86,13 @@
   + accessing elements of an object
   + mutating an object
   + using variables for keys
-  - arrays of objects
-  - using array functions on objects
-  - examples
-  - practice
+  + using array functions on objects
+  + arrays of objects
+  + nested objects
+  + practice
   - tests
 
-* putting it all together
+* poker simulation
   - overview
   - unit testing
   - poker
