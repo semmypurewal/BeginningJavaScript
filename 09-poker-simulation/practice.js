@@ -177,3 +177,7 @@ var containsStraightFlush = function (hand) {
 var containsRoyalFlush = function (hand) {
     return containsStraightFlush(hand) && lowCard(hand).rank === "ten";
 };
+
+var highestRank = function () {
+
+};
