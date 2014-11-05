@@ -30,11 +30,6 @@ us use a number as the first character in an identifier.
     var 1card;
     //=> SyntaxError: Unexpected token ILLEGAL
 
-Notice the lines with two forward slashes followed by some text. Those are
-called _comments_; the slashes let the JavaScript interpreter know to ignore the
-rest of that line. We'll add comments to explain why we've written our code the
-way we have.
-
 ### Defining Variables
 
 Once we've declared a variable, the next step is _define_ it; that is, to assign
@@ -44,15 +39,12 @@ variable:
 
     suit = "spades";
 
-(We'll learn more about strings in later sections, but for now you can think of
-them as words or sentences.) An assignment statement takes the _value_ on the
-right-hand side of the `=` symbol, and stores it in the variable on the
-left-hand side. If we refer to the variable `suit` in our program after we
+An assignment statement takes the _value_ on the right-hand side of
+the `=` symbol, and stores it in the variable on the left-hand
+side. If we refer to the variable `suit` in our program after we
 assign it a value, we'll get its associated value.
 
-One of the basic things we're able to do in JavaScript is print things out on
-the screen. We can do this using console.log. If we print the variable, we'll
-see it's associated value:
+If we print the variable, we'll see it's associated value:
 
     console.log(suit);
     //=> spades
@@ -139,10 +131,13 @@ cost, we can add `burritoPrice` together with `tax` using the addition operator,
     console.log(burritoPrice);
     //=> 6.529100000000001
 
-Notice that long string of zeroes and the 1 at the end. This is a result of how
-JavaScript deals with numbers; we'll come back to that. Also, notice that the
-addition operator uses the same symbol as the concatenation operator. We'll come
-back to that too.
+Notice that long string of zeroes and the 1 at the end. This is a
+result of how JavaScript deals with numbers (all numbers are _floating
+point_ numbers). We'll learn how to round off the long trailing
+decimal in an upcoming section.
+
+Also, notice that the addition operator uses the same symbol as the
+concatenation operator. We'll come back to that.
 
 ### Reassigning Variables
 
