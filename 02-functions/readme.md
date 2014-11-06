@@ -61,7 +61,8 @@ Packaging operations that are frequently used as functions makes this possible.
 
 A _function_ is simply a collection of code that has a well-defined input and a
 well-defined output. We can store a function in a variable, just like we can
-store other values in a variable.
+store other values in a variable. In fact, JavaScript functions largely behave
+like any other type of value, which will become important later on.
 
     var totalWithTax = function (rate, price) {
         var tax = price * rate;
