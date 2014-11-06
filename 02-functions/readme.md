@@ -47,7 +47,7 @@ But wouldn't it be great if we could simply do something like this?
 
     var paragraph = toParagraphString(textContent);
     console.log(paragraph);
-    //=> </p>this is the text content in a paragraph element</p>
+    //=> <p>this is the text content in a paragraph element</p>
 
 Even better, what if we could generalize this for an arbitrary HTML tag?
 
@@ -111,7 +111,7 @@ Likewise, we can call the `toParagraphString` function in a similar fashion.
 ### Variable Scope
 
 Notice that we declare and define a variable called `taggedString` inside the
-`function. That variable is hidden from the outside world, and only available to
+function. That variable is hidden from the outside world, and only available to
 the function. We refer to these as _local variables_.
 
 For example, even though we declare and define the `taggedString` variable
@@ -119,8 +119,21 @@ inside the function, we can't access it later in our program outside of the
 function, unless we create a new variable called `taggedString`.
 
 Furthermore, we need to make sure that our local variables don't have the same
-name as any of our function arguments. Actually, JavaScript allows this without
-so much as a warning, so you'll need to be vigilant and not allow this to happen!
+name as any of our function arguments.
+
+    var add = function (x, y) {
+        var x = 100;  // we lose the argument x
+        console.log(x);
+
+        return x + y;
+    }
+
+    add (10, 20);
+    //=> 100
+    //=> 120
+
+JavaScript allows this without so much as a warning, so you'll need to be
+vigilant and not allow this to happen!
 
 ### Example with Numbers
 
