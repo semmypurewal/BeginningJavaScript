@@ -70,12 +70,13 @@ like any other type of value, which will become important later on.
     };
 
 In this example, `rate` and `price` are variable placeholders for the _inputs_
-to the function, while the `return` statement represents the _output_ of the
-function.
+to the function. The _inputs_ are often referred to as the function's
+_arguments_ or _parameters_. We'll use these terms interchangably. The _output_
+of the function is specified by the return statement.
 
-Likewise, we can define the function that creates a paragraph tag string. The
-input to the function is the content string, and the output is the content
-delimited by the paragraph tags.
+As another example, we can define the function that creates a paragraph tag
+string. The input to the function is the content string, and the output is the
+content delimited by the paragraph tags.
 
     var toParagraphString(content) {
         var taggedString = "<p>" + content + "</p>";
