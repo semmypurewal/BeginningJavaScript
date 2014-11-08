@@ -1,11 +1,9 @@
 ### Overview
 
 In the previous section we learned about boolean types and boolean
-expressions. These fundamental ideas are common throughout all programming
-languages -- they give us the ability to control what code gets executed
-depending on certain conditions.
-
-To do this, we'll introduce a new basic structure -- `if` statements.
+expressions. Boolean types actually exist in every programming language, and
+they give our programs the ability to change their behavior based on values
+computed while the program is running. This is achieved with `if` statements.
 
 ### `if` statements
 
@@ -13,38 +11,38 @@ An `if` statement is pretty straight-forward -- it accepts a boolean expression,
 and a set of code. It executes the code only if the boolean expression evaluates
 to `true`.
 
-    var num = 105;
+    var age = 25;
 
-    if (num > 100) {
-        console.log("the number is bigger than 100");
+    if (age >= 13) {
+        console.log("You can have a Facebook account!");
     }
     console.log("finished!");
 
-    //=> the number is bigger than 100
+    //=> You can have a Facebook account!
     //=> finished!
 
 
-In this case, the value stored in `num` is bigger than 100, so both logging
+In this case, the value stored in `age` is bigger than 13, so both logging
 statements are executed. Similarly, if the boolean expression evaluates to
 `false` the code-block will be skipped over.
 
-    var num = 99;
+    var age = 11;
 
-    if (num > 100) {
-        console.log("the number is bigger than 100");
+    if (age > 13) {
+        console.log("You can have a Facebook account!");
     }
     console.log("finished!");
 
     //=> finished!
 
-Since the value stored in `num` is not bigger than 100 (it's 99), it skips over
-the `if` statements associated code block and just executes the final log
-statement.
+Since the value stored in `age` is not greater than or equal to 13 (it's 11), it
+skips over the `if` statements associated code block and just executes the final
+log statement.
 
-We can use an `if` statement in a function pretty easily. Suppose we want to
-project the more irreverent side of our personality on Twitter by making sure
-that every single one of our tweets includes "LOL". We could write a function
-that guarantees that's always the case.
+Let's try using an `if` statement in a function. Suppose we want to project the
+more irreverent side of our personality on Twitter by making sure that every
+single one of our tweets includes "LOL". We can write a function using an `if`
+statement that guarantees that's always the case.
 
      improveTweet("this tweet needs to be improved");
      //=> this tweet needs to be improved lol
@@ -58,7 +56,8 @@ that guarantees that's always the case.
      improveTweet("my car was stolen and i was fired from my job today");
      //=> my car was stolen and i was fired from my job today lol
 
-We can do this by simply introducing an `if` statement.
+One approach to writing this function would check to see if it already contains
+'LOL,' and if it doesn't, add it to the end.
 
     var improveTweet = function (tweet) {
         var result = tweet;
@@ -73,8 +72,8 @@ We can do this by simply introducing an `if` statement.
 
 ### `else` clauses in `if` statements
 
-Conditional expressions with `if` statements also allow you to include an `else`
-clause, which executes only if the boolean expression evaluates to `false`.
+`if` statements also allow you to include an `else` clause, which executes only
+if the boolean expression evaluates to `false`.
 
     var anotherNum = 95;
 
