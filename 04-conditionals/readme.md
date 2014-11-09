@@ -1,50 +1,47 @@
 ### Overview
 
-In the previous section we learned about boolean types and boolean
-expressions. These fundamental ideas are common throughout all programming
-languages -- they give us the ability to control what code gets executed
-depending on certain conditions.
-
-To do this, we'll introduce a new basic structure -- `if` statements.
+In the previous section we learned about boolean types and boolean expressions.
+Boolean types give our programs the ability to change their behavior based on
+values computed while the program is running. The simplest way to do this is by
+using `if` statements.
 
 ### `if` statements
 
-An `if` statement is pretty straight-forward -- it accepts a boolean expression,
-and a set of code. It executes the code only if the boolean expression evaluates
-to `true`.
+An `if` statement accepts a boolean expression and a _block_ of code. It
+executes the code only if the boolean expression evaluates to `true`.
 
-    var num = 105;
+    var age = 25;
 
-    if (num > 100) {
-        console.log("the number is bigger than 100");
+    if (age >= 13) {
+        console.log("You can have a Facebook account!");
     }
     console.log("finished!");
 
-    //=> the number is bigger than 100
+    //=> You can have a Facebook account!
     //=> finished!
 
 
-In this case, the value stored in `num` is bigger than 100, so both logging
+In this case, the value stored in `age` is bigger than 13, so both logging
 statements are executed. Similarly, if the boolean expression evaluates to
-`false` the code-block will be skipped over.
+`false` the code block will be skipped over.
 
-    var num = 99;
+    var age = 11;
 
-    if (num > 100) {
-        console.log("the number is bigger than 100");
+    if (age > 13) {
+        console.log("You can have a Facebook account!");
     }
     console.log("finished!");
 
     //=> finished!
 
-Since the value stored in `num` is not bigger than 100 (it's 99), it skips over
-the `if` statements associated code block and just executes the final log
-statement.
+Since the value stored in `age` is not greater than or equal to 13 (it's 11),
+it skips over the `if` statements associated code block and just executes the
+final log statement.
 
-We can use an `if` statement in a function pretty easily. Suppose we want to
-project the more irreverent side of our personality on Twitter by making sure
-that every single one of our tweets includes "LOL". We could write a function
-that guarantees that's always the case.
+Let's try using an `if` statement in a function. Suppose we want to project the
+more irreverent side of our personality on Twitter by making sure that every
+single one of our tweets includes "lol". We can write a function using an `if`
+statement that guarantees that's always the case.
 
      improveTweet("this tweet needs to be improved");
      //=> this tweet needs to be improved lol
@@ -58,7 +55,8 @@ that guarantees that's always the case.
      improveTweet("my car was stolen and i was fired from my job today");
      //=> my car was stolen and i was fired from my job today lol
 
-We can do this by simply introducing an `if` statement.
+One approach to writing this function would be to check if the input already
+contains "lol", and if it doesn't, to add it to the end.
 
     var improveTweet = function (tweet) {
         var result = tweet;
@@ -73,29 +71,30 @@ We can do this by simply introducing an `if` statement.
 
 ### `else` clauses in `if` statements
 
-Conditional expressions with `if` statements also allow you to include an `else`
-clause, which executes only if the boolean expression evaluates to `false`.
+`if` statements also allow you to include an `else` clause, which executes only
+if the boolean expression evaluates to `false`.
 
-    var anotherNum = 95;
+    var heightInInches = 40;
+    var minHeightInFeet = 4;
 
-    if (anotherNum > 100) {
-        console.log("the number is bigger than 100");
+    if (heightInInches/12 >= minHeightInFeet) {
+        console.log("You can ride Space Mountain!");
     } else {
-        console.log("the number is not bigger than 100");
+        console.log("Sorry, you're not allowed to ride Space Mountain.");
     }
 
     console.log("finished!");
 
-    //=> the number is not bigger than 100
+    //=> Sorry, you're not allowed to ride Space Mountain.
     //=> finished!
 
 In this case, the value stored in `anotherNum` is 95. Since that's not greater
-than 100 the conditional expression only executes the code block associated with
-the `else` clause.
+than 100 the `if-else` statement only executes the code block associated with the
+`else` clause.
 
-We can also use if-else statements to write more interesting functions. For
-example, suppose we wanted to write a function that accepts either an opening or
-closing HTML tag, and returns the tag name associated with it.
+We can also use `if-else` statements to write more interesting functions. For
+example, suppose we wanted to write a function that accepts either an opening
+or closing HTML tag, and returns the tag name associated with it.
 
     getTagName("<p>");
     //=> p
@@ -194,16 +193,16 @@ We can write code that does this by cascading `if-else` statements.
          return result;
      }
 
-The final `else` statement acts as a "catch-all" or a default return value when
-the input is outside of the expected range.
+In our example, the final `else` statement acts as a "catch-all" to provide a
+default return value when the input is outside of the expected range.
 
 You'll notice that this function defines a variable, and then sets it in
 different ways depending on a condition. There's a single `return` statement at
 the end. This is a common pattern that we'll see again and again.
 
 Although we'll try to keep things mostly simple, it's worth noting that `if`
-statements and `if-else` statements can contain nested statements. For example,
-suppose we wanted to find the maximum of 3 numbers.
+statements and `if-else` statements can contain nested `if` and `if-else`
+statements. For example, here's one way to find the maximum of 3 numbers:
 
     var maxOfThree = function (numA, numB, numC) {
         var result;
@@ -225,9 +224,10 @@ suppose we wanted to find the maximum of 3 numbers.
         return result;
     }
 
-While this is pretty normal and you'll find it in a lot of code, I'd say that
-these situations can almost always be simplified. There are two ways we can do
-it. The first is simply by using compound boolean expressions.
+While nesting if statements is pretty normal and you'll find it in a lot of
+code, these situations can very often be simplified. Let's look at a couple of
+techniques for simplifying nested if statements. First, we could use compound
+boolean expressions:
 
     var maxOfThree = function (numA, numB, numC) {
         var result;
@@ -243,8 +243,9 @@ it. The first is simply by using compound boolean expressions.
         return result;
     }
 
-The flatter structure here is much easier to read. But there's even a better
-way. What if we created a maxOfTwo function and then called that?
+The flat structure here is much easier to read than the first example. There
+is, however, a much better technique we can use for this case. What if we
+created a maxOfTwo function and then called that?
 
     var maxOfThree = function (numA, numB, numC) {
         var bigger = maxOfTwo(numA, numB);
@@ -254,16 +255,15 @@ way. What if we created a maxOfTwo function and then called that?
     }
 
 We can easily write a maxOfTwo function that has a single `if-else` statement,
-saving us from the complications of nesting.
+saving us from the complications of nesting `if` statements.
 
-Admittedly, there are cases where it's harder to unravel nested `if` and
-`if-else` statements, but we'll try to avoid situations like that in our
-examples.
+There are certainly cases where it's harder to unravel nested `if` and
+`if-else` statements, but they appear much less often in  the real world.
 
 ### Writing robust functions
 
 One thing that `if` statements allow us to do is to issue errors in cases where
-inputs to a function don't meet our expectations. For example, recall our
+inputs to a function don't meet our expectations. As an example, recall our
 `addThree` function from earlier.
 
     var addThree = function (a, b, c) {
@@ -285,16 +285,17 @@ unexpected if the parameters are other values.
 While this may not seem like such an issue on the surface, the results of
 function calls are often passed to other functions, whose results are passed to
 other functions, and so on. When this happens and one of the functions is
-operating on arguments that lead to undefined behavior, our entire program can
-become unstable.
+operating on arguments that lead to unexpected behavior, our entire program can
+end up doing the wrong thing.
 
-Therefore it's a good idea to not allow that to happen. JavaScript has an
-operator called `throw` which allows us to terminate the program to let the
-programmer (or a user) know that it has entered an unexpected state.
+We clearly don't want that to happen, so let's figure out how to avoid it.
+JavaScript has an operator called `throw` which allows us to terminate the
+program to let the programmer (or a user) know that it has entered an
+unexpected state.
 
     var addThree = function (a, b, c) {
         if (!isNumber(a) || !isNumber(b) || !isNumber(c)) {
-            throw "the arguments to addThree must be numbers!"
+            throw "all of the arguments to addThree must be numbers!"
         }
         return a + b + c;
     }

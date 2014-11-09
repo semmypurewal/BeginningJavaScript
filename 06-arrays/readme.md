@@ -168,7 +168,7 @@ like you'd expect.
 We'll learn more about the relationship between strings an arrays in the next
 section.
 
-### Iterating Over Arrays with for-loops
+### Iterating Over Arrays with `for`-loops
 
 Like strings, arrays can be passed as arguments to functions:
 
