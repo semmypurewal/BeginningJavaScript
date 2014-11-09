@@ -56,7 +56,7 @@ What if, instead of a tag name, we send in an invalid tag?
 Or worse, what if the user sends in a number?
 
     toTagString(5, "this is an invalid tag");
-    //=> <5>this is a div</5>
+    //=> <5>this is an invalid tag</5>
 
 
 Programmers often write functions in JavaScript without considering what happens
@@ -70,10 +70,15 @@ The most basic way to test to see the type of a value in JavaScript is to use
 the `typeof` operator.
 
     typeof 5;
-    //=> number
+    //=> "number"
 
     typeof "5"
-    //=> string
+    //=> "string"
+
+Similarly, functions have their own types.
+
+    typeof addThree
+    //=> "function"
 
 We can also use `typeof` to see the types of the results of our `addThree`
 function.
@@ -136,9 +141,10 @@ numbers (and check for primality).
 ### Extending the number operations with Math
 
 Beyond the basic arithmetic operations, we can do most other operations that a
-scientific calculator can do. We'll find the extended operators inside the
-`Math` object, and we access them using the dot operator. For example, we can
-easily compute 2 to the third power by using the `pow` method.
+scientific calculator can do. The extended operators live inside the `Math`
+object as functions, and we access them using the dot operator (more on this
+later). For example, we can easily compute 2 to the third power by using the
+`pow` function.
 
     Math.pow(2, 3);
     //=> 8
@@ -328,7 +334,7 @@ these evaluate properties of ordered types (like numbers and strings).
 |    >     | greater than |
 |    >=    | greater than or equal to |
 |    ===   | strict equal to |
-|    !==   ! strict not-equal to |
+|    !==   | strict not-equal to |
 
 
     "aardvark" === "aardvark";
