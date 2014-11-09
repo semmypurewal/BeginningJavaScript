@@ -1,8 +1,8 @@
 ### Overview
 
-In the previous section we saw that the `+` operator can mean one of two things
-depending on the type of the value stored in a variable. In the case that the
-value is a string, it concatenates the two values.
+In the first section we saw that the `+` operator can mean one of two things,
+depending on the type of its arguments. If one of its arguments is a string, it
+concatenates the two values:
 
     var suit = "spades";
     var rank = "ace";
@@ -11,7 +11,7 @@ value is a string, it concatenates the two values.
     console.log(card);
     //=> ace of spades
 
-If the values are numbers, it adds them.
+If they're both numbers, it adds them together:
 
     var num1 = 500;
     var num2 = 101;
@@ -55,14 +55,12 @@ What if, instead of a tag name, we send in an invalid tag?
 
 Or worse, what if the user sends in a number?
 
-    toTagString(5, "this is an invalid tag");
-    //=> <5>this is a div</5>
-
+    toTagString(5, "this is a number what are you doing?");
+    //=> <5>this is a number what are you doing?</5>
 
 Programmers often write functions in JavaScript without considering what happens
-when the arguments contain values of unexpected types. This makes the functions
-exhibit undefined behavior, which can lead to bugs in more complex JavaScript
-programs.
+when the arguments contain values of unexpected types. This can lead to bugs in
+even simple JavaScript programs. Let's see what we can do to avoid this.
 
 ### The typeof operator
 
@@ -80,7 +78,7 @@ Similarly, functions have their own types.
     typeof addThree
     //=> "function"
 
-We can also use `typeof` to see the types of the results of our `addThree`
+Neat! We can use `typeof` to see the types of the results of our `addThree`
 function.
 
     typeof addThree(5, 2, 10);
@@ -89,14 +87,14 @@ function.
     typeof addThree(5, 10, "Hello");
     //=> "string"
 
-It turns out that whenever we add a string to a number, the result is a string
--- the number is _coerced_ into a string during the computation.
+We've seen that whenever we add a string to a number, the result is a string --
+we say that the number is _coerced_ into a string by the `+` operator.
 
 ### Number Types and Arithmetic Expressions
 
-It's pretty essential that we understand basic operations that we can apply to
-the specific built-in JavaScript types. It's easiest to start with the `number`
-type, because you'll recognize most of the operations from a standard calculator.
+It's pretty important that we understand the basic operations we can apply to
+JavaScript's built in types. It's easiest to start with the `number` type,
+because you'll recognize most of the operations from a standard calculator.
 
 The most-commonly used built-in operators for numbers are the (mostly) familiar
 arithmetic operators.
@@ -123,8 +121,8 @@ subtraction. You can also apply parentheses to force precedence.
     24 / (6 + 2);
     //=> 3, because the addition happens first, so 24 / 8 is 3
 
-The remainder operator may seem less useful, but it turns out that it's pretty
-frequently used. Here's some examples of it:
+The remainder operator may seem less useful at first glance, but it turns out
+to do some pretty interesting things. Here's some examples of it:
 
     7 % 5;
     //=> 2, because 5 goes into 7 once with a remainder of 2
@@ -135,8 +133,12 @@ frequently used. Here's some examples of it:
     24 % 5;
     //=> 4, because 5 goes into 24 4 times with a remainder of 2
 
+    100 % 5.99
+    //=> 4.159999999999997, the change you'll get back buying as many super
+    // burritos as you can with $100
+
 In future sections, we'll use the remainder operator to test divisibility of
-numbers (and check for primality).
+numbers. We'll also use it to check whether numbers are prime!
 
 ### Extending the number operations with Math
 
@@ -199,8 +201,9 @@ random number between 0 and 9. We can start by multiplying the result by 10.
      //=> 4
 
 Notice that the smallest number `Math.random` generates is 0 and the largest is
-1. That means that by multiplying by 10, you'll end up with a number between 0
-and 10. Taking the `Math.floor` of that number will give you a whole number.
+just smaller than 1. That means that by multiplying by 10, you'll end up with a
+number between 0 and 10. Taking the `Math.floor` of that number will give you a
+whole number between 0 and 9.
 
 ### String Types and Built-In Methods
 
@@ -209,21 +212,29 @@ operations called _methods_ that generate new values (often strings) by applying
 functions to the current string. We access string methods using the dot
 operator.
 
-    "HELLO WORLD!".toLowerCase();
+    "Hello World!".toLowerCase();
     //=> hello world!
 
-    "hello world!".toUpperCase();
+    "Hello World!".toUpperCase();
     //=> HELLO WORLD!
 
 We can also apply methods to string values stored in variables.
 
     var greeting = "hello there!";
+    greeting.toUpperCase();
+    //=> HELLO THERE!
 
-You can also check to see if a string contains a certain substring by using the
-`indexOf` method. This method returns the index of the substring, or -1 if the
-substring does not appear.
+You can also check to see if a string contains another string by using the
+`indexOf` method. This method returns the _index_ of the substring (starting at
+0 for the first position), or -1 if the substring does not appear.
 
     var tweet = "LOL, this is my tweet on twitter but not really";
+    tweet.indexOf("LOL");
+    //=> 0
+
+    tweet.indexOf("OL");
+    //=> 1
+
     tweet.indexOf("tweet");
     //=> 16
 
@@ -233,7 +244,7 @@ substring does not appear.
     tweet.indexOf("facebook");
     //=> -1
 
-You can also grab a substring out of a string. For example:
+You can also grab a slice out of a string. For example:
 
     tweet.slice(0, 3);
     //=> LOL
@@ -241,8 +252,8 @@ You can also grab a substring out of a string. For example:
     tweet.slice(16,21);
     //=> tweet
 
-You can also get the length of the string, but the `length` property is not a
-method, so you don't have to use the parenthesis.
+You can get the length of the string, but the `length` property is not a
+method, so you shouldn't use the parentheses.
 
     tweet.length
     //=> 47
@@ -255,8 +266,8 @@ And, on top of that, you can always chain method calls.
     tweet.slice(25,32).toUpperCase();
     //=> TWITTER
 
-We'll also need to know how to extract individual characters from a string. We
-can do this by sending in an index to the `charAt` method.
+We'll also occasionally want to extract individual characters from a string. We
+can do this by providing an index as the input to the `charAt` method.
 
     tweet.charAt(6);
     //=> h
@@ -296,9 +307,8 @@ exactly two boolean values -- `true` and `false`.
     typeof isANumber;
     //=> boolean
 
-Usually, however, a boolean value is the result of a boolean expression. The
-expressions can be built up using some of the simple comparison operations that
-you learned in elementary
+Usually, a boolean value is the result of a boolean expression. The expressions
+can be built up using JavaScript's built in comparison operations.
 
     5 < 7;   // is less than
     //=> true
@@ -309,8 +319,9 @@ you learned in elementary
     5 <= 5;  // is less than or equal to
     //=> true
 
-We can even use these comparison operators on strings. But in this case, the
-comparison is done alphanumerically.
+We can even use these comparison operators on strings. We need to be careful,
+because the ordering isn't always straightforward at first. For example, we'll
+see that uppercase letters always come before lowercase letters.
 
     "aardvark" < "zebra";
     //=> true
@@ -324,8 +335,8 @@ comparison is done alphanumerically.
     "a" < "aa";
     //=> true
 
-There are 5 basic ordering operations which evaluate to booleans. We can use
-these evaluate properties of ordered types (like numbers and strings).
+There are 5 basic comparison operators which evaluate to booleans. We can use
+these operators to ask things about ordered types like numbers and strings.
 
 | Operator | Meaning  |
 | :------: | :------- |
@@ -336,17 +347,22 @@ these evaluate properties of ordered types (like numbers and strings).
 |    ===   | strict equal to |
 |    !==   | strict not-equal to |
 
-
     "aardvark" === "aardvark";
     //=> true
 
     "aardvark" !== "AArdvark".toLowerCase();
     //=> false
 
-Likewise, once we have boolean values, or expressions that evaluate to boolean
-values, we can use several boolean operators to build up more complex
-expressions. For example, maybe we want to know if a number is bigger than 0 and
-smaller than 18.
+    "a" < "a"
+    //=> false
+
+    "a" <= "a"
+    //=> true
+
+Once we have boolean values, or expressions that evaluate to boolean values, we
+can use several boolean operators to build up more complex expressions. For
+example, let's say we want to know if a number is bigger than 0 and smaller
+than 18.
 
     var age = 25;
     age > 0 && age < 18;
@@ -357,9 +373,9 @@ smaller than 18.
     //=> true
 
 The `&&` operator represents the logical "and". This returns true if both the
-left expression and the right expression return true. Similarly, we could use
-`||` to test the logical or. In this example, we're checking to see if the type
-is a number or a string.
+expression on its left and expression on its right return true. Similarly, we
+can use the logical "or" operator, `||`. In this example, we're checking to see
+if the type is a number or a string.
 
     var value = 5;
     typeof value === "number" || typeof value === "string";
@@ -429,8 +445,8 @@ all the techniques learned in this section.
 
 ### Practice
 
-1. Using the Chrome JavaScript console, practice with the `typeof`
-operator. What are the types of the following values?
+1. Using the Chrome JavaScript console, practice with the `typeof` operator.
+What are the types of the following values?
 
     typeof true;
 
