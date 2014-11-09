@@ -56,7 +56,7 @@ What if, instead of a tag name, we send in an invalid tag?
 Or worse, what if the user sends in a number?
 
     toTagString(5, "this is an invalid tag");
-    //=> <5>this is a div</5>
+    //=> <5>this is an invalid tag</5>
 
 
 Programmers often write functions in JavaScript without considering what happens
