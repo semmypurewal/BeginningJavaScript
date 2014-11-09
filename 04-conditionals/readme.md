@@ -75,17 +75,18 @@ One approach to writing this function would check to see if it already contains
 `if` statements also allow you to include an `else` clause, which executes only
 if the boolean expression evaluates to `false`.
 
-    var anotherNum = 95;
+    var heightInInches = 40;
+    var minHeightInFeet = 4;
 
-    if (anotherNum > 100) {
-        console.log("the number is bigger than 100");
+    if (heightInInches/12 >= minHeightInFeet) {
+        console.log("You can ride Space Mountain!");
     } else {
-        console.log("the number is not bigger than 100");
+        console.log("Sorry, you're not allowed to ride Space Mountain.");
     }
 
     console.log("finished!");
 
-    //=> the number is not bigger than 100
+    //=> Sorry, you're not allowed to ride Space Mountain.
     //=> finished!
 
 In this case, the value stored in `anotherNum` is 95. Since that's not greater
