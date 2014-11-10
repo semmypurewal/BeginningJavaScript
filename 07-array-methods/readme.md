@@ -1,19 +1,18 @@
 ### Overview
 
-In the previous section, we learned about arrays, and we saw how we can use
-for-loops to iterate over them. As is often the case, however, we've started
-with "the hard way" of doing things, and now we're going to learn an easier way
-to work with Arrays.
+In the previous section we learned about arrays, and we saw how we can use
+for-loops to iterate over them. Since this is a pretty common thing to do,
+JavaScript's provided us some easier ways to do it.
 
-It turns out that JavaScript arrays have a much richer set of built-in methods
-that make iterating over them and calculating a properties a real
-pleasure. Most modern JavaScript developers prefer these to the traditional
-`for`-loops, and -- for many applications -- you can actually give a compelling
-argument for why this approach is superior.
+JavaScript arrays have a rich set of built in methods that make iterating over
+them and calculating a properties a real pleasure. Most modern JavaScript
+developers prefer these to the traditional `for`-loops because they're easier
+to use and less error prone. Let's take a look!
 
 ### forEach
 
-In the previous section, we saw how to sum a list of numbers using a for-loop.
+To recap, in the previous section we saw how to sum a list of numbers using a
+`for` loop:
 
     var sum = function (listOfNumbers) {
         var index;
@@ -26,21 +25,20 @@ In the previous section, we saw how to sum a list of numbers using a for-loop.
         return sum;
     }
 
-The above approach to iterating over arrays is pretty common, but there's a
-better way. In cases like this, it's much better to use the array's `forEach`
-method.  The `forEach` method actually takes a function as an argument and then
-applies the function to each element.
+The simplest change we can make is to use the array's `forEach` method.  The
+`forEach` method actually takes a function as an argument and applies it to
+each element in order. To start off, let's write a function which prints out
+all the elements in an array.
 
-For example, if we want to print each element of an array called `arr`, we can
-use the `forEach` function like this:
+    var printElements = function (listOfNumbers) {
+        var printElement = function (number) {
+            console.log(number);
+        }
 
-    var arr = [5,6,7,8];
-
-    var printElement = function (elt) {
-        console.log(elt);
+        listOfNumbers.forEach(printElement);
     }
 
-    arr.forEach(printElement);
+    printElements([5,6,7,8]);
     //=> 5
     //=> 6
     //=> 7
@@ -49,29 +47,37 @@ use the `forEach` function like this:
 In this example, we first defined the function called `printElement` and then
 sent it as a parameter to the `forEach` function. It turns out that you don't
 actually have to define the function first -- you can use an _anonymous_
-function to specify the action. This is a very common pattern in JavaScript, so
-you should probably get used to it.
+function to specify the action. This is a very common pattern in JavaScript.
 
-    var arr = [5,6,7,8];
+Also, notice that we don't have an index variable! We no longer need to keep track
+of it, since `forEach` does that for us. If for some reason we need to use the
+index, it's passed in as the second argument to our function. Let's modify our
+example to use an anonymous function, and to print the index of each element.
 
-    arr.forEach(function (elt) {
-        console.log(elt);
-    });
+    var printElementsAndIndices = function (listOfNumbers) {
+        listOfNumbers.forEach(function (number, index) {
+            console.log(number + " is at index " + index);
+        });
+    }
 
-The `forEach` loop takes the function that is the parameter, and then sends each
-array element to it as an argument.
+    printElementsAndIndices([5,6,7,8]);
+    //=> 5 is at index 0
+    //=> 6 is at index 1
+    //=> 7 is at index 2
+    //=> 8 is at index 3
 
-Previously, I mentioned that this approach is superior to using a `for`-loop. Why
-is that the case? The primary reason is that it makes it so you don't have to
-track array indices, which means you need one less variable (`index` in this
-case). This actually eliminates the potential for an entire class of programming
+Previously, I mentioned that this approach is superior to using a `for`-loop.
+The primary reason is that it makes it so you don't have to track array
+indices. This eliminates the potential for an entire class of programming
 errors (known as _off-by-one_ errors) from your code.
 
 More generally speaking, the fewer variables that you have to define and keep
-track of, the fewer potential bugs your program will have.
+track of, and the less often you modify those variables, the fewer potential
+bugs your program will have.
 
-We can use this approach to rewrite the `sum` function using fewer variables,
-and leaving fewer places that we could have an error.
+So, back to our original example. We can use the `forEach` approach to rewrite
+the `sum` function using fewer variables, which leaves fewer places for us to
+make a mistake.
 
     var sum = function (listOfNumbers) {
         var sum = 0;
@@ -83,15 +89,12 @@ and leaving fewer places that we could have an error.
         return sum;
     }
 
-
 ### map
 
-It turns out that JavaScript arrays have even more functions that allow you to
-easily manipulate the data that they contain. For example, suppose we wanted to
-take a given array of numbers, and return an array of numbers that are the the
+Let's look at another common operation, taking a list of values and
+transforming each value to produce another list. For example, suppose we wanted
+to take an array of numbers and produce a new array of numbers that are the the
 previous numbers doubled.
-
-Specifically, it would behave like this:
 
     var numbers = [1,2,3,4,5,6];
 
@@ -99,43 +102,23 @@ Specifically, it would behave like this:
     console.log(doubles);
     //=> [2,4,6,8,10,12]
 
-Given what we learned previously, here is a reasonable approach to solving this
-problem.
+Given what we've learned so far, here's a reasonable approach to solving this
+problem:
 
-    var doubles = function (nums) {
-        var index;
+    var doubles = function (numbers) {
         var result = []; // create an empty array
 
-        for (index = 0; index < nums.length; index = index + 1) {
-            result.push(nums[index] * 2);
-        }
+        numbers.forEach(function (number) {
+            result.push(number * 2);
+        })
 
         return result;
     }
 
-We saw a few examples like this in the practice portion of the previous
-section. We would accept an array as an argument, and return a new array as the
-result. Sometimes, as in the case of the `mapToTags` function, the result array
-was simply the original array with some straight-forward operation applied to
-it.
-
-One thing that we can do to simplify this pattern is to remove the `index`
-variable by using a `forEach` loop.
-
-    var doubles = function (nums) {
-        var result = []; // create an empty array
-
-        nums.forEach(function (num) {
-            result.push(num * 2);
-        });
-
-        return result;
-    }
-
-But there's an even better way! The pattern of constructing a new array by
-applying a function to every element occurs so frequently, we have a function
-called `map` that does exactly that. In fact, it allows us to remove the
-`result` variable altogether!
+This would work fine, but there's an even better way! The pattern of
+constructing a new array by applying a function to every element occurs so
+frequently, we have a function called `map` that does exactly that. In fact, it
+allows us to remove the `result` variable altogether!
 
     var doubles = function (nums) {
         return nums.map(function (num) {
@@ -143,8 +126,8 @@ called `map` that does exactly that. In fact, it allows us to remove the
         });
     }
 
-That's all `map` does -- it returns a new array that is the old array with the
-specified function applied to each element!
+That's all `map` does -- it returns a new array that is the same length as the
+old array, with the specified function applied to each element!
 
 Here's a few other examples that we can type right into the console. Let's
 suppose we want to create an array that is simply the first letters of an array
@@ -162,9 +145,9 @@ Similarly, we can map a list of boolean values to their opposites.
     });
     //=> [false, true, false, false, true, false]
 
-And it turns out that we don't _have_ to use an anonymous function. For example,
-in the last practice problem from the last section, we got the tags of a set of
-HTML elements. That function can be simplified to something like this (minus the
+And remember we don't _have_ to use an anonymous function. For example, in the
+last practice problem from the last section, we got the tags of a set of HTML
+elements. That function can be simplified to something like this (minus the
 error checking, of course).
 
      var mapToTags = function (htmlElements) {
@@ -173,10 +156,8 @@ error checking, of course).
 
 ### Chaining Functions that Return Arrays
 
-Since `map` returns an array, we can immediately _chain_ a call to
-`forEach`. This means we effectively call the next function on the returned
-array.
-
+Since `map` returns an array, we can immediately _chain_ a call to `forEach`.
+This means we effectively call the next function on the returned array.
 
     var numbers = [1,2,3,4];
 
@@ -190,9 +171,9 @@ array.
     //=> 6
     //=> 8
 
-In the previous problem section, we created a `range` function that generated an
-array with numbers from the given range. Since that function returns an array,
-we can chain that as well.
+In the previous problem section, we created a `range` function that generated
+an array with numbers from the given range. Since that function returns an
+array, we can chain that as well.
 
     range(1,4).map(function (number) {
         return number * 2;
@@ -209,10 +190,10 @@ learning about the other features of JavaScript arrays.
 
 ### filter
 
-There's another method that is similarly convenient:`filter`. That allows us to
-create a new array that only consists of the elements of the previous array that
-pass some basic boolean test. For example, suppose we wanted all of the even
-numbers in an array.
+Continuing on our path of simplifying common operations, let's take a look at
+`filter`. This method allows us to create a new array which only includes the
+elements of the previous array that pass some basic boolean test. For example,
+suppose we wanted all of the even numbers in an array.
 
     var nums = [ 5, 10, 15, 20, 25, 30, 35, 36, 37, 38, 39, 40 ];
 
@@ -224,7 +205,7 @@ numbers in an array.
 Combining this with the `range` function, we can print out all the even numbers
 less than 100 in a pretty interesting way:
 
-    range(0,100).filter(function (elt) {
+    range(0, 100).filter(function (elt) {
         return elt % 2 === 0;
     }).forEach(function (elt) {
         console.lot(elt);
@@ -233,7 +214,7 @@ less than 100 in a pretty interesting way:
 In the previous section, we had a practice problem where we wrote a function
 called `filterToLol` that accepts an array of strings and returns an array that
 consists of all of the original strings that contain "lol" in any case. We can
-recreate that function in a much simpler way by using the `filter` method (minus
+write that function much more easily by using the `filter` method (again, minus
 handling error conditions).
 
     var filterToLol = function (arr) {
@@ -245,10 +226,9 @@ handling error conditions).
 ### some and every
 
 We've seen two very nice array methods that return arrays, but sometimes we'll
-want to compute a _value_ based on array (instead of an array). For example,
-suppose we were trying to do some very basic analysis of the sentiment of a set
-of tweets, and wanted to know if any of the tweets in the list contain the
-word "awesome".
+want to compute a single value based on an array. For example, suppose we were
+trying to do some very basic analysis of the sentiment of a set of tweets, and
+wanted to know if any of the tweets in the list contain the word "awesome".
 
 Using techniques found in the previous section and a `forEach` loop, we can
 create a function that does something like this.
@@ -262,7 +242,7 @@ create a function that does something like this.
             }
         });
 
-         return result;
+        return result;
     };
 
 Or we could use the `filter` method and check the `length` property of the
@@ -274,17 +254,17 @@ resulting array.
         }).length > 0;
     };
 
-This is a nice solution in that it removes the need for extraneous
-variables. But it has one significant disadvantage. Can you think of what it is?
+This is a nice solution in that it removes the need for extraneous variables.
+But it has one significant disadvantage. Can you think of what it is?
 
 If you think back, we learned how to break out of a `for`-loop early when we
-need to. There's no need to process the entire array if we've found what we ware
-looking for. Unfortunately, the `forEach` method (as well as the `filter` and
-`map` methods) have no way to break out of a loop early.
+need to. There's no need to process the entire array if we've found what we
+ware looking for. Unfortunately, the `forEach`, `filter`, and `map` methods
+have no way to break out of a loop early.
 
-It turns out that JavaScript has two functions that _do_ have this property. The
-`some` method is a good example. It returns `true` if _any_ of the elements pass
-the `true`/`false` test, and it immediately stops.
+Fortunately JavaScript has two functions that _do_ have this property. The
+`some` method is a good example. It returns `true` if _any_ of the elements
+pass the `true`/`false` test, and it immediately stops.
 
     var containsAwesome = function (tweets) {
         return tweets.some(function (tweet) {
@@ -309,11 +289,11 @@ Now let's run it on a concrete example.
     //=> true
 
 You'll see that it only processes the first two tweets, because the second one
-contains awesome.
+contains "awesome".
 
-Similarly the `every` function returns `true` if _all_ of the elements pass the
-test, and it breaks out of the loop early if any of the elements evaluate to
-`false`.
+Similarly to `some`, the `every` method returns `true` if _all_ of the elements
+pass the test, and it breaks out of the loop early if any of the elements
+evaluate to `false`.
 
     var allAwesome = function (tweets) {
         return tweets.every(function (tweet) {
@@ -325,14 +305,13 @@ test, and it breaks out of the loop early if any of the elements evaluate to
 ### reduce
 
 But what if we have to compute something more complex than just a `true` or
-`false`? For example, consider our favorite problem of summing a list of numbers
-contained in an array. Is there some way we can leverage built-in array methods
-so we can remove extra variables? It turns out we can -- the `reduce` method
-allows us to build up a very general computation by carrying an additional
-function variable between calls.
+`false`? For example, consider our favorite problem of summing a list of
+numbers contained in an array. Is there some way we can leverage built-in array
+methods so we can remove even more extra variables?
 
-Let's start by considering our solution to the `sum` problem that uses the
-`forEach` method.
+It turns out we can -- the `reduce` method allows us to build up a very general
+computation by carrying an additional value between calls. Let's start by
+considering our solution to the `sum` problem using the `forEach` method.
 
     var sum = function (listOfNumbers) {
         var sumSoFar = 0;
@@ -345,21 +324,19 @@ Let's start by considering our solution to the `sum` problem that uses the
     }
 
 This allowed us to remove the `index` variable we would need to maintain with a
-traditional `for`-loop, but we still have the `sumSoFar` variable. How does
-`reduce` allow us to remove it?
+traditional `for`-loop, but we still have the `sumSoFar` variable. Let's see
+how reduce lets us get rid of `sumSoFar` as well.
 
-Consider the following example.
+    var numbers = [5,6,7,8,9,10];
 
-    var nums = [5,6,7,8,9,10];
-
-    nums.reduce(function (sumSoFar, number) {
+    numbers.reduce(function (sumSoFar, number) {
         return sumSoFar + number;
     });
     //=> 45
 
-In this example, the anonymous function takes _two_ values -- `sumSoFar` and the
-current `number`. The job of the function is to combine these two values into
-the next value for `sumSoFar`.
+In this example, the anonymous function takes _two_ values -- `sumSoFar` and
+the current `number`. The job of the function is to combine these two values
+into the next value for `sumSoFar`.
 
 But what's the value of `sumSoFar` when the function is first called? By
 default, will call the function the first time with `sumSoFar` set to the first
@@ -381,17 +358,17 @@ this, we can rewrite our `sum` function with _no_ local variables!
         });
     };
 
-Believe it or not, there are times when it doesn't actually make sense to make
-the first argument to `reduce`'s function be the first element in the array. For
-example, suppose we wanted to write a function that accepts an array of strings
-and returns them combined into a paragraph as sentences.
+There are times when it doesn't make sense to make the first argument to
+`reduce`'s function be the first element in the array. For example, suppose we
+wanted to write a function that accepts an array of strings and returns them
+combined into a paragraph as sentences.
 
     paragraphify( [ "hello world", "this is a tweet, "goodbye" ] );
     //=> Hello world.This is a tweet.Goodbye.
 
 Assuming we have a function called `capitalize` that capitalizes the first word
-in a sentence, we can easily achieve this using a `forEach` loop and a temporary
-local variable.
+in a sentence, we can easily achieve this using a `forEach` loop and a
+temporary local variable.
 
     var paragraphify = function (list) {
         var result = "";  // initialize to empty list
@@ -428,10 +405,11 @@ argument will be the empty string.
         }, "");  // <= the second argument is ""
     };
 
-This may look strange, but it's a common pattern in JavaScript.
+This may look strange, but you'll see this pattern a lot in JavaScript code in
+the wild.
 
-It's actually worth noting that this isn't completely necessary in this case. We
-could use the `map` method and chaining a call to `reduce`.
+It's worth noting another way of writing `paragraphify`. We could use the `map`
+and `reduce` methods chained together:
 
     var paragraphify = function (list) {
         return list.map(function (sentence) {
@@ -459,18 +437,18 @@ numbers.
         });
     };
 
-If we call this function on [ 5, 10, 3, 1, 9 ] the calls to the function look as
-follows.
+If we call this function on [ 5, 10, 3, 1, 9 ] the calls to our function look
+like the following.
 
 1. `smallest` is 5, and `current` is 10. The result of the function is 5.
 2. `smallest` is 5, and `current` is 3. The result of the function is 3.
 3. `smallest` is 3, and `current` is 1. The result of the function is 1.
 4. `smallest` is 1, and `current` is 9. The result of the function is 1.
 
-You'll see here that we've created a temporary local variable called `result` to
-store the smaller of the current element and the smallest element we've seen up
-until that point. This maintains our pattern of always having a single `return`
-statement in our functions (which is a good habit to get into).
+You'll see here that we've created a temporary local variable called `result`
+to store the smaller of the current element and the smallest element we've seen
+up until that point. This maintains our pattern of always having a single
+`return` statement in our functions (which is a good habit to get into).
 
 This case is simple enough to where we could also do something like this to get
 rid of the `result` variable, but we do it at the expense of creating two
@@ -486,12 +464,13 @@ rid of the `result` variable, but we do it at the expense of creating two
         });
     };
 
-There is a trade-off here. Sometimes function with multiple `return` statements
-can be harder for people to understand, particularly if they are really
-long. This one is small enough that it doesn't matter too much.
+There is a trade-off here. Sometimes functions with multiple `return`
+statements can be harder for people to understand, particularly if they are
+really long. This one is small enough that it doesn't matter too much, and may
+even be easier to read.
 
-Another approach is to use the JavaScript ternary conditional operator, which is
-an operator that can be useful in these situations.
+Another approach is to use the JavaScript _ternary conditional_ operator, which
+is very useful in this kind of situation.
 
     var smallest = function (list) {
         return list.reduce(function (smallest, current) {
@@ -503,24 +482,26 @@ The ternary operator takes in three arguments -- a boolean expression, a
 resulting value if the expression is `true`, and a resulting value if the
 expression is `false`.
 
-I try to use these operators sparingly due to the fact that they are sometimes
-hard to read. But in this case I probably would use it.
+The ternary conditional suffers from the same problem as multiple return
+statements; it can make code much easier or much harder to read, depending on
+how it's used. Over time you'll develop an intuition for which to use in a
+given situation.
 
 ## Converting between Strings and Arrays
 
 We mentioned previously that arrays and strings are very similar, but that
-strings don't enjoy some of the fun array methods. It turns out this isn't too
-much of a problem, because it's very easy to convert between strings and
-arrays. To change a string into an array that, we'll simply use the string's
-`split` method to turn it into an _actual_ array of characters.
+strings don't enjoy some of the useful array methods we've been exploring. This
+isn't a problem for us, because it's very easy to convert between strings and
+arrays. We can use a string's `split` method to turn it into an _actual_ array
+of characters.
 
     var greeting = "hello";
 
     greeting.split("");
     //=> ["h","e","l","l","o"]
 
-The `split` method actually gives us a little more flexibility. For example,
-suppose we were dealing with comma-separated-values (CSVs).
+The `split` method is pretty flexible. For example, suppose we were dealing
+with a string containing _comma separated values_ (CSVs).
 
     var values = "gracie,loki,dahlia,ally";  //=> these are my dogs!
     var names = values.split(",");
@@ -559,8 +540,8 @@ an arbitrary string.
     //=> "this;is;a;tweet!"
 
 These methods make it very easy to do complex transformations on a string
-without having to write a lot of complex `for`-loops and maintain the value of a
-lot of local variables.
+without having to write a lot of complex `for`-loops and maintain the value of
+a lot of local variables.
 
 ### Practice
 
