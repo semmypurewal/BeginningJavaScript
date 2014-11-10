@@ -1,49 +1,49 @@
 ### Overview
 
-In the previous two sections, we explored arrays. Arrays can be thought of as
-several pieces of data stored in a single structure that are indexed by numbers.
+In the previous two sections, we explored arrays. Just to recap, arrays are
+lists of values which we can index using numbers.
 
-Believe it or not, sometimes it's useful to have data stored in structures that
-are indexed by things that aren't numbers. These are often referred to as
-_dictionaries_ or _maps_. In JavaScript, these data structures are (almost)
-equivalent to JavaScript _objects_.
+Sometimes it's useful to have data stored in structures that are indexed by
+strings instead. In JavaScript, these are called _objects_. (Note
+that this is slightly different from other languages, where you'll see these
+data structures referred to as _dictionaries_ or _maps_.)
 
-We can think of JavaScript object as collection of _keys_ that map to
-_values_. You can access and mutate the elements of an object in the same way
-that you can access and mutate elements of an array, but instead of using the
-numbered index, you use the name of the key.
+One way to think about a JavaScript object is as collection of _keys_ that map
+to _values_. You can access and mutate the elements of an object in the same
+way that you can access and mutate elements of an array, but instead of using
+the numbered index, you use the name of the key.
 
 Objects are good for associating a set of related data with a single variable
-and building up custom data types. For instance, suppose we wanted to write a
-card game. Cards have ranks and suits. Without objects, we may try something
-like this:
+and building up custom data types. For instance, suppose we wanted to represent a
+card in a card game. Cards have ranks and suits; without objects, we may try
+something like this:
 
     var cardRank = "ace";
     var cardSuit = "spades";
 
 The difficulty is that the two pieces of data aren't related except in the
-programmer's mind. This is a recipe for bugs and brittle code. A better approach
-is to use objects.
+programmer's mind. This is a recipe for bugs and brittle code. A better
+approach is to use objects.
 
 ### Defining an Object
 
-We can define a single card object like this.
+We can define a card object like this:
 
-    var card = { "rank":"ace", "suit":"spades" };
+    var card = { "rank": "ace", "suit": "spades" };
 
 Notice that defining one is similar to defining an array, but we use
 curly-braces instead of square-brackets. In addition we have to
 explicitly specify the key _and_ the value for each entry. We do that
 by separating them with colons.
 
-    var person = { "name":"Semmy", "age":37 };
+    var person = { "name": "Semmy", "age": 37 };
 
 As is usually the case, there's nothing special about the identifier we use for
 the variable name. We can create multiple cards with different variables.
 
-    var anotherCard = { "rank":"two", "suit":"clubs" };
+    var anotherCard = { "rank": "two", "suit": "clubs" };
 
-    var anotherPerson = { "name":"Jennifer", "age": 25 };
+    var anotherPerson = { "name": "Jennifer", "age": 25 };
 
 Here's another example that's similar to one of the examples we saw in the
 section on arrays. We'll store a list of greetings, but instead of having the
@@ -72,8 +72,8 @@ stored in an object.
     //=> "spades"
 
 The advantage here over arrays should be clear. For example, when we use the
-`greeting` object, the code becomes more readable since we know the language
-we're referring to (instead of connecting the language with an arbitrary index).
+`greetings` object, the code becomes more readable since we know the language
+we're referring to (instead of having to use an arbitrary index).
 
     // here greetings is an object, and the semantics of the code is clear
     greetings["spanish"];
@@ -118,7 +118,10 @@ can also use the dot operator to access elements of the array.
 If we use numbers or invalid JavaScript identifiers for our keys, we'll run into
 problems when we try to do this.
 
-    var list = { "1":"first", "2":"second" }
+    var list = {
+        "1": "first",
+        "2": "second"
+    };
 
     list["2"];
     //=> second
@@ -159,8 +162,7 @@ With arrays, you can use expressions or variables to index into an array:
     array[lastIndex];
     //=> "list"
 
-You can also use variables or expressions to extract values from objects. For
-example:
+You can also use expressions and variables to extract values from objects.
 
     var card = { "rank":"ace", "suit":"spades" };
     var key = "rank";
@@ -168,16 +170,16 @@ example:
     card[key];
     //=> "ace"
 
-Note that you have to use the square-bracket notation for this to work. In other
-words, you can't do this using the dot-operator to access values by keys stored
-in a variable.
+Note that you have to use the square-bracket notation for this to work. In
+other words, you can't do this using the dot-operator to access values by keys
+stored in a variable.
 
     card.key;
     //=> undefined
 
-That's because when you use the dot-operator, the identifier to the right of the
-dot is the interpreted as a string representing the key. So, here, in this case,
-it's looking for a key called "key" instead of the value stored in the
+That's because when you use the dot-operator, the identifier to the right of
+the dot is interpreted as a string representing the key. So, here, in this
+case, it's looking for a key called "key" instead of the value stored in the
 variable. In other words, it's equivalent to this.
 
     card["key"];
@@ -186,9 +188,9 @@ variable. In other words, it's equivalent to this.
 ### Using Array functions on Objects
 
 Can we use all those wonderful array methods on objects? Not directly. Since
-objects contain both keys and values, it's not immediately obvious how something
-like `map` would work. Should it map the keys, or the values, or both to the
-result? Should it return an object or an array?
+objects contain both keys and values, it's not immediately obvious how
+something like `map` would work. Should it map over the keys, or the values, or
+both? Should it return an object or an array?
 
 We might think something like this would work:
 
@@ -199,11 +201,11 @@ We might think something like this would work:
     //=> [ "Ace", "Spades" ]
 
 Many languages allow you to call these types of functions on maps, but
-JavaScript doesn't have the ability built-in.
+JavaScript doesn't have the ability built in.
 
-On the other hand you can easily extract the set of keys and the collection of
-values as arrays and then operate on them if you wish. To get the keys, you have
-to use the `Object.keys` function.
+On the other hand, you can easily extract the set of keys and the collection of
+values as arrays and then operate on them if you wish. To get the keys, you
+can use the `Object.keys` function.
 
     var card = { "rank":"ace", "suit":"spades" };
     var keys = Object.keys(card);
@@ -230,15 +232,15 @@ How can you get the values? You can combine the `map` function with the
     //=> [ "Ace", "Spades" ]
 
 We can actually build a more robust solution to doing this by converting a
-single object into an array of objects that contain a `key` and a `value`, but
-before we do that, we'll need to see an example of an array of object.
+single object into an array of objects that contain a `key` and a `value`.
+Before we do that, let's look at an example of an array of objects.
 
 ### Arrays of Objects
 
 In the practice problems of the previous section, we saw that we could have
 arrays that contained other arrays (we created the `flatten` function to turn
 those into a single-dimensional array). It's just as easy to have arrays of
-objects, and -- in fact -- arrays of objects are very commonly used.
+objects; in fact, arrays of objects are very common in JavaScript.
 
 An array of objects allows us to store a collection of data that might be more
 complex than simply numbers or strings. For example, we could represent a card
@@ -280,7 +282,7 @@ It's cumbersome to represent all our objects in this way, but we can easily
 write a function that takes care of this for us! For example:
 
     Object.keys(card2).reduce(function (arrayRep, key) {
-        return arrayRep.concat([ { "key":key, "value": card2["value"] } ]);
+        return arrayRep.concat([ { "key": key, "value": card2[key] } ]);
     }, []);
     //=> [ { "key" : "suit", "value": "spades" }, { "key" : "rank", "value": "two" } ];
 
@@ -288,7 +290,7 @@ We can actually generalize this idea into a single function.
 
     var toObjectArray = function (obj) {
         return Object.keys(obj).reduce(function (arrayRep, key) {
-            return arrayRep.concat([ { "key":key, "value": obj["value"] } ]);
+            return arrayRep.concat([ { "key":key, "value": obj[key] } ]);
         }, []);
     };
 
@@ -297,16 +299,17 @@ And this gives us access to our array functions on objects now!
     var person = { "name": "semmy", "age": 37 };
 
     toObjectArray(person).filter(function (entry) {
-        var value = entry.value;
-        return isString(entry.value) && entry.value[0] === "s";
+        return typeof entry.value === 'string' && entry.value[0] === "s";
+    }).map(function (entry) {
+        return entry.value;
     });
     //=> [ "semmy" ]
 
 ### Nested Objects
 
 In previous sections, we've been modeling tweets as strings that are less than
-140 characters. It turns out that a tweet is a lot more than just a string -- it
-also includes a lot of _meta-data_ including a timestamp, geographic
+140 characters. It turns out that a tweet is a lot more than just a string --
+it also includes a lot of _metadata_ including a timestamp, geographic
 information, and the number of times the tweet has been retweeted, among many
 other things. So if we get a real tweet back from Twitter, it might look
 something like this:
@@ -323,9 +326,8 @@ something like this:
     tweet.source;
     //=> "<a href="http://twitter.com" rel="nofollow">Twitter Web Client</a>"
 
-Tweet objects are complex, because they even contain sub-objects. For instance,
-you can extract the user object from the tweet to get information about the
-user.
+Tweet objects are complex; they even contain sub-objects. For instance, you can
+extract the user object from the tweet to get information about the user.
 
     tweet.user.name;
     //=> "Semmy Purewal"
@@ -340,8 +342,9 @@ And you can assign these sub-objects to new variables.
     user.followers_count;
     //=> 483
 
-Creating nested object literals isn't much different than creating normal object
-literals -- it's just that the values are occasionally objects themselves.
+Creating nested object literals isn't much different than creating normal
+object literals -- it's just that the values are occasionally objects
+themselves.
 
     var tweet = {
         "text": " this is an awesome tweet!",
@@ -370,7 +373,7 @@ When you access the element that is an array, you can use all the normal array
 methods on it.
 
     user.tweets.forEach(function (tweet) {
-        consol.log(tweet);
+        console.log(tweet);
     };
     //=> this is a tweet.
     //=> this is another tweet!
@@ -391,10 +394,10 @@ expected properties.
     // let's assume tweet has a text string and screen_name for now
     var isTweet = function (tweet) {
         return typeof tweet === "object" &&
-               typeof tweet.text === "string" &&
-               tweet.text.length <= 140 &&
-               typeof tweet.screen_name === "string" &&
-               Object.keys(tweet).length === 2;
+           typeof tweet.text === "string" &&
+           tweet.text.length <= 140 &&
+           typeof tweet.screen_name === "string" &&
+           Object.keys(tweet).length === 2;
     }
 
 In this example, we confirm that the `tweet` variable is pointing to a value
