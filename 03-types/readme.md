@@ -55,14 +55,8 @@ What if, instead of a tag name, we send in an invalid tag?
 
 Or worse, what if the user sends in a number?
 
-<<<<<<< HEAD
-    toTagString(5, "this is an invalid tag");
-    //=> <5>this is an invalid tag</5>
-
-=======
     toTagString(5, "this is a number what are you doing?");
     //=> <5>this is a number what are you doing?</5>
->>>>>>> 4a605d5db336e51017f478843642da7228d47d53
 
 Programmers often write functions in JavaScript without considering what happens
 when the arguments contain values of unexpected types. This can lead to bugs in
