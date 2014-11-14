@@ -320,9 +320,9 @@ the loop body:
         // case we don't find anything
         var result = "";
 
-        // add a check to see if result is still "" before continuing
         for (index = 0; index < message; index = index + 1) {
             if (isLowerCaseLetter(message.charAt(index))) {
+                // we found it, exit the function!
                 return message.charAt(index);
             }
         }
