@@ -88,8 +88,8 @@ if the boolean expression evaluates to `false`.
     //=> Sorry, you're not allowed to ride Space Mountain.
     //=> finished!
 
-In this case, the value stored in `anotherNum` is 95. Since that's not greater
-than 100 the `if-else` statement only executes the code block associated with the
+In this case, 40/12 is 3.75, which is less than 4 feet. Since it's not greater
+than 4 the `if-else` statement only executes the code block associated with the
 `else` clause.
 
 We can also use `if-else` statements to write more interesting functions. For
