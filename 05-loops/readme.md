@@ -145,13 +145,13 @@ We've seen several examples where we computed whether a number has a certain
 property or not (e.g. `isEven`, `isOdd`). Using loops we can compute more
 complex properties of numbers.
 
-For example, suppose we want to know the largest even divisor of a number. We
-know that 1 evenly divides every number, so we can start with the assumption
-that 1 is the largest divisor. Next, we can start at 2 and work our way up to
-the number itself. If we ever see a new divisor, we know it will be larger than
-the one we've already seen, so we can replace the current largest.
+For example, suppose we want to know the largest divisor of a number. We know
+that 1 evenly divides every number, so we can start with the assumption that 1
+is the largest divisor. Next, we can start at 2 and work our way up to the
+number itself. If we ever see a new divisor, we know it will be larger than the
+one we've already seen, so we can replace the current largest.
 
-    var largestEvenDivisor = function (num) {
+    var largestDivisor = function (num) {
         if (typeof num !== "number" || num <= 0) {
             throw "largestDivisor requires num to be a positive number!";
         }
