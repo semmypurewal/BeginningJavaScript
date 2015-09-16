@@ -9,7 +9,7 @@ var isDivisibleBy3 = function (val) {
 // and vice-versa. To convert from Celsius to Fahrenheit, you multiply
 // the celsius value by 9 and then divide by 5. Then you add 32. To
 // convert the other way, you subtract 32, and then multiply by
-// 9. Finally, you divide by 5. The division operator in JavaScript is
+// 5. Finally, you divide by 9. The division operator in JavaScript is
 // `/`.
 var celsToFahr = function (f) {
     return (9/5) * f + 32;
