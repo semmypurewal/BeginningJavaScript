@@ -77,7 +77,7 @@ var isRank = function () {
 
 
 // Using the previous two functions, write a function called isCard that accepts
-// two arguments, a suit and a rank, and returns true if they are valid for a card,
+// two arguments, a rank and a suit, and returns true if they are valid for a card,
 // and false otherwise.
 var isCard = function () {
 };
