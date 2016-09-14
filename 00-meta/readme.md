@@ -89,12 +89,12 @@ Github. This branch contains solutions to all of the tested practice problems.
 ### Getting the Examples
 
 Download the examples from our Github repository. The github repository can be
-found [here](https://github.com/semmypurewal/IntroducingJavaScript). On the
+found [here](https://github.com/semmypurewal/BeginningJavaScript). On the
 right-hand side, you'll see a button that says "Download ZIP." Download that
 file and unzip it somewhere on your hard-drive that you can easily access (your
 Desktop, pearhaps?).
 
-You can also download the .zip file through [this direct link](https://github.com/semmypurewal/IntroducingJavaScript/archive/master.zip).
+You can also download the .zip file through [this direct link](https://github.com/semmypurewal/BeginningJavaScript/archive/master.zip).
 
 ### Working with the Browser and an Editor
 
