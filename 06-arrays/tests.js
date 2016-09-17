@@ -49,6 +49,7 @@ describe("#containsAnyTwice", function () {
         expect(containsAnyTwice([1, 2], ["hello", 1, "world", 1])).toBe(true);
         expect(containsAnyTwice([], ["always", "will", "return", "false"])).toBe(false);
         expect(containsAnyTwice(["hello", "world"], ["hello", "hello", "world", "world"])).toBe(true);
+        expect(containsAnyTwice(["hello"], ['hello', 'world', 'world'])).toBe(false);
     });
 
     it ("should throw an error if either of the arguments are not arrays", function () {
