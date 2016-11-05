@@ -1,5 +1,4 @@
-// (example) Write a function that accepts two number arguments and adds them
-// together.
+// Write a function that accepts two number arguments and returns their sum
 var add = function () {
 };
 
