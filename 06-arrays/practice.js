@@ -1,5 +1,5 @@
-// Write a function called `containsTwice` that accepts a number and an array,
-// and returns `true` if that number appears in the array twice, and `false`
+// Write a function called `containsTwice` that accepts an element and an array,
+// and returns `true` if that element appears in the array twice, and `false`
 // otherwise.
 //
 //     containsTwice(5, [1, 2, 3, 4, 5]);
