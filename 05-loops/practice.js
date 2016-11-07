@@ -214,7 +214,7 @@ var sumOfFirstNPrimes = function () {
 //      //=> false
 //
 // Let's start by writing a function to remove all non-letter characters
-// from the input.
+// from the input. If the input is not a string, throw an error.
 //
 //     removeNonLetters("A man, a plan, a canal, Panama");
 //     //=> AmanaplanacanalPanama
