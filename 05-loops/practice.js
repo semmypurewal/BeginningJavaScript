@@ -154,7 +154,7 @@ var isPrime = function () {
 
 
 // Using the `isPrime` function, write a function that accepts a number as
-// input sums all the primes smaller than that number.
+// input sums all the primes smaller or equal to that number.
 //
 //     sumPrimesUpTo(100);
 //     //=> 1060
@@ -176,7 +176,7 @@ var sumPrimesUpTo = function () {
 
 
 // Using the `isPrime` function, write a function that takes in a
-// positive integer, n, and returns the first n numbers.
+// positive integer, n, and returns the sum of the first n prime numbers.
 //
 //     sumOfFirstNPrimes(10);
 //     //=> 129
@@ -214,7 +214,7 @@ var sumOfFirstNPrimes = function () {
 //      //=> false
 //
 // Let's start by writing a function to remove all non-letter characters
-// from the input.
+// from the input. If the input is not a string, throw an error.
 //
 //     removeNonLetters("A man, a plan, a canal, Panama");
 //     //=> AmanaplanacanalPanama

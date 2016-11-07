@@ -1,10 +1,9 @@
-// (example) Write a function that accepts two number arguments and adds them
-// together.
+// Write a function that accepts two number arguments and returns their sum
 var add = function () {
 };
 
 
-// Create a function that takes in a cost and a quantity and outputs the total
+// Create a function that takes in a cost and a quantity and returns the total
 // pre-tax cost for that quantity of items at the given price. For example
 //
 //     var preTaxTotal = totalCost(5, 5.99); // 5 items at 5.99
