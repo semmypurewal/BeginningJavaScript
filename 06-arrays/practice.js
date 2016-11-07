@@ -103,7 +103,8 @@ var containsAnyTwice = function () {
 // In the previous problem, we determined whether or not an array contains any
 // of a list of values exactly twice. In this problem, we'll actually return
 // those values appearing twice.  Create a new function that returns an array of
-// only the values from the first array that appear twice in the second array.
+// only the values that appear twice in the array.
+//
 //
 // For this problem, you'll create a new array, and you'll use its `push`
 // function to add elements to the end. You'll most likely want to use the
