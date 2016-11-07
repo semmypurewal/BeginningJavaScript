@@ -176,7 +176,7 @@ var sumPrimesUpTo = function () {
 
 
 // Using the `isPrime` function, write a function that takes in a
-// positive integer, n, and returns the first n numbers.
+// positive integer, n, and returns the sum of the first n prime numbers.
 //
 //     sumOfFirstNPrimes(10);
 //     //=> 129
