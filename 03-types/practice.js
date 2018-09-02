@@ -62,11 +62,12 @@ var randBetween = function (a, b) {
 //     isSuit("coins");
 //     //=> false
 var isSuit = function (s) {
-    var lowerCaseSuit = s.toLowerCase();
-    return lowerCaseSuit === "hearts" ||
-        lowerCaseSuit === "spades" ||
-        lowerCaseSuit === "clubs" ||
-        lowerCaseSuit === "diamonds";
+    var suits = ['diamonds','clubs','hearts','spades'];
+
+    if(suits.indexOf(s.toLowerCase())>-1) {
+        return true;
+    }
+    return false;
 };
 
 
@@ -83,20 +84,13 @@ var isSuit = function (s) {
 //     isRank("one");
 //     //=> false
 var isRank = function (r) {
-    var lowerCaseRank = r.toLowerCase();
-    return lowerCaseRank === "two" ||
-        lowerCaseRank === "three" ||
-        lowerCaseRank === "four" ||
-        lowerCaseRank === "five" ||
-        lowerCaseRank === "six" ||
-        lowerCaseRank === "seven" ||
-        lowerCaseRank === "eight" ||
-        lowerCaseRank === "nine" ||
-        lowerCaseRank === "ten" ||
-        lowerCaseRank === "jack" ||
-        lowerCaseRank === "queen" ||
-        lowerCaseRank === "king" ||
-        lowerCaseRank === "ace";
+    var ranks = ['two', 'three', 'four', 'five', 'six', 'seven', 
+                    'eight', 'nine', 'ten', 'jack', 'queen', 'king', 'ace'];
+
+    if(ranks.indexOf(r.toLowerCase())>-1) {
+        return true;
+    }
+    return false;
 };
 
 
