@@ -138,3 +138,5 @@ run.
 ##### Semi-Colons
 
 ##### Expressions
+
+**[Next 01 Variables](https://github.com/semmypurewal/BeginningJavaScript/tree/master/01-variables)**
